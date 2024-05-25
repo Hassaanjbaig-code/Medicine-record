@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Start end medicines</h1>
+
+<div id="start_end_medicines">
+  <% @start_end_medicines.each do |start_end_medicine| %>
+    <%= render start_end_medicine %>
+    <p>
+      <%= link_to "Show this start end medicine", start_end_medicine %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New start end medicine", new_start_end_medicine_path %>

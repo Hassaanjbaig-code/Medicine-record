@@ -1,0 +1,32 @@
+<%= form_with(model: medicine) do |form| %>
+  <% if medicine.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(medicine.errors.count, "error") %> prohibited this medicine from being saved:</h2>
+
+      <ul>
+        <% medicine.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :medicine_name, style: "display: block" %>
+    <%= form.text_field :medicine_name %>
+  </div>
+
+  <div>
+    <%= form.label :use_for, style: "display: block" %>
+    <%= form.text_field :use_for %>
+  </div>
+
+  <div>
+    <%= form.label :medicine_mg, style: "display: block" %>
+    <%= form.number_field :medicine_mg %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

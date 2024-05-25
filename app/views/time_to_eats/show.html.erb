@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @time_to_eat %>
+
+<div>
+  <%= link_to "Edit this time to eat", edit_time_to_eat_path(@time_to_eat) %> |
+  <%= link_to "Back to time to eats", time_to_eats_path %>
+
+  <%= button_to "Destroy this time to eat", @time_to_eat, method: :delete %>
+</div>

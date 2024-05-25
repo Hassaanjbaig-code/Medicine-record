@@ -1,0 +1,27 @@
+<%= form_with(model: time_to_eat) do |form| %>
+  <% if time_to_eat.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(time_to_eat.errors.count, "error") %> prohibited this time_to_eat from being saved:</h2>
+
+      <ul>
+        <% time_to_eat.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :time_to_eat, style: "display: block" %>
+    <%= form.time_field :time_to_eat %>
+  </div>
+
+  <div>
+    <%= form.label :medicine_id, style: "display: block" %>
+    <%= form.text_field :medicine_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
