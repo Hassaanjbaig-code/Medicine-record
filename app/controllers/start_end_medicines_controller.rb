@@ -1,10 +1,11 @@
 class StartEndMedicinesController < ApplicationController
   before_action :set_start_end_medicine, only: %i[ show edit update destroy ]
 
-  # GET /start_end_medicines or /start_end_medicines.json
   def index
-    @start_end_medicines = StartEndMedicine.all
+    @medicine = Medicine.find(params[:medicine_id])
+    @start_end_medicines = @medicine.start_end_medicines
   end
+
 
   # GET /start_end_medicines/1 or /start_end_medicines/1.json
   def show

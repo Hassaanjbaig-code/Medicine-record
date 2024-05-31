@@ -1,14 +1,11 @@
 <p style="color: green"><%= notice %></p>
-
 <h1>Start end medicines</h1>
-
-<div id="start_end_medicines">
-  <% @start_end_medicines.each do |start_end_medicine| %>
-    <%= render start_end_medicine %>
+<div class="card"  id="start_end_medicines">
+  <%# <% @start_end_medicines.each do |start_end_medicine| %>
+    <%= render @start_end_medicines %>
     <p>
-      <%= link_to "Show this start end medicine", start_end_medicine %>
+      <%= link_to "Show this start end medicine", @start_end_medicine, class="btn btn-primary" %>
     </p>
-  <% end %>
-</div>
-
-<%= link_to "New start end medicine", new_start_end_medicine_path %>
+    <%# <% end %>
+  </div>
+  <%= link_to "New start end medicine", new_medicine_start_end_medicine_path %>

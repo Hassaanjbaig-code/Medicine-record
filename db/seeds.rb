@@ -22,7 +22,8 @@ Medicine.delete_all
   Medicine.create!(
     medicine_name: Faker::Name.name,
     use_for: Faker::Lorem.sentence(word_count: 15),
-    medicine_mg: Faker::Number.between(from: 50, to: 500)
+    medicine_mg: Faker::Number.between(from: 50, to: 500),
+    image: Faker::LoremFlickr.image
   )
 end
 

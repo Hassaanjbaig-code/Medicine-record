@@ -1,17 +1,12 @@
-<div id="<%= dom_id medicine %>">
-  <p>
-    <strong>Medicine name:</strong>
-    <%= medicine.medicine_name %>
-  </p>
-
-  <p>
-    <strong>Use for:</strong>
-    <%= medicine.use_for %>
-  </p>
-
-  <p>
-    <strong>Medicine mg:</strong>
-    <%= medicine.medicine_mg %>
-  </p>
-
+<div id="<%= dom_id medicine %>" class="mb-1 d-md-block">
+  <img src="<%= medicine.image %>" alt="<%= medicine.medicine_name %>" class="card-img-top">
+  <div class="card-body">
+    <h2 class="card-title h3">
+      <%= medicine.medicine_name %>
+    </h2>
+    <h4 class="h6 text-secondary">
+      <strong>Mg of medicine</strong>
+      <%= medicine.medicine_mg %>
+    </h4>
+  </div>
 </div>
