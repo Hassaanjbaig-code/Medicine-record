@@ -1,13 +1,10 @@
 <p style="color: green"><%= notice %></p>
 <div class="grid">
   <div id="medicines" class="row row-cols-lg-4 row-cols-md-2 ml-5 mx-auto">
-    <% @medicines.each do |medicine| %>
+    <% @medicines.each do |medicines| %>
       <div class="col order-first">
         <div class="card mb-3 d-md-block" style="width: 18rem;">
-          <%= render medicine %>
-          <p>
-            <%= link_to "Show this medicine", medicine, class:"btn btn-primary" %>
-          </p>
+          <%= render "medicines", medicine: medicines %>
         </div>
       </div>
     <% end %>

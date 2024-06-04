@@ -1,31 +1,29 @@
 <%= form_with(model: medicine) do |form| %>
   <% if medicine.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(medicine.errors.count, "error") %> prohibited this medicine from being saved:</h2>
-
+    <div style="color: red" class="alert alert-primary" role="alert">
       <ul>
         <% medicine.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+          <li class="removeDot"><%= error.full_message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
-
   <div>
     <%= form.label :medicine_name, style: "display: block" %>
     <%= form.text_field :medicine_name %>
   </div>
-
   <div>
     <%= form.label :use_for, style: "display: block" %>
     <%= form.text_field :use_for %>
   </div>
-
   <div>
     <%= form.label :medicine_mg, style: "display: block" %>
     <%= form.number_field :medicine_mg %>
   </div>
-
+  <div>
+    <%= form.label :medicine_image, style: "display: block" %>
+    <%= form.file_field :image %>
+  </div>
   <div>
     <%= form.submit %>
   </div>

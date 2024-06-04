@@ -1,0 +1,15 @@
+<div id="<%= dom_id medicine %>" class="mb-1 d-md-block">
+  <img src="<%= medicine.image %>" alt="<%= medicine.medicine_name %>" class="card-img-top">
+  <div class="card-body">
+    <h2 class="card-title h3">
+      <%= medicine.medicine_name %>
+    </h2>
+    <h4 class="h6 text-secondary">
+      <strong>Mg of medicine</strong>
+      <%= medicine.medicine_mg %>
+    </h4>
+    <span class="row d-flex justify-content-center align-content-center ">
+      <%= link_to "Show this medicine", medicine_path(medicine), class:"btn btn-primary mx-auto mt-2 w-auto" %>
+    </span>
+  </div>
+</div>

@@ -1,12 +1,23 @@
 <div id="<%= dom_id medicine %>" class="mb-1 d-md-block">
-  <img src="<%= medicine.image %>" alt="<%= medicine.medicine_name %>" class="card-img-top">
-  <div class="card-body">
-    <h2 class="card-title h3">
-      <%= medicine.medicine_name %>
-    </h2>
-    <h4 class="h6 text-secondary">
-      <strong>Mg of medicine</strong>
-      <%= medicine.medicine_mg %>
-    </h4>
+  <div class="card mb-3 border-0">
+    <div class="row g-0">
+      <div class="col-lg-5 col-md-5 col-sm-6">
+        <img src="<%= medicine.image %>" alt="<%= medicine.medicine_name %>" class="card-img-top rounded">
+      </div>
+      <div class="col-lg-7 col-md-7 col-sm-6">
+        <div class="card-body">
+          <h1 class="box-title mt-5 font-weight-bold h1"><%= medicine.medicine_name %></h1>
+          <p class="card-text h4 mt-3 h5"><%= medicine.use_for %></p>
+          <p class="card-text h6 mt-5"><small class="text-body-secondary">MG:: <%= medicine.medicine_mg %></small></p>
+          <p class="card-text h6 mt-3"><small class="text-body-secondary"><%= medicine.created_at %></small></p>
+          <div class="d.flex mt-md-3">
+            <%= link_to "Edit this medicine", edit_medicine_path(medicine), class:"btn btn-outline-primary" %>
+            <%= link_to "Back to medicines", medicines_path, class:"btn btn-outline-primary" %>
+            <%= link_to "Check the start end", medicine_start_end_medicines_path(medicine), class:"btn btn-outline-primary" %>
+            <%= button_to "Destroy this medicine", medicine, method: :delete, class:"btn btn-outline-danger mt-4" %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
