@@ -25,7 +25,7 @@ class MedicinesController < ApplicationController
 
     respond_to do |format|
       if @medicine.save
-        format.html { redirect_to medicine_url(@medicine), notice: "Medicine was successfully created." }
+        format.html { redirect_to new_medicine_start_end_medicine_path, notice: "Medicine was successfully created." }
         format.json { render :show, status: :created, location: @medicine }
       else
         format.html { render :new, status: :unprocessable_entity }

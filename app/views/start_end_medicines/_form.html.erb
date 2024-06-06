@@ -1,36 +1,26 @@
-<%= form_with(model: start_end_medicine) do |form| %>
-  <% if start_end_medicine.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(start_end_medicine.errors.count, "error") %> prohibited this start_end_medicine from being saved:</h2>
-
+<%= form_with(model: @start_end_medicine, url: medicine_start_end_medicines_path(@medicine), local: true) do |form| %>
+  <% if @start_end_medicine.errors.any? %>
+    <div class="error-messages">
+      <h2><%= pluralize(@start_end_medicine.errors.count, "error") %> prohibited this start_end_medicine from being saved:</h2>
       <ul>
-        <% start_end_medicine.errors.each do |error| %>
+        <% @start_end_medicine.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
-
   <div>
     <%= form.label :start_date, style: "display: block" %>
     <%= form.date_field :start_date %>
   </div>
-
   <div>
     <%= form.label :end_date, style: "display: block" %>
     <%= form.date_field :end_date %>
   </div>
-
   <div>
     <%= form.label :everyday, style: "display: block" %>
     <%= form.check_box :everyday %>
   </div>
-
-  <div>
-    <%= form.label :medicine_id, style: "display: block" %>
-    <%= form.text_field :medicine_id %>
-  </div>
-
   <div>
     <%= form.submit %>
   </div>

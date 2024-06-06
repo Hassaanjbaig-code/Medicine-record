@@ -2,8 +2,8 @@
 <%= render "form", start_end_medicine: @start_end_medicine %>
 <br>
 <div>
-  <%= link_to "Back to start end medicines", start_end_medicines_path %>
+  <%= link_to "Back to start end medicines", medicine_start_end_medicines_path(@medicine), class:"btn btn-outline-primary" %>
 </div>
 <div>
-  <%= <%= link_to "Back to the medicine", medicines_path %>
+  <%= link_to "Back to medicines", medicines_path, class:"btn btn-outline-primary" %>
 </div>

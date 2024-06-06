@@ -13,6 +13,7 @@ class StartEndMedicinesController < ApplicationController
 
   # GET /start_end_medicines/new
   def new
+    @medicine = Medicine.find(params[:medicine_id])
     @start_end_medicine = StartEndMedicine.new
   end
 
@@ -22,15 +23,17 @@ class StartEndMedicinesController < ApplicationController
 
   # POST /start_end_medicines or /start_end_medicines.json
   def create
-    @start_end_medicine = StartEndMedicine.new(start_end_medicine_params)
+    @medicine = Medicine.find(params[:medicine_id])
+    @medicine_start_end_medicines = StartEndMedicine.new(start_end_medicine_params)
+    @medicine_start_end_medicines.medicine_id = @medicine.id
 
     respond_to do |format|
-      if @start_end_medicine.save
-        format.html { redirect_to start_end_medicine_url(@start_end_medicine), notice: "Start end medicine was successfully created." }
-        format.json { render :show, status: :created, location: @start_end_medicine }
+      if @medicine_start_end_medicines.save
+        format.html { redirect_to medicine_start_end_medicines_path(@medicine), notice: "Start end medicine was successfully created." }
+        format.json { render :show, status: :created, location: @medicine_start_end_medicines }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @start_end_medicine.errors, status: :unprocessable_entity }
+        format.json { render json: @medicine_start_end_medicines.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -61,11 +64,12 @@ class StartEndMedicinesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_start_end_medicine
+
       @start_end_medicine = StartEndMedicine.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def start_end_medicine_params
-      params.require(:start_end_medicine).permit(:start_date, :end_date, :everyday, :medicine_id)
+      params.require(:start_end_medicine).permit(:start_date, :end_date, :everyday)
     end
 end
