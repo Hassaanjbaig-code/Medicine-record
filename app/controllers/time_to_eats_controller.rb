@@ -3,7 +3,8 @@ class TimeToEatsController < ApplicationController
 
   # GET /time_to_eats or /time_to_eats.json
   def index
-    @time_to_eats = TimeToEat.all
+    @medicine = Medicine.find(params[:medicine_id])
+    @time_to_eats = @medicine.time_to_eat
   end
 
   # GET /time_to_eats/1 or /time_to_eats/1.json
@@ -12,6 +13,7 @@ class TimeToEatsController < ApplicationController
 
   # GET /time_to_eats/new
   def new
+    @medicine_id = Medicine.find(params[:medicine_id])
     @time_to_eat = TimeToEat.new
   end
 
@@ -21,11 +23,13 @@ class TimeToEatsController < ApplicationController
 
   # POST /time_to_eats or /time_to_eats.json
   def create
+    @medicine_id = Medicine.find(params[:medicine_id])
     @time_to_eat = TimeToEat.new(time_to_eat_params)
+    @time_to_eat.medicine_id = @medicine_id.id
 
     respond_to do |format|
       if @time_to_eat.save
-        format.html { redirect_to time_to_eat_url(@time_to_eat), notice: "Time to eat was successfully created." }
+        format.html { redirect_to medicine_time_to_eats_path(@medicine_id), notice: "Time to eat was successfully created." }
         format.json { render :show, status: :created, location: @time_to_eat }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -65,6 +69,6 @@ class TimeToEatsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def time_to_eat_params
-      params.require(:time_to_eat).permit(:time_to_eat, :medicine_id)
+      params.require(:time_to_eat).permit(:time_to_eat)
     end
 end
