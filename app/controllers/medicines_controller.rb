@@ -3,7 +3,7 @@ class MedicinesController < ApplicationController
 
   # GET /medicines or /medicines.json
   def index
-    @medicines = Medicine.all
+    @medicines = Medicine.order(created_at: :desc)
   end
 
   # GET /medicines/1 or /medicines/1.json
@@ -25,7 +25,7 @@ class MedicinesController < ApplicationController
 
     respond_to do |format|
       if @medicine.save
-        format.html { redirect_to new_medicine_start_end_medicine_path, notice: "Medicine was successfully created." }
+        format.html { redirect_to new_medicine_start_end_medicine_path(@medicine.id), notice: "Medicine was successfully created." }
         format.json { render :show, status: :created, location: @medicine }
       else
         format.html { render :new, status: :unprocessable_entity }

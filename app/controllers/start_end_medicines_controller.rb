@@ -29,7 +29,7 @@ class StartEndMedicinesController < ApplicationController
 
     respond_to do |format|
       if @medicine_start_end_medicines.save
-        format.html { redirect_to medicine_start_end_medicines_path(@medicine), notice: "Start end medicine was successfully created." }
+        format.html { redirect_to new_medicine_time_to_eat_path(@medicine), notice: "Start end medicine was successfully created." }
         format.json { render :show, status: :created, location: @medicine_start_end_medicines }
       else
         format.html { render :new, status: :unprocessable_entity }

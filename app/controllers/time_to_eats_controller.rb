@@ -29,7 +29,7 @@ class TimeToEatsController < ApplicationController
 
     respond_to do |format|
       if @time_to_eat.save
-        format.html { redirect_to medicine_time_to_eats_path(@medicine_id), notice: "Time to eat was successfully created." }
+        format.html { redirect_to medicines_path, notice: "Time to eat was successfully created." }
         format.json { render :show, status: :created, location: @time_to_eat }
       else
         format.html { render :new, status: :unprocessable_entity }
