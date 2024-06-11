@@ -1,0 +1,3 @@
+<%= turbo_stream.replace "#{dom_id(Medicine.new)}_form" do %>
+  <%= render partial: "start_end_medicines/form", locals: { start_end_medicine: StartEndMedicine.new, medicine: @medicine } %>
+<% end %>

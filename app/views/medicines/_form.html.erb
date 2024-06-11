@@ -1,4 +1,4 @@
-<%= form_with(model: medicine) do |form| %>
+<%= form_with(model: medicine, id: "#{dom_id(medicine)}_form") do |form| %>
   <% if medicine.errors.any? %>
     <div style="color: red" class="alert alert-primary" role="alert">
       <ul>

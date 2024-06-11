@@ -24,16 +24,16 @@ class TimeToEatsController < ApplicationController
   # POST /time_to_eats or /time_to_eats.json
   def create
     @medicine_id = Medicine.find(params[:medicine_id])
-    @time_to_eat = TimeToEat.new(time_to_eat_params)
-    @time_to_eat.medicine_id = @medicine_id.id
+    time_to_eat = TimeToEat.new(time_to_eat_params)
+    time_to_eat.medicine_id = @medicine_id.id
 
     respond_to do |format|
-      if @time_to_eat.save
+      if time_to_eat.save
         format.html { redirect_to medicines_path, notice: "Time to eat was successfully created." }
-        format.json { render :show, status: :created, location: @time_to_eat }
+        format.json { render :show, status: :created, location: time_to_eat }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @time_to_eat.errors, status: :unprocessable_entity }
+        format.json { render json: time_to_eat.errors, status: :unprocessable_entity }
       end
     end
   end

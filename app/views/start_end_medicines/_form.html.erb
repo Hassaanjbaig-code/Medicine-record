@@ -1,9 +1,9 @@
-<%= form_with(model: @start_end_medicine, url: medicine_start_end_medicines_path(@medicine), local: true) do |form| %>
-  <% if @start_end_medicine.errors.any? %>
+<%= form_with(model: start_end_medicine, url: medicine_start_end_medicines_path(medicine), local: true, id: "#{dom_id(start_end_medicine)}_form") do |form| %>
+  <% if start_end_medicine.errors.any? %>
     <div class="error-messages">
-      <h2><%= pluralize(@start_end_medicine.errors.count, "error") %> prohibited this start_end_medicine from being saved:</h2>
+      <h2><%= pluralize(start_end_medicine.errors.count, "error") %> prohibited this start_end_medicine from being saved:</h2>
       <ul>
-        <% @start_end_medicine.errors.each do |error| %>
+        <% start_end_medicine.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>

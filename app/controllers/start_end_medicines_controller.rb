@@ -24,16 +24,17 @@ class StartEndMedicinesController < ApplicationController
   # POST /start_end_medicines or /start_end_medicines.json
   def create
     @medicine = Medicine.find(params[:medicine_id])
-    @medicine_start_end_medicines = StartEndMedicine.new(start_end_medicine_params)
-    @medicine_start_end_medicines.medicine_id = @medicine.id
+    medicine_start_end_medicines = StartEndMedicine.new(start_end_medicine_params)
+    medicine_start_end_medicines.medicine_id = @medicine.id
 
     respond_to do |format|
-      if @medicine_start_end_medicines.save
+      if medicine_start_end_medicines.save
+        format.turbo_stream
         format.html { redirect_to new_medicine_time_to_eat_path(@medicine), notice: "Start end medicine was successfully created." }
-        format.json { render :show, status: :created, location: @medicine_start_end_medicines }
+        format.json { render :show, status: :created, location: medicine_start_end_medicines }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @medicine_start_end_medicines.errors, status: :unprocessable_entity }
+        format.json { render json: medicine_start_end_medicines.errors, status: :unprocessable_entity }
       end
     end
   end
