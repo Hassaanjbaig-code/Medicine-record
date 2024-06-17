@@ -1,6 +1,3 @@
-<%# <%= turbo_stream.replace "#{dom_id(Medicine.new)}_form" do %>
-  <%# <%= render partial: "time_to_eats/form", locals: { time_to_eat: TimeToEat.new, medicine: @medicine } %> %>
-  <%# <% end %>
-  <%= turbo_stream.replace "#{dom_id(StartEndMedicine.new)}_form" do %>
-    <%= render partial: "time_to_eats/form", locals: { time_to_eat: TimeToEat.new, medicine: @medicine } %>
-  <% end %>
+<%= turbo_stream.replace "#{dom_id(StartEndMedicine.new)}_form" do %>
+  <%= render partial: "time_to_eats/form", locals: { time_to_eat: TimeToEat.new, medicine: @medicine } %>
+<% end %>
