@@ -1,4 +1,4 @@
-<%= form_with(model: time_to_eat, url: medicine_time_to_eats_path(@medicine_id), local: true, id: "#{dom_id(time_to_eat)}_form") do |form| %>
+<%= form_with(model: [@medicine , time_to_eat], local: true) do |form| %>
   <% if time_to_eat.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(time_to_eat.errors.count, "error") %> prohibited this time_to_eat from being saved:</h2>

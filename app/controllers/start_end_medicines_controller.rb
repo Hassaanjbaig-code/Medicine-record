@@ -1,8 +1,8 @@
 class StartEndMedicinesController < ApplicationController
+  before_action :find_medicine
   before_action :set_start_end_medicine, only: %i[ show edit update destroy ]
 
   def index
-    @medicine = Medicine.find(params[:medicine_id])
     @start_end_medicines = @medicine.start_end_medicines
   end
 
@@ -13,8 +13,7 @@ class StartEndMedicinesController < ApplicationController
 
   # GET /start_end_medicines/new
   def new
-    @medicine = Medicine.find(params[:medicine_id])
-    @start_end_medicine = StartEndMedicine.new
+    @medicine_start_end_medicines = @medicine.start_end_medicines.build
   end
 
   # GET /start_end_medicines/1/edit
@@ -23,18 +22,18 @@ class StartEndMedicinesController < ApplicationController
 
   # POST /start_end_medicines or /start_end_medicines.json
   def create
-    @medicine = Medicine.find(params[:medicine_id])
-    medicine_start_end_medicines = StartEndMedicine.new(start_end_medicine_params)
-    medicine_start_end_medicines.medicine_id = @medicine.id
+    # medicine_start_end_medicines = StartEndMedicine.new(start_end_medicine_params)
+    # medicine_start_end_medicines.medicine_id = @medicine.id
+    @medicine_start_end_medicines = @medicine.start_end_medicines.build(start_end_medicine_params)
 
     respond_to do |format|
-      if medicine_start_end_medicines.save
+      if @medicine_start_end_medicines.save
         format.turbo_stream
         format.html { redirect_to new_medicine_time_to_eat_path(@medicine), notice: "Start end medicine was successfully created." }
-        format.json { render :show, status: :created, location: medicine_start_end_medicines }
+        format.json { render :show, status: :created, location: @medicine_start_end_medicines }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: medicine_start_end_medicines.errors, status: :unprocessable_entity }
+        format.json { render json: @medicine_start_end_medicines.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -57,12 +56,17 @@ class StartEndMedicinesController < ApplicationController
     @start_end_medicine.destroy!
 
     respond_to do |format|
-      format.html { redirect_to start_end_medicines_url, notice: "Start end medicine was successfully destroyed." }
+      format.html { redirect_to [@medicine, :start_end_medicine], notice: "Start end medicine was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
+
+  #  for finding the medicine
+    def find_medicine
+      @medicine = Medicine.find(params[:medicine_id])
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_start_end_medicine
 

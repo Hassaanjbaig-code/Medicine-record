@@ -1,9 +1,9 @@
 class TimeToEatsController < ApplicationController
+  before_action :first_medicine
   before_action :set_time_to_eat, only: %i[ show edit update destroy ]
 
   # GET /time_to_eats or /time_to_eats.json
   def index
-    @medicine = Medicine.find(params[:medicine_id])
     @time_to_eats = @medicine.time_to_eat
   end
 
@@ -13,8 +13,7 @@ class TimeToEatsController < ApplicationController
 
   # GET /time_to_eats/new
   def new
-    @medicine_id = Medicine.find(params[:medicine_id])
-    @time_to_eat = TimeToEat.new
+    @time_to_eat = @medicine.time_to_eat.build
   end
 
   # GET /time_to_eats/1/edit
@@ -23,17 +22,17 @@ class TimeToEatsController < ApplicationController
 
   # POST /time_to_eats or /time_to_eats.json
   def create
-    @medicine_id = Medicine.find(params[:medicine_id])
-    time_to_eat = TimeToEat.new(time_to_eat_params)
-    time_to_eat.medicine_id = @medicine_id.id
+    # time_to_eat = TimeToEat.new(time_to_eat_params)
+    # time_to_eat.medicine_id = @medicine_id.id
+    @time_to_eat = @medicine.time_to_eat.build(time_to_eat_params)
 
     respond_to do |format|
-      if time_to_eat.save
+      if @time_to_eat.save
         format.html { redirect_to medicines_path, notice: "Time to eat was successfully created." }
         format.json { render :show, status: :created, location: time_to_eat }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: time_to_eat.errors, status: :unprocessable_entity }
+        format.json { render json: @time_to_eat.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -63,6 +62,9 @@ class TimeToEatsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def first_medicine
+      @medicine = Medicine.find(params[:medicine_id])
+    end
     def set_time_to_eat
       @time_to_eat = TimeToEat.find(params[:id])
     end

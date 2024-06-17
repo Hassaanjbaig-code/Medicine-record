@@ -1,4 +1,4 @@
-<%= form_with(model: start_end_medicine, url: medicine_start_end_medicines_path(medicine), local: true, id: "#{dom_id(start_end_medicine)}_form") do |form| %>
+<%= form_with(model: [@medicine, start_end_medicine],id: "#{dom_id(start_end_medicine)}_form", local: true) do |form| %>
   <% if start_end_medicine.errors.any? %>
     <div class="error-messages">
       <h2><%= pluralize(start_end_medicine.errors.count, "error") %> prohibited this start_end_medicine from being saved:</h2>
@@ -21,6 +21,7 @@
     <%= form.label :everyday, style: "display: block" %>
     <%= form.check_box :everyday %>
   </div>
+  <%# <%= form.field_for :time_to_eat, @medicine.time_to_eat %> %>
   <div>
     <%= form.submit %>
   </div>
