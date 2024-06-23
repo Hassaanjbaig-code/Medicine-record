@@ -1,0 +1,14 @@
+<%# <div class="nested-form-wrapper" data-new-record="<%= f.object ? f.object.new_record? : false %>"> %>
+<%# <div> %>
+<%# <%= f.label :time_to_eat, style: "display: block" %> %>
+<%# <%= f.time_field :time_to_eat %> %>
+<%# </div> %>
+<%# <button type="button" data-action="nested-form#remove">Remove todo</button> %>
+<%# <%= f.hidden_field :_destroy %> %>
+<%# </div> %>
+<div class="nested-fields" data-new-record="<%= f.object ? f.object.new_record? : false %>">
+  <%= f.label :time_to_eat, style: "display: block" %>
+  <%= f.time_field :time_to_eat, name: "time_to_eats[time_to_eat]" %>
+  <%= f.hidden_field :_destroy %>
+  <button type="button" data-action="nested-form#removeForm">Remove</button>
+</div>

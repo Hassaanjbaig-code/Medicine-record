@@ -1,19 +1,24 @@
-<%= form_with(model: [@medicine , time_to_eat], local: true) do |form| %>
-  <% if time_to_eat.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(time_to_eat.errors.count, "error") %> prohibited this time_to_eat from being saved:</h2>
-      <ul>
-        <% time_to_eat.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+<div data-controller="nested-form" id="<%= dom_id(@medicine) %>_form">
+  <template data-nested-form-target="template">
+    <div class="nested-fields" id="nested-fields">
+      <label>
+        Time to eat
+      </label>
+      <input type="time" name="medicine[time_to_eats_attributes][][time_to_eat]" />
+      <button type="button" data-action="nested-form#removeForm">Remove</button>
     </div>
-  <% end %>
-  <div>
-    <%= form.label :time_to_eat, style: "display: block" %>
-    <%= form.time_field :time_to_eat %>
-  </div>
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+  </template>
+  <form action="<%= medicine_time_to_eats_path(@medicine) %>" method="POST">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <div data-nested-form-target="container">
+      <div class="nested-fields">
+        <label>
+          Time to eat
+        </label>
+        <input type="time" name="medicine[time_to_eats_attributes][][time_to_eat]" />
+      </div>
+    </div>
+    <button type="button" data-action="nested-form#addForm">Add more Time</button>
+    <input type="submit" value="Add Time">
+  </form>
+</div>
