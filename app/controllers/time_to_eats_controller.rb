@@ -1,4 +1,5 @@
 class TimeToEatsController < ApplicationController
+  before_action :authenticate_user!
   before_action :first_medicine
   before_action :set_time_to_eat, only: %i[ show edit update destroy ]
 
@@ -35,7 +36,7 @@ class TimeToEatsController < ApplicationController
     p medicine_params
     respond_to do |format|
       if @medicine.update(medicine_params)
-        format.html { redirect_to medicine_time_to_eats_path(@medicine), notice: "Time to eat was successfully created." }
+        format.html { redirect_to medicines_path, notice: "Time to eat was successfully created." }
         format.json { render :show, status: :created, location: @medicine }
       else
         format.html { render :new, status: :unprocessable_entity }

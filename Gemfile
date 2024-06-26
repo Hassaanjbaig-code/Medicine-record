@@ -56,6 +56,11 @@ group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
 
+  gem "letter_opener"
+
+  gem 'launchy', '~> 2.5', '>= 2.5.0'
+
+
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
@@ -72,3 +77,5 @@ end
 
 gem "faker", "~> 3.3"
 
+
+gem "devise", "~> 4.9"

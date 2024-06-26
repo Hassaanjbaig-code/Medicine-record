@@ -1,0 +1,14 @@
+<div data-controller="time-zone" class="<%= class_name %>">
+  <div class="field">
+    <div>
+      <label for="user_time_zone">Timezone</label>
+      <button type="button" data-time-zone-target="button" data-action="click->time-zone#appleSystemTimeZone">Set to System TimeZone</button>
+    </div>
+    <select id="user_time_zone" name="user[time_zone]" data-time-zone-target="select">
+      <option value="" disabled selected>Select time zone</option>
+      <% ActiveSupport::TimeZone.all.each do |tz| %>
+        <option value="<%= tz.tzinfo.identifier %>"><%= tz.name %></option>
+      <% end %>
+    </select>
+  </div>
+</div>

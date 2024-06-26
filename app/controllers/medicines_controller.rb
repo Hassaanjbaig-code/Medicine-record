@@ -1,9 +1,11 @@
 class MedicinesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_medicine, only: %i[ show edit update destroy ]
 
   # GET /medicines or /medicines.json
   def index
-    @medicines = Medicine.order(created_at: :desc)
+    # @medicines = Medicine.order(created_at: :desc)
+    @medicines = current_user.medicines
   end
 
   # GET /medicines/1 or /medicines/1.json
@@ -12,7 +14,7 @@ class MedicinesController < ApplicationController
 
   # GET /medicines/new
   def new
-    @medicine = Medicine.new
+    @medicine = current_user.medicines.new
   end
 
   # GET /medicines/1/edit
@@ -21,7 +23,7 @@ class MedicinesController < ApplicationController
 
   # POST /medicines or /medicines.json
   def create
-    @medicine = Medicine.new(medicine_params)
+    @medicine = current_user.medicines.new(medicine_params)
 
     respond_to do |format|
       if @medicine.save

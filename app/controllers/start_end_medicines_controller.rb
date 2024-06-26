@@ -1,4 +1,5 @@
 class StartEndMedicinesController < ApplicationController
+  before_action :authenticate_user!
   before_action :find_medicine
   before_action :set_start_end_medicine, only: %i[ show edit update destroy ]
 
