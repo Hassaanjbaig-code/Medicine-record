@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  endpoint: MyString
+  string: MyString
+  p256db: MyString
+  auth: MyString
+  subscribed: false
+
+two:
+  endpoint: MyString
+  string: MyString
+  p256db: MyString
+  auth: MyString
+  subscribed: false

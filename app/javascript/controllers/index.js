@@ -10,5 +10,8 @@ application.register("hello", HelloController)
 import NestedFormController from "./nested_form_controller"
 application.register("nested-form", NestedFormController)
 
+import PushController from "./push_controller"
+application.register("push", PushController)
+
 import TimeZoneController from "./time_zone_controller"
 application.register("time-zone", TimeZoneController)

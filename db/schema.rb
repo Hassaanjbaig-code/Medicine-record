@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_26_153019) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_06_101929) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,6 +23,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_26_153019) do
     t.string "image"
     t.bigint "user_id"
     t.index ["user_id"], name: "index_medicines_on_user_id"
+  end
+
+  create_table "push_subscribes", force: :cascade do |t|
+    t.string "endpoint"
+    t.string "string"
+    t.string "p256db"
+    t.string "auth"
+    t.boolean "subscribed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "start_end_medicines", force: :cascade do |t|

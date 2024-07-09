@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  # post "/push" => "pushnotification#create"
+  # get 'pushnotification/create'
+  post "/subscribe" => "push_subscribes#create"
+  get "/subscribe" => "push_subscribes#index"
+  post "/push", to: "push_subscribes#subscribe"
+  # resources :push_subscribes
+
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
