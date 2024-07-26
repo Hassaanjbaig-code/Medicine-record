@@ -81,3 +81,6 @@ gem "faker", "~> 3.3"
 gem "devise", "~> 4.9"
 
 gem "web-push", "~> 3.0"
+
+gem "sidekiq", "~> 7.3"
+gem "sidekiq-scheduler", "~> 5.0"

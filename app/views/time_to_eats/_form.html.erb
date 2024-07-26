@@ -1,6 +1,7 @@
 <div data-controller="nested-form" id="<%= dom_id(@medicine) %>_form">
   <template data-nested-form-target="template">
     <div class="nested-fields" id="nested-fields">
+      <input type="hidden" name="medicine[time_to_eats_attributes][][user_id]" value="<%= @medicine.user_id %>"/>
       <label>
         Time to eat
       </label>
@@ -12,6 +13,7 @@
     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
     <div data-nested-form-target="container">
       <div class="nested-fields">
+        <input type="hidden" name="medicine[time_to_eats_attributes][][user_id]" value="<%= @medicine.user_id %>"/>
         <label>
           Time to eat
         </label>

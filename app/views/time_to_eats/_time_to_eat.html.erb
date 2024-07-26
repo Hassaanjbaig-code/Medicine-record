@@ -1,12 +1,10 @@
 <div id="<%= dom_id time_to_eat %>">
   <p>
     <strong>Time to eat:</strong>
-    <%= time_to_eat.time_to_eat %>
+    <%= time_to_eat.time_to_eat.strftime("%H:%M:%S") %>
+    <%= Time.now.strftime("%H:%M:%S") %>
   </p>
-
-  <p>
-    <strong>Medicine:</strong>
-    <%= time_to_eat.medicine_id %>
+  <p class="class">
+    <%= time_to_eat.time_to_eat.strftime("%H:%M:%S") == Time.now.strftime("%H:%M:%S") %>
   </p>
-
 </div>

@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <%# <link rel="manifest" href="/manifest.json"> %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
-  <body data-controller="push" data-application-server-key="<%= Rails.application.credentials.dig(:Webpush, :public_key) %>">
+  <body>
+    <%= render partial: "navbar/index", locals: { user: current_user } %>
     <% if notice %>
       <p class="alert alert-success"><%= notice %></p>
     <% end %>
@@ -16,9 +18,5 @@
       <p class="alert alert-danger"><%= alert %></p>
     <% end %>
     <%= yield %>
-
-    <button data-action="push#PushNotification">
-      Send a Message
-    </button>
   </body>
 </html>

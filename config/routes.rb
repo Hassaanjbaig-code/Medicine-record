@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # get 'pushnotification/create'
   post "/subscribe" => "push_subscribes#create"
   get "/subscribe" => "push_subscribes#index"
-  post "/push", to: "push_subscribes#subscribe"
+  get "/push", to: "push_subscribes#subscribe"
   # resources :push_subscribes
 
   devise_for :users, controllers: {

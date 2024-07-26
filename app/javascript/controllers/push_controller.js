@@ -24,12 +24,10 @@ export default class extends Controller {
       serviceWorkerRegister.pushManager.getSubscription().then((existingSubscription) => {
         // console.log("This is the existingSubscription", existingSubscription);
         if (existingSubscription == null) {
-          console.log(this.urlBase64ToUint8Array(applicationServerKey))
           serviceWorkerRegister.pushManager.subscribe({
             userVisibleOnly: true,
             applicationServerKey: this.urlBase64ToUint8Array(applicationServerKey),
           }).then((subscription) => {
-            console.log("This is the main class object", subscription);
             this.saveSubscription(subscription);
           });
         }
@@ -91,6 +89,6 @@ export default class extends Controller {
   }
 
   PushNotification(){
-    axios.post("/push")
+    axios.get("/push")
   }
 }

@@ -1,4 +1,4 @@
-<div class="grid">
+<div class="grid" data-controller="push" data-application-server-key="<%= Rails.application.credentials.dig(:Webpush, :public_key) %>">
   <div id="medicines" class="row row-cols-lg-4 row-cols-md-2 ml-5 mx-auto">
     <% @medicines.each do |medicines| %>
       <div class="col order-first">
@@ -8,5 +8,8 @@
       </div>
     <% end %>
   </div>
+  <button data-action="push#PushNotification">
+    Send a Message
+  </button>
 </div>
 <%= link_to "New medicine", new_medicine_path %>

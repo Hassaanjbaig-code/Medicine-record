@@ -13,7 +13,7 @@ ENV RAILS_ENV="dev" \
 
 # Install packages needed to build gems and node modules
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential curl git libpq-dev libvips postgresql-client nodejs node-gyp pkg-config python-is-python3
+    apt-get install --no-install-recommends -y build-essential curl git libpq-dev libvips postgresql-client nodejs node-gyp pkg-config python-is-python3 redis
 
 # Install JavaScript dependencies
 ARG NODE_VERSION=20.10.0

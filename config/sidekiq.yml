@@ -1,0 +1,8 @@
+# config/sidekiq.yml
+
+:scheduler:
+  :schedule:
+    hello_world:
+      cron: "* * * * *"
+      class: "HelloWorldSchedular"
+      queue: "default"

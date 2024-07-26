@@ -9,7 +9,7 @@ class TimeToEatsController < ApplicationController
   def index
     if @medicine.present?
       @time_to_eats = @medicine.time_to_eats
-    else
+      else
       respond_to do |format|
         format.html { redirect_to medicines_path, notice: "No Medicine Found", status: 404 }
       end
@@ -75,7 +75,7 @@ class TimeToEatsController < ApplicationController
     end
     # Use callbacks to share common setup or constraints between actions.
     def first_medicine
-      @medicine = Medicine.find(params[:medicine_id])
+      @medicine = current_user.medicines.find(params[:medicine_id])
     end
     def set_time_to_eat
       @time_to_eat = TimeToEat.find(params[:id])
@@ -88,7 +88,7 @@ class TimeToEatsController < ApplicationController
 
     # Use of the nested form
     def medicine_params
-      params.require(:medicine).permit(time_to_eats_attributes: [:time_to_eat])
+      params.require(:medicine).permit(time_to_eats_attributes: [:time_to_eat, :user_id])
     end
 
 end

@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  db: 
+  db:
     image: postgres:14.2-alpine
     volumes:
       - postgres_data:/var/lib/postgresql/data
@@ -9,6 +9,15 @@ services:
       POSTGRES_DB: medicine_record
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
+
+  redis:
+    image: redis/redis-stack-server:7.2.0-v6
+    ports:
+      - 6379:6379
+    healthcheck:
+      test: [ "CMD", "redis-cli", "--raw", "incr", "ping" ]
+    volumes:
+      - redis_data:/data
 
   web:
     build: .
@@ -24,3 +33,4 @@ services:
       DATABASE_URL: postgres://postgres:password@db:5432/medicine_record
 volumes:
   postgres_data:
+  redis_data:
