@@ -1,2 +1,11 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+
+
+.text-underling {
+    text-decoration: none;
+}
+
+.text-underling:hover {
+    text-decoration: underline;
+}

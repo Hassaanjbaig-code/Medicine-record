@@ -1,28 +1,36 @@
-<h2>Sign up</h2>
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true, autocomplete: "name", required: true %>
+<section class="container h-100">
+  <div class="d-flex justify-content-center flex-column align-items-center">
+    <h2>Sign up</h2>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "w-75" }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <!-- Name input -->
+      <div data-mdb-input-init class="form-outline mb-4">
+        <%= f.label :name, class: "form-label", for: "form1Example0" %>
+        <%= f.text_field :name, id: "form1Example0", class: "form-control", autofocus: true, autocomplete: "name", required: true %>
+      </div>
+      <!-- Email input -->
+      <div data-mdb-input-init class="form-outline mb-4">
+        <%= f.label :email, class: "form-label", for: "form1Example1" %>
+        <%= f.email_field :email, id: "form1Example1", class: "form-control", autofocus: true, autocomplete: "email", required: true %>
+      </div>
+      <!-- Password input -->
+      <div data-mdb-input-init class="form-outline mb-4">
+        <%= f.label :password, class: "form-label", for: "form1Example2" %>
+        <%= f.password_field :password, id: "form1Example2", class: "form-control", autocomplete: "new-password", required: true %>
+        <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %>
+      </div>
+      <!-- Password confirmation input -->
+      <div data-mdb-input-init class="form-outline mb-4">
+        <%= f.label :password_confirmation, class: "form-label", for: "form1Example4" %>
+        <%= f.password_field :password_confirmation, id: "form1Example4", class: "form-control", autocomplete: "new-password", required: true %>
+      </div>
+      <!-- Custom partial rendering -->
+      <%= render partial: "timezone", locals: { f: f, class_name: "d-none" } %>
+      <!-- Submit button -->
+      <%= f.submit "Sign up", class: "btn btn-primary btn-block", data: { mdb_ripple_init: true } %>
+    <% end %>
+    <%= render "devise/shared/links" %>
   </div>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true %>
-  </div>
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password", required: true %>
-  </div>
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true %>
-  </div>
-  <%= render partial: "timezone", locals: { f: f, class_name: "d-none" } %>
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-<%= render "devise/shared/links" %>
+</section>

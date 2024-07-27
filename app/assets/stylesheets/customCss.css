@@ -1,3 +1,16 @@
 removeDot {
     text-decoration: none;
 }
+
+.max-content-width {
+    width: max-content;
+}
+
+.text-underling {
+    text-decoration: none;
+}
+
+.text-underling:hover {
+    text-decoration: underline;
+}
+  
