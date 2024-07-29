@@ -1,6 +1,17 @@
-<h1>New medicine</h1>
-<%= render "form", medicine: @medicine %>
-<br>
-<div>
-  <%# <%= link_to "Start and Ending Time",  new_medicine_start_end_medicine_path(@medicine.id) %> %>
+<section style="background-color:#f9f6f1;">
+<div class="d-flex justify-content-center align-items-center min-vh-100">
+  <div class="card w-75">
+    <div class="row g-0">
+      <div class="col-md-6 d-flex justify-content-center align-items-center">
+        <!-- Placeholder for Medicine Image -->
+        <img
+         src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fG1lZGljaW5lfGVufDB8fDB8fHww" 
+         alt="Medicine Image"
+         class="img-fluid object-fit-fill border rounded w-100 h-100"
+        />
+      </div>
+      <%= render "form", medicine: @medicine %>
+    </div>
+  </div>
 </div>
+</section>

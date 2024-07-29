@@ -1,15 +1,13 @@
 <p style="color: green"><%= notice %></p>
 <h1>Time to eats</h1>
-<div id="time_to_eats">
+<div id="time_to_eats" class="d-flex flex-wrap">
   <% if @time_to_eats.empty? %>
     <h2>No Time Found</h2>
   <% else %>
-    <% @time_to_eats.each do |time_to_eat| %>
-      <%= render time_to_eat %>
-      <p>
-        <%# <%= link_to "Show this time to eat", medicine_time_to_eat_path(@medicine, time_to_eat) %> %>
-      </p>
-    <% end %>
+    <%= render partial: "time_to_eats/time_to_eats", locals: { time_to_eats: @time_to_eats } %>
+    <p>
+      <%# <%= link_to "Show this time to eat", medicine_time_to_eat_path(@medicine, time_to_eat) %>
+    </p>
   <% end %>
 </div>
 <%= link_to "New time to eat", new_medicine_time_to_eat_path(@medicine) %>

@@ -5,11 +5,12 @@ class MedicinesController < ApplicationController
   # GET /medicines or /medicines.json
   def index
     # @medicines = Medicine.order(created_at: :desc)
-    @medicines = current_user.medicines
+    @medicines = current_user.medicines.order(created_at: :desc)
   end
 
   # GET /medicines/1 or /medicines/1.json
   def show
+    @time_to_eats= @medicine.time_to_eats
   end
 
   # GET /medicines/new

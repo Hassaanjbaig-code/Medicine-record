@@ -1,5 +1,9 @@
-<div id="<%= dom_id medicine %>" class="mb-1 d-md-block">
-  <img src="<%= medicine.image %>" alt="<%= medicine.medicine_name %>" class="card-img-top">
+<div id="<%= dom_id medicine %>" class="mb-1 d-md-block rounded">
+  <img 
+  src="<%= medicine.image %>" 
+  alt="<%= medicine.medicine_name %>" 
+  class="card-img-top object-fit-scale"
+   style="height:13rem"/>
   <div class="card-body">
     <h2 class="card-title h3">
       <%= medicine.medicine_name %>

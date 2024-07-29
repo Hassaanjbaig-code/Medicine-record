@@ -1,2 +1,21 @@
 <p style="color: green"><%= notice %></p>
 <%= render @medicine %>
+<div class="d-flex w-100 justify-content-between">
+  <h3 class="my-3 mx-3">Time to Eat</h3>
+  <%= link_to(
+    "New Time",
+    new_medicine_time_to_eat_path(@medicine),
+    class: "btn btn-outline-primary mx-3 d-flex align-items-center",
+    style: "height:3rem"
+  ) %>
+</div>
+<div class="d-flex flex-wrap gap-2">
+  <% if @time_to_eats.empty? %>
+    <h2>No Time Found</h2>
+  <% else %>
+    <%= render partial: "time_to_eats/time_to_eats", locals: { time_to_eats: @time_to_eats } %>
+    <p>
+      <%# <%= link_to "Show this time to eat", medicine_time_to_eat_path(@medicine, time_to_eat) %>
+    </p>
+  <% end %>
+</div>

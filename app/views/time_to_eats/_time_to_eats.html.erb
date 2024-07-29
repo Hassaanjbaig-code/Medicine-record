@@ -1,0 +1,12 @@
+<% time_to_eats.each do | time_to_eat | %>
+  <div id="<%= dom_id time_to_eat %>" class="p-3 rounded-pill d-flex justify-content-center align-item-center" style="width:8rem; height:fit-content; flex:0.9 0.4 auto; background:rgb(180, 194, 206);">
+    <p style="width:max-content;">
+      <%# <strong>Time to eat:</strong> %>
+      <%= time_to_eat.time_to_eat.strftime("%H:%M:%p") %>
+      <%# <%= Time.now.strftime("%H:%M:%S") %>
+    </p>
+    <%# <p class="class">
+    <%= time_to_eat.time_to_eat.strftime("%H:%M:%S") == Time.now.strftime("%H:%M:%S") %>
+    <%# </p>  %>
+  </div>
+<% end %>

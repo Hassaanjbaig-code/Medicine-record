@@ -1,26 +1,31 @@
-<div data-controller="nested-form" id="<%= dom_id(@medicine) %>_form">
-  <template data-nested-form-target="template">
-    <div class="nested-fields" id="nested-fields">
-      <input type="hidden" name="medicine[time_to_eats_attributes][][user_id]" value="<%= @medicine.user_id %>"/>
-      <label>
-        Time to eat
-      </label>
-      <input type="time" name="medicine[time_to_eats_attributes][][time_to_eat]" />
-      <button type="button" data-action="nested-form#removeForm">Remove</button>
+<div class="d-flex justify-content-center">
+  <div class="card w-100 p-4">
+    <h1 
+class="text-center py-5" 
+style="color:#888787; font-weight:bold;">
+      Time
+    </h1>
+    <div data-controller="nested-form" id="<%= dom_id(@medicine) %>_form">
+      <template data-nested-form-target="template">
+        <div class="nested-fields mb-3" id="nested-fields">
+          <input type="hidden" name="medicine[time_to_eats_attributes][][user_id]" value="<%= @medicine.user_id %>"/>
+          <label>Time to eat</label>
+          <input type="time" name="medicine[time_to_eats_attributes][][time_to_eat]" class="form-control" />
+          <button type="button" data-action="nested-form#removeForm" class="btn btn-danger mt-2">Remove</button>
+        </div>
+      </template>
+      <form action="<%= medicine_time_to_eats_path(@medicine) %>" method="POST">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <div data-nested-form-target="container">
+          <div class="nested-fields mb-3">
+            <input type="hidden" name="medicine[time_to_eats_attributes][][user_id]" value="<%= @medicine.user_id %>"/>
+            <label>Time to eat</label>
+            <input type="time" name="medicine[time_to_eats_attributes][][time_to_eat]" class="form-control" />
+          </div>
+        </div>
+        <button type="button" data-action="nested-form#addForm" class="btn btn-secondary mb-3">Add more Time</button>
+        <input type="submit" value="Add Time" class="btn btn-primary" />
+      </form>
     </div>
-  </template>
-  <form action="<%= medicine_time_to_eats_path(@medicine) %>" method="POST">
-    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-    <div data-nested-form-target="container">
-      <div class="nested-fields">
-        <input type="hidden" name="medicine[time_to_eats_attributes][][user_id]" value="<%= @medicine.user_id %>"/>
-        <label>
-          Time to eat
-        </label>
-        <input type="time" name="medicine[time_to_eats_attributes][][time_to_eat]" />
-      </div>
-    </div>
-    <button type="button" data-action="nested-form#addForm">Add more Time</button>
-    <input type="submit" value="Add Time">
-  </form>
+  </div>
 </div>
