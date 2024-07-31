@@ -4,6 +4,14 @@ Rails.application.routes.draw do
   post "/subscribe" => "push_subscribes#create"
   get "/subscribe" => "push_subscribes#index"
   get "/push", to: "push_subscribes#subscribe"
+
+  resources :medicine do
+    collection do
+      get :complete
+    end
+  end
+
+   get 'medicines/complete', to: 'medicines#complete', as: 'complete_medicines'
   # resources :push_subscribes
 
   devise_for :users, controllers: {

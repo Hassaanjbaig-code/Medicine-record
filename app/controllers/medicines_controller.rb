@@ -5,7 +5,7 @@ class MedicinesController < ApplicationController
   # GET /medicines or /medicines.json
   def index
     # @medicines = Medicine.order(created_at: :desc)
-    @medicines = current_user.medicines.order(created_at: :desc)
+    @medicines = current_user.medicines.where(completed: false)
   end
 
   # GET /medicines/1 or /medicines/1.json
@@ -20,6 +20,11 @@ class MedicinesController < ApplicationController
 
   # GET /medicines/1/edit
   def edit
+  end
+
+  def complete
+    @medicines = current_user.medicines.where(completed: true)
+    render :index
   end
 
   # POST /medicines or /medicines.json
