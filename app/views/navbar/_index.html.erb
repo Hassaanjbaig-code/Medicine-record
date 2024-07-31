@@ -16,10 +16,11 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <% if user %>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">End</a>
+            <%# <a class="nav-link" href="#">End</a> %>
+            <%= link_to "Complete", complete_medicines_path, class: "nav-link" %>
           </li>
         <% end %>
       </ul>

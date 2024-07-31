@@ -5,13 +5,12 @@ Rails.application.routes.draw do
   get "/subscribe" => "push_subscribes#index"
   get "/push", to: "push_subscribes#subscribe"
 
-  resources :medicine do
-    collection do
-      get :complete
-    end
-  end
+  # resources :medicine do
+  #   collection do
+  #     get :complete
+  #   end
+  # end
 
-   get 'medicines/complete', to: 'medicines#complete', as: 'complete_medicines'
   # resources :push_subscribes
 
   devise_for :users, controllers: {
@@ -24,10 +23,14 @@ Rails.application.routes.draw do
   # end
 
   resources :medicines do
+    collection do
+      get :complete
+    end
     resources :time_to_eats
     resources :start_end_medicines
   end
 
+  # get 'complete', to: 'medicines#complete', as: 'complete_medicines'
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
