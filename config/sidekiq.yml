@@ -6,3 +6,7 @@
       cron: "* * * * *"
       class: "HelloWorldSchedular"
       queue: "default"
+    expire_date:
+      cron: "0 0 * * *"
+      class: "ExpireDateSchedular"
+      queue: "default"

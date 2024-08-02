@@ -9,7 +9,7 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
   </head>
-  <body>
+  <body style="background-color:#f9f6f1;">
     <%= render partial: "navbar/index", locals: { user: current_user } %>
     <% if notice %>
       <p class="alert alert-success"><%= notice %></p>

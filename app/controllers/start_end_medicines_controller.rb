@@ -43,7 +43,8 @@ class StartEndMedicinesController < ApplicationController
   def update
     respond_to do |format|
       if @start_end_medicine.update(start_end_medicine_params)
-        format.html { redirect_to start_end_medicine_url(@start_end_medicine), notice: "Start end medicine was successfully updated." }
+        @medicine.update(completed: false)
+        format.html { redirect_to medicines_path, notice: "Start end medicine was successfully updated." }
         format.json { render :show, status: :ok, location: @start_end_medicine }
       else
         format.html { render :edit, status: :unprocessable_entity }
