@@ -1,9 +1,9 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
-  # :lockable, :timeoutable, :trackable and :omniauthable
+  # :lockable, :timeoutable, :trackable, :confirmable,  and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :confirmable, :trackable
+         :trackable
 
   validates :time_zone, presence: true, inclusion: {
     in: ActiveSupport::TimeZone.all.map(&:tzinfo).map(&:identifier)

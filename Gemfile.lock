@@ -109,6 +109,7 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.5.1)
+    dotenv (3.1.2)
     drb (2.2.1)
     erubi (1.13.0)
     et-orbi (1.2.11)
@@ -314,6 +315,7 @@ DEPENDENCIES
   cssbundling-rails
   debug
   devise (~> 4.9)
+  dotenv (~> 3.1)
   faker (~> 3.3)
   jbuilder
   jsbundling-rails

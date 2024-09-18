@@ -84,3 +84,5 @@ gem "web-push", "~> 3.0"
 
 gem "sidekiq", "~> 7.3"
 gem "sidekiq-scheduler", "~> 5.0"
+
+gem "dotenv", "~> 3.1"

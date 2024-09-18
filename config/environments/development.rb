@@ -11,13 +11,12 @@ Rails.application.configure do
   # Do not eager load code on boot.
   config.eager_load = true
 
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
-  config.action_mailer.delivery_method = :letter_opener
-  config.action_mailer.perform_deliveries = true
+  # config.action_mailer.delivery_method = :letter_opener
+  # config.action_mailer.perform_deliveries = true
 
-
-  ENV['LAUNCHY_BROWSER'] = 'chrome'
+  # ENV['LAUNCHY_BROWSER'] = 'chrome'
 
   # Show full error reports.
   config.consider_all_requests_local = true
