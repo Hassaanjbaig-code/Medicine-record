@@ -18,7 +18,11 @@
             </small></p>
           <div class="d.flex mt-md-3">
             <%= link_to "Edit this medicine", edit_medicine_path(medicine), class:"btn btn-outline-primary" %>
-            <%= link_to "Edit this Start End Time", edit_medicine_start_end_medicine_path(medicine, medicine.start_end_medicines[0]), class:"btn btn-outline-primary" %>
+            <% if medicine.start_end_medicines.blank? %>
+              <%= link_to "Add Start End Time", new_medicine_start_end_medicine_path(medicine), class:"btn btn-outline-primary" %>
+            <%else%>
+              <%= link_to "Edit this Start End Time", edit_medicine_start_end_medicine_path(medicine, medicine.start_end_medicines[0]), class:"btn btn-outline-primary" %>
+            <%end%>
             <%= link_to "Back to medicines", medicines_path, class:"btn btn-outline-primary" %>
             <%= button_to "Destroy this medicine", medicine, method: :delete, class:"btn btn-outline-danger mt-4" %>
           </div>

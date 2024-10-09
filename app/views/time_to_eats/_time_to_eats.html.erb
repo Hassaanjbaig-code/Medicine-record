@@ -1,8 +1,10 @@
 <% time_to_eats.each do | time_to_eat | %>
   <div 
   id="<%= dom_id time_to_eat %>"
-   class="p-3 rounded-pill d-flex justify-content-center align-item-center" style="width:8rem; height:fit-content; flex:0 0 auto; background:rgb(180, 194, 206);">
-    <p style="width:max-content;">
+   class="rounded-pill d-flex justify-content-center align-item-center"
+    style="width:8rem; flex:0 0 auto; background:rgb(180, 194, 206); height: 3rem;"
+    >
+    <p style="width:max-content; display:grid; place-content:center; margin: 0;">
       <%# <strong>Time to eat:</strong> %>
       <%= time_to_eat.time_to_eat.strftime("%H:%M:%p") %>
       <%# <%= Time.now.strftime("%H:%M:%S") %>

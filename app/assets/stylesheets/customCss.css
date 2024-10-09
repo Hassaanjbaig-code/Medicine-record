@@ -17,3 +17,7 @@ removeDot {
 body {
     background-color: black;
 }
+
+.medicine_image {
+    background-color: lightblue;
+}
