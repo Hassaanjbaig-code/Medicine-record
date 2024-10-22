@@ -1,0 +1,15 @@
+<p style="color: green"><%= notice %></p>
+<h1>Docters</h1>
+<div id="doctors">
+  <% if @doctors.blank? %>
+    <p>Please Add your Doctor</p>
+  <% else %>
+    <% @doctors.each do |doctor| %>
+      <%= render doctor %>
+      <p>
+        <%= link_to "Show this docter", doctor %>
+      </p>
+    <% end %>
+  </div>
+<%end%>
+<%= link_to "New doctor", new_doctor_path %>

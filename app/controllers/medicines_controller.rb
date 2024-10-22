@@ -7,8 +7,7 @@ class MedicinesController < ApplicationController
 
   # GET /medicines or /medicines.json
   def index
-    # @medicines = Medicine.order(created_at: :desc)
-    @medicines = current_user.medicines.where(completed: false)
+    @medicines = Medicine.joins(:start_end_medicines).select('medicines.*, start_end_medicines.start_time, start_end_medicines.end_time').where(start_end_medicines: { everyday: nil })
   end
 
   # GET /medicines/1 or /medicines/1.json
@@ -93,26 +92,6 @@ class MedicinesController < ApplicationController
       end
 
     end
-
-    # def upload image
-    #   begin
-    #     # Check if the image param is present and valid
-    #     # raise "No image file present" if image.nil?
-
-    #     # Perform the Cloudinary upload
-    #     image_upload = Cloudinary::Uploader.upload(image.path,
-    #     :tag => "basic_sample",
-    #     :use_filename => true,
-    #     :folder => "Medicine_App"
-    #     )
-
-    #     # Ensure you're using `.path` to get the file path
-    #     return image_upload
-    #   rescue => e
-    #     Rails.logger.error "Error uploading image: #{e.message}"
-    #     return nil
-    #   end
-    # end
 
     def config_cloudinary
       Cloudinary.config_from_url("#{ENV["URL"]}")

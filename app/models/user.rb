@@ -12,6 +12,8 @@ class User < ApplicationRecord
   has_many :medicines, dependent: :destroy
   has_many :push_subscribe, dependent: :destroy
   has_many :time_to_eats, dependent: :destroy
+  has_many :doctors, dependent: :destroy
+  has_many :appointments, dependent: :destroy
 
   def logged_in?
     !!self.session_token

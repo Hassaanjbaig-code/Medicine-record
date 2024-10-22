@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  Appointments: 2024-10-11 01:13:33
+  users: one
+  doctor: one
+
+two:
+  Appointments: 2024-10-11 01:13:33
+  users: two
+  doctor: two

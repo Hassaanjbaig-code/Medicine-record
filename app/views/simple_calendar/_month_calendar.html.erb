@@ -1,0 +1,47 @@
+<div class="simple-calendar mx-auto p-3 bg-light rounded shadow-sm" style="max-width: 80%; backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.1) !important;">
+  <div class="calendar-heading">
+    <nav class="w-100 d-flex justify-content-around mt-1 mb-1">
+      <%= link_to calendar.url_for_previous_view, class: 'calendar-nav text-decoration-none' do %>
+        <i class="bi bi-chevron-left fs-3 transition-transform"></i>
+      <% end %>
+      <%= link_to calendar.url_for_today_view, class: 'calendar-nav calendar-title text-decoration-none' do %>
+        <time datetime="<%= start_date.strftime('%Y-%m') %>">
+          <span class="month-name fw-bold fs-5"><%= t('date.month_names')[start_date.month] %></span>
+          <span class="year fw-bold fs-5"><%= start_date.year %></span>
+        </time>
+      <% end %>
+      <%= link_to calendar.url_for_next_view, class: 'calendar-nav text-decoration-none' do %>
+        <i class="bi bi-chevron-right fs-3 transition-transform"></i>
+      <% end %>
+    </nav>
+  </div>
+  <table class="table table-striped bg-light rounded" style="background-color: rgba(255, 255, 255, 0.1) !important;">
+    <thead>
+      <tr>
+        <% date_range.slice(0, 7).each do |day| %>
+          <th style="background: transparent;"><%= t('date.abbr_day_names')[day.wday] %></th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% date_range.each_slice(7) do |week| %>
+        <tr style="background: transparent;">
+          <% week.each do |day| %>
+            <%= content_tag :td, class: "#{calendar.td_classes_for(day)} transition-bg", style: "background-color: transparent !important;" do %>
+              <% instance_exec(day, calendar.sorted_events_for(day), &passed_block) %>
+            <% end %>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<style>
+  .calendar-nav:hover i {
+    transform: scale(1.2);
+  }
+
+  .simple-calendar td:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+</style>

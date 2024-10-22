@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     resources :time_to_eats
     resources :start_end_medicines
   end
+  resources :doctors
 
   # get 'complete', to: 'medicines#complete', as: 'complete_medicines'
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

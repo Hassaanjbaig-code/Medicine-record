@@ -1,16 +1,30 @@
-<% time_to_eats.each do | time_to_eat | %>
+<% time_to_eats.each do |time_to_eat| %>
   <div 
-  id="<%= dom_id time_to_eat %>"
-   class="rounded-pill d-flex justify-content-center align-item-center"
+    id="<%= dom_id time_to_eat %>" 
+    class="rounded-pill d-flex justify-content-center align-items-center time-pill"
     style="width:8rem; flex:0 0 auto; background:rgb(180, 194, 206); height: 3rem;"
-    >
-    <p style="width:max-content; display:grid; place-content:center; margin: 0;">
-      <%# <strong>Time to eat:</strong> %>
-      <%= time_to_eat.time_to_eat.strftime("%H:%M:%p") %>
-      <%# <%= Time.now.strftime("%H:%M:%S") %>
+  >
+    <p class="time-text" style="width:max-content; display:grid; place-content:center; margin: 0;">
+      <%= time_to_eat.time_to_eat.strftime("%I:%M%p") %>
     </p>
-    <%# <p class="class">
-    <%= time_to_eat.time_to_eat.strftime("%H:%M:%S") == Time.now.strftime("%H:%M:%S") %>
-    <%# </p>  %>
   </div>
 <% end %>
+<style>
+  .time-pill {
+    transition: background-color 0.5s ease-in-out, transform 0.3s ease-in-out;
+  }
+  .time-pill:hover {
+    background-color: #4A90E2;
+    transform: scale(1.1);
+  }
+  .time-text {
+    font-weight: bold;
+    color: #fff;
+    animation: pulse 1s infinite;
+  }
+  @keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+  }
+</style>

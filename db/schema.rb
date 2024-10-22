@@ -10,9 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_10_08_142022) do
+ActiveRecord::Schema[7.1].define(version: 2024_10_19_165043) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "appointments", force: :cascade do |t|
+    t.datetime "Appointments"
+    t.boolean "Status"
+    t.bigint "user_id", null: false
+    t.bigint "doctor_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["doctor_id"], name: "index_appointments_on_doctor_id"
+    t.index ["user_id"], name: "index_appointments_on_user_id"
+  end
+
+  create_table "doctors", force: :cascade do |t|
+    t.string "Fullname"
+    t.string "Specialty"
+    t.string "Email"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_doctors_on_user_id"
+  end
 
   create_table "medicines", force: :cascade do |t|
     t.string "medicine_name"
@@ -40,8 +61,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_08_142022) do
   end
 
   create_table "start_end_medicines", force: :cascade do |t|
-    t.date "start_date"
-    t.date "end_date"
+    t.date "start_time"
+    t.date "end_time"
     t.boolean "everyday"
     t.bigint "medicine_id", null: false
     t.datetime "created_at", null: false
@@ -78,6 +99,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_08_142022) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "appointments", "doctors"
+  add_foreign_key "appointments", "users"
+  add_foreign_key "doctors", "users"
   add_foreign_key "medicines", "users"
   add_foreign_key "push_subscribes", "users"
   add_foreign_key "start_end_medicines", "medicines"

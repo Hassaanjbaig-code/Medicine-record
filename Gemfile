@@ -6,7 +6,8 @@ ruby "3.2.2"
 gem "rails", "~> 7.1.3", ">= 7.1.3.3"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
-gem "sprockets-rails"
+# gem "sprockets-rails"
+gem 'sprockets-rails', '2.3.3'
 
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
@@ -88,3 +89,5 @@ gem "sidekiq-scheduler", "~> 5.0"
 gem "dotenv", "~> 3.1"
 
 gem "cloudinary", "~> 2.2"
+
+gem "simple_calendar"

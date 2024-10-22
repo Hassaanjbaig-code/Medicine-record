@@ -7,16 +7,26 @@
     <%= csp_meta_tag %>
     <%# <link rel="manifest" href="/manifest.json"> %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "customCss", media: 'all', data: { turbolinks: false } %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+    <style>
+      .glass-effect {
+        background: rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
+    </style>
   </head>
-  <body style="background-color:#f9f6f1;">
-    <%= render partial: "navbar/index", locals: { user: current_user } %>
-    <% if notice %>
-      <p class="alert alert-success"><%= notice %></p>
-    <% end %>
-    <% if alert %>
-      <p class="alert alert-danger"><%= alert %></p>
-    <% end %>
-    <%= yield %>
+  <body style="background: url('/assets/medicine_image.jpg') no-repeat center center fixed; background-size: cover;">
+    <div class="glass-effect">
+      <%= render partial: "navbar/index", locals: { user: current_user } %>
+      <% if notice %>
+        <p class="alert alert-success"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p class="alert alert-danger"><%= alert %></p>
+      <% end %>
+      <%= yield %>
+    </div>
   </body>
 </html>

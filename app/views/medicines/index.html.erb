@@ -1,3 +1,29 @@
+<div class="container">
+  <div class="row my-2">
+    <div class="col">
+      <%= month_calendar(events: @medicines) do | date, medicines | %>
+        <div class="position-relative">
+          <div class="day">
+            <%= date.day %>
+          </div>
+          <% medicines.each do | med | %>
+            <%# <div class="card-header">
+        <div class="card-title">
+          <%= med.medicine_name %>
+            <%# </div> %>
+            <%# </div> %>
+            <span class="position-absolute top-0 start-100 p-1 bg-success border border-light rounded-circle"
+             data-bs-toggle="tooltip" 
+             data-bs-placement="top"
+             title="<%= med.medicine_name %>">
+              <span class="visually-hidden">New alerts</span>
+            </span>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
 <div class="d-flex justify-content-end my-2 mx-2">
   <%= link_to "New medicine", new_medicine_path, class: "btn btn-primary" %>
 </div>
@@ -5,7 +31,7 @@
   <div id="medicines" class="row row-cols-lg-4 row-cols-md-2 ml-5 mx-auto">
     <% @medicines.each do |medicines| %>
       <div class="col order-first">
-        <div class="card mb-3 d-md-block" style="width: 18rem;">
+        <div class="card mb-3 d-md-block" style="width: 18rem; background-color: transparent !important;">
           <%= render "medicines", medicine: medicines %>
         </div>
       </div>

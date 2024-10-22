@@ -1,21 +1,74 @@
-<p style="color: green"><%= notice %></p>
-<%= render @medicine %>
-<div class="d-flex w-100 justify-content-between">
-  <h3 class="my-3 mx-3">Time to Eat</h3>
-  <%= link_to(
-    "New Time",
-    new_medicine_time_to_eat_path(@medicine),
-    class: "btn btn-outline-primary mx-3 d-flex align-items-center",
-    style: "height:3rem"
-  ) %>
-</div>
-<div class="d-flex flex-wrap gap-2">
-  <% if @time_to_eats.empty? %>
-    <h2>No Time Found</h2>
-  <% else %>
-    <%= render partial: "time_to_eats/time_to_eats", locals: { time_to_eats: @time_to_eats } %>
-    <p>
-      <%# <%= link_to "Show this time to eat", medicine_time_to_eat_path(@medicine, time_to_eat) %>
-    </p>
-  <% end %>
-</div>
+<section class="container min-vh-100">
+  <div class=" mt-5 show-page-container">
+    <div class="row mb-4">
+      <%= render @medicine %>
+    </div>
+    <div class="row justify-content-between align-items-center mb-3">
+      <div class="col-md-6">
+        <h3 class="mb-3">Time to Eat</h3>
+      </div>
+      <div class="col-md-6 text-md-end">
+        <%= link_to(
+        "New Time",
+        new_medicine_time_to_eat_path(@medicine),
+        class: "btn btn-outline-primary",
+      ) %>
+      </div>
+    </div>
+    <div class="row">
+      <% if @time_to_eats.empty? %>
+        <div class="col-12 text-center">
+          <h4 class="text-muted">No Time Found</h4>
+        </div>
+      <% else %>
+        <div class="col-12 d-flex flex-wrap gap-2 justify-content-start">
+          <%= render partial: "time_to_eats/time_to_eats", locals: { time_to_eats: @time_to_eats } %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+<style>
+  /* Glassmorphism effect */
+  .show-page-container {
+    background: rgba(255, 255, 255, 0.2); /* transparent white */
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  h3 {
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: #333;
+  }
+
+  h4 {
+    font-size: 1.25rem;
+    color: #888;
+  }
+
+  /* Glass effect for individual time entries */
+  .time-pill {
+    background: rgba(255, 255, 255, 0.25); /* transparent white */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 30px;
+    width: 8rem;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .time-pill p {
+    margin-bottom: 0;
+    color: #333;
+    font-weight: bold;
+  }
+</style>
