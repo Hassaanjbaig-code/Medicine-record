@@ -1,31 +1,59 @@
-<div class="d-flex justify-content-center">
-  <div class="card w-100 p-4">
-    <h1 
-class="text-center py-5" 
-style="color:#888787; font-weight:bold;">
-      Time
-    </h1>
+<div class="col-md-6 p-4 w-100">
+  <%= form_with(url: medicine_time_to_eats_path(@medicine), method: :post, id: "#{dom_id(@medicine)}_form", local: true) do |form| %>
+    <% if @medicine.errors.any? %>
+      <div style="color: red" class="alert alert-primary" role="alert">
+        <ul>
+          <% @medicine.errors.each do |error| %>
+            <li style="list-style-type: none;"><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
     <div data-controller="nested-form" id="<%= dom_id(@medicine) %>_form" class="mb-3">
       <template data-nested-form-target="template">
         <div class="nested-fields mb-3" id="nested-fields">
           <input type="hidden" name="medicine[time_to_eats_attributes][][user_id]" value="<%= @medicine.user_id %>"/>
           <label>Time to eat</label>
-          <input type="time" name="medicine[time_to_eats_attributes][][time_to_eat]" class="form-control" />
+          <%= form.text_field :time_to_eat, 
+             class: "form-control",
+             type: "time",
+             style: "color:#666; border:none; border-bottom:2px solid #e6e6e6; border-radius:none; background-color: transparent;" %>
           <button type="button" data-action="nested-form#removeForm" class="btn btn-danger mt-2">Remove</button>
         </div>
       </template>
-      <form action="<%= medicine_time_to_eats_path(@medicine) %>" method="POST">
-        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-        <div data-nested-form-target="container">
-          <div class="nested-fields mb-3">
-            <input type="hidden" name="medicine[time_to_eats_attributes][][user_id]" value="<%= @medicine.user_id %>"/>
-            <label>Time to eat</label>
-            <input type="time" name="medicine[time_to_eats_attributes][][time_to_eat]" class="form-control" />
-          </div>
+      <div data-nested-form-target="container">
+        <div class="nested-fields mb-3">
+          <input type="hidden" name="medicine[time_to_eats_attributes][][user_id]" value="<%= @medicine.user_id %>"/>
+          <label>Time to eat</label>
+          <%= form.text_field :time_to_eat, 
+             class: "form-control",
+             type: "time",
+             style: "color:#666; border:none; border-bottom:2px solid #e6e6e6; border-radius:none; background-color: transparent;" %>
         </div>
-        <button type="button" data-action="nested-form#addForm" class="btn btn-secondary">Add more Time</button>
-        <input type="submit" value="Add Time" class="btn btn-primary" />
-      </form>
+      </div>
+      <button type="button" data-action="nested-form#addForm" class="btn btn-secondary">Add more Time</button>
+      <div class="mt-3">
+        <%= form.submit "Add Time", class: "btn btn-primary" %>
+      </div>
     </div>
-  </div>
+  <% end %>
 </div>
+<style>
+  /* Hide spinners in number input fields */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Hide spinner for Firefox */
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
+
+  .form-control {
+    background-color: transparent !important;
+    border-bottom: 2px solid #e6e6e6 !important;
+    border-radius: 0 !important;
+  }
+</style>

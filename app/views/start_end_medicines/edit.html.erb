@@ -1,7 +1,14 @@
-<section class="d-flex w-100 justify-content-center min-vh-50 align-items-center">
-  <%= render "form",
-   start_end_medicine: @start_end_medicine,
-    medicine: @medicine,
-     header: "Editing start end medicine",
-     button: "Submit" %>
+<section class="w-100 min-vh-100">
+  <h1 class="text-center py-5" style="color:#888787; font-weight:bold;">
+    Start and End Date
+  </h1>
+  <div class="d-flex justify-content-center align-items-center">
+    <div class="w-75 w-md-50 w-lg-25">
+      <%= render "form",
+        start_end_medicine: @start_end_medicine,
+        medicine: @medicine,
+        header: "Editing start end medicine",
+        button: "Submit" %>
+    </div>
+  </div>
 </section>

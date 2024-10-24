@@ -7,7 +7,7 @@ require 'sidekiq-scheduler'
 
 
 #   def perform
-#     @find_date = StartEndMedicine.where.not(end_date: Date.today)
+#     @find_date = StartEndMedicine.where.not(end_time: Date.today)
 
 #     @find_date.each do |record|
 #       @medicine = Medicine.find_by(id: record.medicine_id)
@@ -60,7 +60,7 @@ require 'sidekiq-scheduler'
 class HelloWorldSchedular
   include Sidekiq::Worker
   def perform
-    @find_date = StartEndMedicine.where("end_date >= ?", Date.today)
+    @find_date = StartEndMedicine.where("end_time >= ?", Date.today)
 
     @find_date.each do |record|
       @medicine = Medicine.find_by(id: record.medicine_id)

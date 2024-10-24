@@ -1,4 +1,4 @@
-<div class="col-md-6 p-4">
+<div class="col-md-6 p-4 w-100">
   <%= form_with(model: @medicine, id: "#{dom_id(@medicine)}_form", local: true) do |form| %>
     <% if @medicine.errors.any? %>
       <div style="color: red" class="alert alert-primary" role="alert">
@@ -13,14 +13,14 @@
       <%= form.label :medicine_name, style: "display: block", class:"d-none" %>
       <%= form.text_field :medicine_name,
        class: "form-control",
-       style: "color:#666; border:none; border-bottom:2px solid #e6e6e6; border-radius:none",
+       style: "color:#666; border:none; border-bottom:2px solid #e6e6e6; border-radius:none; background-color: transparent;",
        placeholder: "Enter Medicine Name" %>
     </div>
     <div class="mb-3">
       <%= form.label :use_for, style: "display: block", class: "d-none" %>
       <%= form.text_area :use_for,
              class: "form-control",
-             style: "color:#666; border:none; border-bottom:2px solid #e6e6e6; border-radius:none",
+             style: "color:#666; border:none; border-bottom:2px solid #e6e6e6; border-radius:none; background-color: transparent;",
              placeholder: "Enter Use For",
              size: "50*10" %>
     </div>
@@ -28,17 +28,14 @@
       <%= form.label :medicine_mg, style: "display: block", class: "d-none" %>
       <%= form.number_field :medicine_mg,
              class: "form-control",
-             style: "color:#666; border:none; border-bottom:2px solid #e6e6e6; border-radius:none",
+             style: "color:#666; border:none; border-bottom:2px solid #e6e6e6; border-radius:none; background-color: transparent;",
              placeholder: "Enter Medicine MG" %>
     </div>
     <div class="mb-3">
       <%= form.label :medicine_image, style: "display: block", class: "d-none" %>
-      <%# <%= form.text_field :image,
-             class: "form-control",
-             style: "color:#666; border:none; border-bottom:2px solid #e6e6e6; border-radius:none",
-             placeholder: "Enter Image URL" %>
       <%= form.file_field :image, 
-        class: "form-control form-control-sm"
+        class: "form-control form-control-sm",
+        style: "background-color: transparent;"
       %>
     </div>
     <div class="mt-3">
@@ -46,3 +43,15 @@
     </div>
   <% end %>
 </div>
+<style>
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+  }
+
+  /* Firefox */
+  input[type=number] {
+  -moz-appearance: textfield;
+  }
+</style>

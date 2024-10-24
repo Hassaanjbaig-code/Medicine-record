@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-center">
-  <div class="card w-100 p-4">
+  <div class="card w-100 p-4 glass-effect">
     <%= form_with(model: [medicine, start_end_medicine], id: "#{dom_id(start_end_medicine)}_form", local: true) do |form| %>
       <% if start_end_medicine.errors.any? %>
         <div class="alert alert-danger">
@@ -11,9 +11,6 @@
           </ul>
         </div>
       <% end %>
-      <h1 class="text-center py-5" style="color:#888787; font-weight:bold;">
-        Start and End Date
-      </h1>
       <div>
         <%= form.label :start_date, style: "display: block" %>
         <%= form.date_field :start_date, class: "form-control" %>
@@ -28,3 +25,11 @@
     <% end %>
   </div>
 </div>
+<style>
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+</style>
