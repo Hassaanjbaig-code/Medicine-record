@@ -1,27 +1,46 @@
-<%= form_with(model: doctor) do |form| %>
+<style>
+  .modern-form {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    margin: 20px 0;
+  }
+
+  .error-messages {
+    color: red;
+    margin-bottom: 20px;
+  }
+</style>
+<%= form_with(model: doctor, html: { class: 'modern-form' }) do |form| %>
   <% if doctor.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(doctor.errors.count, "error") %> prohibited this docter from being saved:</h2>
-      <ul>
-        <% doctor.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+    <div class="error-messages">
+      <ul class="list-style">
+        <% doctor.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
-  <div>
-    <%= form.label :Fullname, style: "display: block" %>
-    <%= form.text_field :Fullname %>
+  <div class="form-group">
+    <%= form.label :fullname, "Fullname", class: "form-label" %>
+    <%= form.text_field :fullname, class: "form-control" %>
   </div>
-  <div>
-    <%= form.label :Specialty, style: "display: block" %>
-    <%= form.text_field :Specialty %>
+  <div class="form-group">
+    <%= form.label :specialty, "Specialty", class: "form-label" %>
+    <%= form.text_field :specialty, class: "form-control" %>
   </div>
-  <div>
-    <%= form.label :Email, style: "display: block" %>
-    <%= form.email_field :Email %>
+  <div class="form-group">
+    <%= form.label :email, "Email", class: "form-label" %>
+    <%= form.email_field :email, class: "form-control" %>
   </div>
-  <div>
-    <%= form.submit %>
+  <div class="form-group my-1">
+    <%= form.label :appointment, "Appointment", class: "form-label" %>
+    <br/>
+    <%= form.datetime_select :Appointments, class: "form-control" %>
+  </div>
+  <div class="form-group mt-2">
+    <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>

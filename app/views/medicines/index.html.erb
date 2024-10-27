@@ -6,20 +6,18 @@
           <div class="day">
             <%= date.day %>
           </div>
-          <% medicines.each do | med | %>
-            <%# <div class="card-header">
-        <div class="card-title">
-          <%= med.medicine_name %>
-            <%# </div> %>
-            <%# </div> %>
-            <span class="position-absolute top-0 start-100 p-1 bg-success border border-light rounded-circle"
-             data-bs-toggle="tooltip" 
-             data-bs-placement="top"
-             title="<%= med.medicine_name %>">
+            <ul class="list-group">
+            <% medicines.each do | med | %>
+              <li class="position-absolute list-group-item top-0 start-50 badge badge-success badge-pill rounded-circle p-1 d-flex justify-content-center align-items-center"
+               data-bs-toggle="tooltip" 
+               data-bs-placement="top"
+               title="<%= med.medicine_name %>" style="font-size: 0.5rem; background-color: #28a745; width: 1rem; height: 1rem;">
+              <span class=""><%= medicines.length %></span>
               <span class="visually-hidden">New alerts</span>
-            </span>
-          </div>
-        <% end %>
+              </li>
+            <% end %>
+            </ul>
+        </div>
       <% end %>
     </div>
   </div>

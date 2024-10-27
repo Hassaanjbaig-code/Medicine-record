@@ -1,6 +1,6 @@
 class DoctorsController < ApplicationController
-  before_action :set_doctor, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
+  before_action :set_docter, only: %i[ show edit update destroy ]
 
   # GET /doctors or /doctors.json
   def index
@@ -13,7 +13,8 @@ class DoctorsController < ApplicationController
 
   # GET /doctors/new
   def new
-    @doctor = Doctor.new
+    @doctor = current_user.doctors.new
+    @appointment = @doctor.appointments.new
   end
 
   # GET /doctors/1/edit
@@ -22,7 +23,8 @@ class DoctorsController < ApplicationController
 
   # POST /doctors or /doctors.json
   def create
-    @doctor = Doctor.new(docter_params)
+    @doctor = current_user.doctors.new(docter_params)
+    @appointments = @doctor.appointments.new params[:Appointments]
 
     respond_to do |format|
       if @doctor.save
@@ -53,7 +55,7 @@ class DoctorsController < ApplicationController
     @doctor.destroy!
 
     respond_to do |format|
-      format.html { redirect_to docters_path, status: :see_other, notice: "Doctor was successfully destroyed." }
+      format.html { redirect_to doctors_path, status: :see_other, notice: "Doctor was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -61,11 +63,12 @@ class DoctorsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_docter
-      @doctor = Doctor.find(params[:id])
+      # @doctor = Doctor.find(params[:id])
+      @doctor = current_user.doctors.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def docter_params
-      params.require(:doctor).permit(:Fullname, :Specialty, :Email, :users_id)
+      params.require(:doctor).permit(:Fullname, :Specialty, :Email )
     end
 end

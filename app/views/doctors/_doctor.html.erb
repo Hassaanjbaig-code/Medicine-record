@@ -1,14 +1,21 @@
-<div id="<%= dom_id doctor %>">
-  <p>
-    <strong>Fullname:</strong>
-    <%= doctor.Fullname %>
-  </p>
-  <p>
-    <strong>Specialty:</strong>
-    <%= doctor.Specialty %>
-  </p>
-  <p>
-    <strong>Email:</strong>
-    <%= doctor.Email %>
-  </p>
+<div id="<%= dom_id doctor %>" class="card mb-4 glass-effect_1" style="backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.7);">
+  <div class="row no-gutters">
+    <div class="col-md-12">
+      <div class="card-body">
+        <h5 class="card-title"><%= doctor.Fullname %></h5>
+        <p class="card-text"><strong>Specialty:</strong> <%= doctor.Specialty %></p>
+        <p class="card-text"><strong>Email:</strong> <%= doctor.Email %></p>
+      </div>
+    </div>
+  </div>
 </div>
+<style>
+  .glass-effect_1 {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 20px;
+  }
+</style>

@@ -7,7 +7,6 @@ export default class extends Controller {
   connect() {
     // Ensures proper connection of the controller
     super.connect()
-    console.log("Time zone")
     
     // If no value is selected, set it to the system's time zone
     if (!this.selectTarget.value) {

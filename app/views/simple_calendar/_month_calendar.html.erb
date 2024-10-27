@@ -1,16 +1,16 @@
 <div class="simple-calendar mx-auto p-3 bg-light rounded shadow-sm" style="max-width: 80%; backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.1) !important;">
   <div class="calendar-heading">
     <nav class="w-100 d-flex justify-content-around mt-1 mb-1">
-      <%= link_to calendar.url_for_previous_view, class: 'calendar-nav text-decoration-none' do %>
+      <%= link_to calendar.url_for_previous_view, class: 'calendar-nav text-decoration-none', style: 'color: #14104073 !important' do %>
         <i class="bi bi-chevron-left fs-3 transition-transform"></i>
       <% end %>
-      <%= link_to calendar.url_for_today_view, class: 'calendar-nav calendar-title text-decoration-none' do %>
+      <%= link_to calendar.url_for_today_view, class: 'calendar-nav calendar-title text-decoration-none', style: 'color: #141040c4 !important;' do %>
         <time datetime="<%= start_date.strftime('%Y-%m') %>">
           <span class="month-name fw-bold fs-5"><%= t('date.month_names')[start_date.month] %></span>
           <span class="year fw-bold fs-5"><%= start_date.year %></span>
         </time>
       <% end %>
-      <%= link_to calendar.url_for_next_view, class: 'calendar-nav text-decoration-none' do %>
+      <%= link_to calendar.url_for_next_view, class: 'calendar-nav text-decoration-none', style: 'color: #14104073 !important' do %>
         <i class="bi bi-chevron-right fs-3 transition-transform"></i>
       <% end %>
     </nav>

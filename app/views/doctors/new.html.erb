@@ -1,6 +1,19 @@
-<h1>New doctor</h1>
-<%= render "form", doctor: @doctor %>
-<br>
-<div>
-  <%= link_to "Back to doctors", doctors_path %>
+<div class="container min-vh-100">
+  <div class="d-flex justify-content-between my-2">
+    <h1>New Doctor</h1>
+    <%= link_to "Back to doctors", doctors_path, class: "btn btn-secondary mt-3" %>
+  </div>
+  <div class="row">
+    <!-- Image Section -->
+    <div class="col-md-6 d-flex align-items-center">
+      <%= image_tag "Doctor_for_form.jpg", alt: "Doctor", class: "img-fluid w-100 rounded" %>
+    </div>
+    <!-- Form Section -->
+    <div class="col-md-6 d-flex">
+      <%= render "form", doctor: @doctor, appointment: @appointment %>
+    </div>
+  </div>
+  <br>
+  <div>
+  </div>
 </div>

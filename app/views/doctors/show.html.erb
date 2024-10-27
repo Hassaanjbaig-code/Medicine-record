@@ -1,7 +1,16 @@
 <p style="color: green"><%= notice %></p>
-<%= render @doctor %>
-<div>
-  <%= link_to "Edit this docter", edit_doctor_path(@doctor) %> |
-  <%= link_to "Back to docters", doctors_path %>
-  <%= button_to "Destroy this doctor", @doctor, method: :delete %>
+<div class="container mt-5 min-vh-100">
+  <div class="card">
+    <div class="card-header">
+      <h2>Doctor Details</h2>
+    </div>
+    <div class="card-body">
+      <%= render @doctor %>
+    </div>
+    <div class="card-footer">
+      <%= link_to "Edit this doctor", edit_doctor_path(@doctor), class: "btn btn-primary" %>
+      <%= link_to "Back to doctors", doctors_path, class: "btn btn-secondary" %>
+      <%= button_to "Destroy this doctor", @doctor, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+    </div>
+  </div>
 </div>
