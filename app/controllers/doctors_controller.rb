@@ -4,7 +4,9 @@ class DoctorsController < ApplicationController
 
   # GET /doctors or /doctors.json
   def index
-    @doctors = current_user.doctors.all
+    # @doctors = current_user.doctors.all
+    @doctors = current_user.doctors.includes(:appointments).all
+    # p @doctors[0].appointments
   end
 
   # GET /doctors/1 or /doctors/1.json
@@ -22,20 +24,26 @@ class DoctorsController < ApplicationController
   end
 
   # POST /doctors or /doctors.json
-  def create
-    @doctor = current_user.doctors.new(docter_params)
-    @appointments = @doctor.appointments.new params[:Appointments]
+    def create
+      @doctor = current_user.doctors.new(doctor_params)
 
-    respond_to do |format|
-      if @doctor.save
-        format.html { redirect_to @doctor, notice: "Doctor was successfully created." }
-        format.json { render :show, status: :created, location: @doctor }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @doctor.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @doctor.save
+          # Create a new appointment associated with the doctor
+          @appointment = @doctor.appointments.create(
+            Appointments: params[:doctor][:appointment],
+            Status: false,
+            user_id: current_user.id
+          )
+
+          format.html { redirect_to @doctor, notice: "Doctor and appointment were successfully created." }
+          format.json { render :show, status: :created, location: @doctor }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @doctor.errors, status: :unprocessable_entity }
+        end
       end
     end
-  end
 
   # PATCH/PUT /doctors/1 or /doctors/1.json
   def update
@@ -68,7 +76,7 @@ class DoctorsController < ApplicationController
     end
 
     # Only allow a list of trusted parameters through.
-    def docter_params
-      params.require(:doctor).permit(:Fullname, :Specialty, :Email )
+    def doctor_params
+      params.require(:doctor).permit(:Fullname, :Specialty, :Email)  # Ensure you use the correct column names (capitalized)
     end
 end

@@ -25,20 +25,20 @@
   <% end %>
   <div class="form-group">
     <%= form.label :fullname, "Fullname", class: "form-label" %>
-    <%= form.text_field :fullname, class: "form-control" %>
+    <%= form.text_field :Fullname, class: "form-control", placeholder: "Add a Full Name" %>
   </div>
   <div class="form-group">
-    <%= form.label :specialty, "Specialty", class: "form-label" %>
-    <%= form.text_field :specialty, class: "form-control" %>
+    <%= form.label :specialty, "Specialization", class: "form-label" %>
+    <%= form.text_field :Specialty, class: "form-control", placeholder: "Add Specialization" %>
   </div>
   <div class="form-group">
     <%= form.label :email, "Email", class: "form-label" %>
-    <%= form.email_field :email, class: "form-control" %>
+    <%= form.email_field :Email, class: "form-control", placeholder: "Add Email Doctor" %>
   </div>
   <div class="form-group my-1">
     <%= form.label :appointment, "Appointment", class: "form-label" %>
     <br/>
-    <%= form.datetime_select :Appointments, class: "form-control" %>
+    <%= form.datetime_field :appointment, class: "form-control" %>
   </div>
   <div class="form-group mt-2">
     <%= form.submit class: "btn btn-primary" %>
