@@ -1,7 +1,16 @@
-<h1>Editing docter</h1>
-<%= render "form", docter: @doctor %>
-<br>
-<div>
-  <%= link_to "Show this docter", @docter %> |
-  <%= link_to "Back to docters", docters_path %>
-</div>
+<section class="container min-vh-100">
+  <h1 class="my-4 font_itim">Editing Doctor</h1>
+  <div class="row">
+    <div class="col-md-6 d-flex align-items-center">
+      <%= image_tag "Doctor_for_form", class: "img-fluid w-100 rounded", alt: "Doctor Image" %>
+    </div>
+    <div class="col-md-6 d-flex">
+      <%= render "form", doctor: @doctor %>
+    </div>
+  </div>
+  <br>
+  <div class="mt-3">
+    <%= link_to "Show this doctor", @doctor, class: "btn btn-primary" %>
+    <%= link_to "Back to doctors", doctors_path, class: "btn btn-secondary" %>
+  </div>
+</section>

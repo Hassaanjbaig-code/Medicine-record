@@ -7,6 +7,9 @@
     <%= csp_meta_tag %>
     <%# <link rel="manifest" href="/manifest.json"> %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
     <%# <%= stylesheet_link_tag "customCss", media: 'all', data: { turbolinks: false } %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
     <style>
@@ -14,6 +17,11 @@
         background: rgba(255, 255, 255, 0.5);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
+      }
+      .font_itim {
+        font-family: "Itim", cursive;
+        font-weight: 400;
+        font-style: normal;
       }
     </style>
   </head>

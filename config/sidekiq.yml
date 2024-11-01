@@ -10,3 +10,7 @@
       cron: "0 0 * * *"
       class: "ExpireDateSchedular"
       queue: "default"
+    doctor:
+      cron: "* * * * *"
+      class: "DoctorSchedular"
+      queue: "default"

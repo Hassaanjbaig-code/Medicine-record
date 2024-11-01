@@ -5,7 +5,7 @@ class DoctorsController < ApplicationController
   # GET /doctors or /doctors.json
   def index
     # @doctors = current_user.doctors.all
-    @doctors = current_user.doctors.includes(:appointments).all
+    @doctors = current_user.doctors.includes(:appointments).all.order(created_at: :desc)
     # p @doctors[0].appointments
   end
 
@@ -32,7 +32,7 @@ class DoctorsController < ApplicationController
           # Create a new appointment associated with the doctor
           @appointment = @doctor.appointments.create(
             Appointments: params[:doctor][:appointment],
-            Status: false,
+            status: false,
             user_id: current_user.id
           )
 

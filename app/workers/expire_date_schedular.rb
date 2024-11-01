@@ -7,7 +7,7 @@ class ExpireDateSchedular
   def perform
     p "ExpireDate is Working"
 
-    date = StartEndMedicine.where("end_date < ?", Date.today)
+    date = StartEndMedicine.where("end_time < ?", Date.today)
     if date.empty?
       p "Date is not empty"
     else
