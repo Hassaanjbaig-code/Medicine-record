@@ -7,7 +7,7 @@
         <p class="card-text"><strong>Email:</strong> <%= doctor.Email %></p>
         <% doctor.appointments.each do |appointment| %>
           <p class="card-text"><strong>Appointment:</strong> <%= appointment.appointment.strftime('%A, %B %d, %Y at %I:%M') %></p>
-          <p class="card-text"><strong>Status:</strong> <%= appointment.status %></p>
+          <p class="card-text"><strong>Status:</strong> <%= appointment.status ? "Completed" : "Not Completed" %></p>
         <% end %>
       </div>
     </div>
