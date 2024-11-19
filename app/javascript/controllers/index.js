@@ -7,6 +7,9 @@ import { application } from "./application"
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
+import NavbarTrackerController from "./navbar_tracker_controller"
+application.register("navbar-tracker", NavbarTrackerController)
+
 import NestedFormController from "./nested_form_controller"
 application.register("nested-form", NestedFormController)
 
