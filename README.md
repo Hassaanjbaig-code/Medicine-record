@@ -49,15 +49,13 @@ After you're finished please remove all the comments and instructions!
 
 # 📖 [Medicine Record] <a name="about-project"></a>
 
-> Describe your project in 1 or 2 sentences.
 
-**[Medicine Record]** in this project user will record the medicine  
+This project is a medicine management database system designed to organize user information, medication details, prescribed schedules, and doctor appointments. It includes tables for users, medicines, start and end dates for medication schedules, meal timings, doctor information, and appointment tracking.
 
 ## 🛠 Built With <a name="built-with"></a>
 
 ### Tech Stack <a name="tech-stack"></a>
 
-> Describe the tech stack and include only the relevant sections that apply to your project.
 
 <details>
   <summary>Client</summary>
@@ -79,8 +77,6 @@ After you're finished please remove all the comments and instructions!
 
 ### Key Features <a name="key-features"></a>
 
-> Describe between 1-3 key features of the application.
-
 - **[Medicine Record]**
 - **[Record Doctor Appoitment]**
 - **[Alert the Medicine Time]**
@@ -92,7 +88,6 @@ After you're finished please remove all the comments and instructions!
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-> Add a link to your deployed project.
 
 - [No Ready]()
 
@@ -102,7 +97,6 @@ After you're finished please remove all the comments and instructions!
 
 ## 💻 Getting Started <a name="getting-started"></a>
 
-> Describe how a new developer could make use of your project.
 
 To get a local copy up and running, follow these steps.
 
@@ -179,7 +173,6 @@ Example:
 
 ## 👥 Authors <a name="authors"></a>
 
-> Mention all of the collaborators of this project.
 
 👤 **Hassaan Baig**
 
@@ -193,7 +186,6 @@ Example:
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-> Describe 1 - 3 features you will add to the project.
 
 - [ ] **[Add Doctor Admin]**
 - [ ] **[Chat with Doctor and Patients]**
@@ -215,7 +207,6 @@ Feel free to check the [issues page](../../issues/).
 
 ## ⭐️ Show your support <a name="support"></a>
 
-> Write a message to encourage readers to support your project
 
 If you like this project be follow to give me a star. Do support me on my social media page link in given below
 
@@ -225,9 +216,7 @@ If you like this project be follow to give me a star. Do support me on my social
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-> Give credit to everyone who inspired your codebase.
 
-I would like to thank...
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
