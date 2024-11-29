@@ -47,7 +47,7 @@ After you're finished please remove all the comments and instructions!
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 [Medicine Record] <a name="about-project"></a>
+# 📖  Medicine Record  <a name="about-project"></a>
 
 
 This project is a medicine management database system designed to organize user information, medication details, prescribed schedules, and doctor appointments. It includes tables for users, medicines, start and end dates for medication schedules, meal timings, doctor information, and appointment tracking.
@@ -77,10 +77,10 @@ This project is a medicine management database system designed to organize user 
 
 ### Key Features <a name="key-features"></a>
 
-- **[Medicine Record]**
-- **[Record Doctor Appoitment]**
-- **[Alert the Medicine Time]**
-- **[Alert the Doctor Appoitment Time]**
+- ** Medicine Record **
+- ** Record Doctor Appoitment **
+- ** Alert the Medicine Time **
+- ** Alert the Doctor Appoitment Time **
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -128,7 +128,8 @@ Install this project with:
 
 ```sh
   cd medicine_record
-  gem install
+  bundle install
+  npm install
   Add cloudinary in .env
 ```
 --->
@@ -155,9 +156,9 @@ To run tests, run the following command:
 ```
 --->
 
-### Deployment
+<!-- ### Deployment -->
 
-You can deploy this project using:
+<!-- You can deploy this project using: -->
 
 <!--
 Example:
@@ -187,9 +188,9 @@ Example:
 ## 🔭 Future Features <a name="future-features"></a>
 
 
-- [ ] **[Add Doctor Admin]**
-- [ ] **[Chat with Doctor and Patients]**
-- [ ] **[Video Call]**
+- [ ] ** Add Doctor Admin **
+- [ ] ** Chat with Doctor and Patients **
+- [ ] ** Video Call **
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -224,11 +225,9 @@ If you like this project be follow to give me a star. Do support me on my social
 
 ## ❓ FAQ <a name="faq"></a>
 
-> Add at least 2 questions new developers would ask when they decide to use your project.
+- ** How to adding the cloudinary for storing image? **
 
-- **[How to adding the cloudinary for storing image? ]**
-
-  - [First you have to create a account in the cloudinary Then you have to copy the link from the cloudinary, cloud name, app key, and app_secert]
+  - First you have to create a account in the cloudinary Then you have to copy the link from the cloudinary, cloud name, app key, and app_secert
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
