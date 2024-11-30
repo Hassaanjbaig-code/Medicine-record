@@ -1,71 +1,74 @@
 # syntax = docker/dockerfile:1
 
-# Make sure RUBY_VERSION matches the Ruby version in .ruby-version and Gemfile
+# Use Ruby version as an argument
 ARG RUBY_VERSION=3.2.2
-FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim as base
+FROM ruby:$RUBY_VERSION-slim as base
 
-# Rails app lives here
+# Set the working directory inside the container
 WORKDIR /app
 
-# Set production environment
-ENV RAILS_ENV="dev" \
+# Set environment variables for the Rails application
+ENV RAILS_ENV="development" \
     BUNDLE_WITHOUT=""
 
-# Install packages needed to build gems and node modules
-RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential curl git libpq-dev libvips postgresql-client nodejs node-gyp pkg-config python-is-python3 redis
+# Install required system dependencies
+RUN apt-get update -qq && apt-get install --no-install-recommends -y \
+    build-essential \
+    curl \
+    git \
+    libpq-dev \
+    libvips \
+    postgresql-client \
+    nodejs \
+    node-gyp \
+    pkg-config \
+    python-is-python3 \
+    redis \
+ && rm -rf /var/lib/apt/lists/*
 
-# Install JavaScript dependencies
+# Install Node.js and Yarn
 ARG NODE_VERSION=20.10.0
 ARG YARN_VERSION=1.22.22
 ENV PATH=/usr/local/node/bin:$PATH
 RUN curl -sL https://github.com/nodenv/node-build/archive/master.tar.gz | tar xz -C /tmp/ && \
     /tmp/node-build-master/bin/node-build "${NODE_VERSION}" /usr/local/node && \
-    npm install -g yarn@$YARN_VERSION 
+    npm install -g yarn@$YARN_VERSION
 
-# Install application gems
+# Install gems required by the application
 COPY Gemfile Gemfile.lock ./
-RUN bundle install 
+RUN bundle install
 
-# Copy application code
+# Copy the application code into the container
 COPY . .
 
-# Install node modules within Docker container
+# Install Node.js modules
 RUN yarn install --frozen-lockfile
 
-# Precompile bootsnap code for faster boot times
+# Precompile bootsnap to improve startup performance
 RUN bundle exec bootsnap precompile app/ lib/
 
-# Adjust binfiles to be executable on Linux
-RUN chmod 777 bin/* && \
-    sed -i "s/\r$//g" bin/* && \
-    sed -i 's/ruby\.exe$/ruby/' bin/*
+# Ensure bin files are Linux-compatible
+RUN find bin -type f -exec sed -i 's/\r$//g' {} + && \
+    find bin -type f -exec sed -i 's/ruby\.exe/ruby/' {} + && \
+    chmod +x bin/*
 
+# Add Foreman for process management
 RUN bundle add foreman
 
-
-# Ensure all bin scripts use /usr/bin/env ruby instead of ruby.exe
-RUN sed -i 's/ruby.exe/ruby/' bin/*
-
+# Ensure Procfile.dev is executable
 RUN chmod +x Procfile.dev
 
-# Precompiling assets for production without requiring secret RAILS_MASTER_KEY
-RUN SECRET_KEY_BASE_DUMMY=1 rails assets:precompile
+# Precompile assets if required for production (commented for development)
+# RUN rails assets:precompile
 
-# Install bootstrap
+# Install Bootstrap (optional, specific to the application)
 RUN yarn add bootstrap
 
 # Update Browserslist database
 RUN npx update-browserslist-db@latest
 
-# Install packages needed for deployment
-RUN apt-get update -y && apt-get upgrade -y
-
-# Run and own only the runtime files as a non-root user for security
-# RUN useradd rails --create-home --shell /bin/bash && \
-#     chown -R rails:rails db log storage tmp
-# USER rails:rails
-
-# Start the server by default, this can be overwritten at runtime
+# Expose port 3000 for the Rails server
 EXPOSE 3000
-CMD ["./bin/dev", "server"]
+
+# Set the default command to run the Rails development server
+CMD ["./bin/dev"]
