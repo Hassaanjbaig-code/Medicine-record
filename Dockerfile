@@ -67,8 +67,16 @@ RUN yarn add bootstrap
 # Update Browserslist database
 RUN npx update-browserslist-db@latest
 
+RUN yarn remove esbuild
+
+RUN ./bin/rails javascript:install:esbuild
+
+# RUN rm ./app/tmp/pids/server.pid
+
+ENTRYPOINT [ "./bin/docker-entrypoint" ]
+
 # Expose port 3000 for the Rails server
 EXPOSE 3000
 
 # Set the default command to run the Rails development server
-CMD ["./bin/dev"]
+CMD ["foreman start -f Procfile.dev"]

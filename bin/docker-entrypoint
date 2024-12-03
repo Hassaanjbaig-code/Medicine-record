@@ -1,8 +1,16 @@
 #!/bin/bash -e
 
-# If running the rails server then create or migrate existing database
-if [ "${1}" == "./bin/rails" ] && [ "${2}" == "server" ]; then
+# Check if the Rails server is being started, and run database setup if needed
+if [[ "${1}" == "./bin/rails" && "${2}" == "server" ]]; then
+  echo "Running database setup (db:prepare)..."
   ./bin/rails db:prepare
 fi
 
-exec "${@}"
+# Remove any existing server.pid to prevent conflicts
+if [ -f tmp/pids/server.pid ]; then
+  echo "Removing existing server.pid..."
+  rm tmp/pids/server.pid
+fi
+
+# Execute the passed command
+exec "$@"
