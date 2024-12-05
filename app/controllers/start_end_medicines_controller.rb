@@ -25,6 +25,7 @@ class StartEndMedicinesController < ApplicationController
   def create
     # medicine_start_end_medicines = StartEndMedicine.new(start_end_medicine_params)
     # medicine_start_end_medicines.medicine_id = @medicine.id
+    p "This is the Start End Date", start_end_medicine_params
     @medicine_start_end_medicines = @medicine.start_end_medicines.build(start_end_medicine_params)
 
     respond_to do |format|
@@ -77,6 +78,6 @@ class StartEndMedicinesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def start_end_medicine_params
-      params.require(:start_end_medicine).permit(:start_date, :end_date, :everyday)
+      params.require(:start_end_medicine).permit(:start_time, :end_time, :everyday)
     end
 end

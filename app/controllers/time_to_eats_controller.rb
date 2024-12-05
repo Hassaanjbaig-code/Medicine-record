@@ -32,8 +32,6 @@ class TimeToEatsController < ApplicationController
 
   # POST /time_to_eats or /time_to_eats.json
   def create
-    p "this is the params"
-    p medicine_params
     respond_to do |format|
       if @medicine.update(medicine_params)
         format.html { redirect_to medicines_path, notice: "Time to eat was successfully created." }

@@ -3,7 +3,6 @@
     <%= form_with(model: [medicine, start_end_medicine], id: "#{dom_id(start_end_medicine)}_form", local: true) do |form| %>
       <% if start_end_medicine.errors.any? %>
         <div class="alert alert-danger">
-          <h2><%= pluralize(start_end_medicine.errors.count, "error") %> prohibited this start_end_medicine from being saved:</h2>
           <ul>
             <% start_end_medicine.errors.each do |error| %>
               <li><%= error.full_message %></li>

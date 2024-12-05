@@ -7,7 +7,9 @@ class MedicinesController < ApplicationController
 
   # GET /medicines or /medicines.json
   def index
-    @medicines = Medicine.joins(:start_end_medicines).select('medicines.*, start_end_medicines.start_time, start_end_medicines.end_time').where(start_end_medicines: { everyday: nil })
+    @medicines = Medicine.left_joins(:start_end_medicines).select('medicines.*, start_end_medicines.start_time, start_end_medicines.end_time').where(start_end_medicines: { everyday: nil })
+    # @medicines = Medicine.joins(:start_end_medicines)
+    p "This is the medicine", @medicines
   end
 
   # GET /medicines/1 or /medicines/1.json
