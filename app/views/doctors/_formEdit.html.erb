@@ -1,0 +1,41 @@
+<style>
+  .modern-form {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    margin: 20px 0;
+  }
+
+  .error-messages {
+    color: red;
+    margin-bottom: 20px;
+  }
+</style>
+<%= form_with(model: doctor, class: "w-100") do |form| %>
+  <% if doctor.errors.any? %>
+    <div class="error-messages">
+      <ul class="list-style">
+        <% doctor.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= form.label :fullname, "Fullname", class: "form-label" %>
+    <%= form.text_field :Fullname, class: "form-control", placeholder: "Add a Full Name" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :specialty, "Specialization", class: "form-label" %>
+    <%= form.text_field :Specialty, class: "form-control", placeholder: "Add Specialization" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :email, "Email", class: "form-label" %>
+    <%= form.email_field :Email, class: "form-control", placeholder: "Add Email Doctor" %>
+  </div>
+  <div class="form-group mt-2">
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+<% end %>

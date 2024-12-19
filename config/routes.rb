@@ -5,12 +5,6 @@ Rails.application.routes.draw do
   get "/subscribe" => "push_subscribes#index"
   get "/push", to: "push_subscribes#subscribe"
 
-  # resources :medicine do
-  #   collection do
-  #     get :complete
-  #   end
-  # end
-
   # resources :push_subscribes
 
   devise_for :users, controllers: {
@@ -29,7 +23,13 @@ Rails.application.routes.draw do
     resources :time_to_eats
     resources :start_end_medicines
   end
-  resources :doctors
+  resources :doctors do
+    namespace :api do
+      namespace :v1 do
+        resources :appointments, only: [:create, :new]
+      end
+    end
+  end
 
   # get 'complete', to: 'medicines#complete', as: 'complete_medicines'
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

@@ -5,21 +5,23 @@
         <h5 class="card-title"><%= doctor.Fullname %></h5>
         <p class="card-text"><strong>Specialty:</strong> <%= doctor.Specialty %></p>
         <p class="card-text"><strong>Email:</strong> <%= doctor.Email %></p>
-        <% doctor.appointments.each do |appointment| %>
-          <p class="card-text"><strong>Appointment:</strong> <%= appointment.appointment.strftime('%A, %B %d, %Y at %I:%M') %></p>
-          <p class="card-text"><strong>Status:</strong> <%= appointment.status ? "Completed" : "Not Completed" %></p>
-        <% end %>
+        <p class="card-text"><strong>Appointment:</strong>
+          <%= doctor.appointments.last&.appointment&.strftime('%A, %B %d, %Y at %I:%M') || "No Appointments" %>
+        </p>
+        <p class="card-text"><strong>Status:</strong>
+          <%= doctor.appointments.last&.status ? "Completed" : "Not Completed" %>
+        </p>
       </div>
     </div>
   </div>
 </div>
 <style>
   .glass-effect_1 {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  padding: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 20px;
   }
 </style>

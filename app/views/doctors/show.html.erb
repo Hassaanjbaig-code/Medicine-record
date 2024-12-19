@@ -1,16 +1,27 @@
-<p style="color: green"><%= notice %></p>
-<div class="container mt-5 min-vh-100">
-  <div class="card">
-    <div class="card-header">
-      <h2>Doctor Details</h2>
-    </div>
-    <div class="card-body">
-      <%= render @doctor %>
-    </div>
-    <div class="card-footer">
-      <%= link_to "Edit this doctor", edit_doctor_path(@doctor), class: "btn btn-primary" %>
-      <%= link_to "Back to doctors", doctors_path, class: "btn btn-secondary" %>
-      <%= button_to "Destroy this doctor", @doctor, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger my-2" %>
+<section class="position-relative" data-controller="appointment">
+  <p style="color: green"><%= notice %></p>
+  <div class="container mt-5 min-vh-100">
+    <div class="card">
+      <div class="card-header">
+        <h2 class="my-4 font_itim" >Doctor Details</h2>
+      </div>
+      <div class="card-body">
+        <%= turbo_frame_tag "appointment", data: { turbo_cache: "false" } do %>
+          <%= render @doctor %>
+        <% end %>
+      </div>
+      <div class="card-footer d-flex flex-wrap gap-2 justify-content-center justify-content-lg-start">
+        <%= link_to "Edit this doctor", edit_doctor_path(@doctor), class: "btn btn-primary flex-grow-1 flex-lg-grow-0" %>
+        <%= link_to "Back to doctors", doctors_path, class: "btn btn-secondary flex-grow-1 flex-lg-grow-0" %>
+        <%= link_to "Add Appointment Time", "/", class: "btn btn-primary flex-grow-1 flex-lg-grow-0", data: {
+          controller: 'appointment',
+          action: 'click->appointment#add'
+        } %>
+        <%= button_to "Destroy this doctor", @doctor, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger flex-grow-1 flex-lg-grow-0" %>
+      </div>
     </div>
   </div>
-</div>
+  <div id="hidden" class="position-absolute w-100 min-vh-100 top-0 start-0 d-none">
+    <%= render partial: "appointmentAdd", local: { doctor: @doctor, appointment: @appointment } %>
+  </div>
+</section>

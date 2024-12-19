@@ -11,6 +11,7 @@ class DoctorsController < ApplicationController
 
   # GET /doctors/1 or /doctors/1.json
   def show
+    @appointment = Appointment.new
   end
 
   # GET /doctors/new
@@ -31,7 +32,7 @@ class DoctorsController < ApplicationController
         if @doctor.save
           # Create a new appointment associated with the doctor
           @appointment = @doctor.appointments.create(
-            Appointments: params[:doctor][:appointment],
+            appointment: params[:doctor][:appointment],
             status: false,
             user_id: current_user.id
           )
@@ -48,7 +49,7 @@ class DoctorsController < ApplicationController
   # PATCH/PUT /doctors/1 or /doctors/1.json
   def update
     respond_to do |format|
-      if @doctor.update(docter_params)
+      if @doctor.update(doctor_params)
         format.html { redirect_to @doctor, notice: "Doctor was successfully updated." }
         format.json { render :show, status: :ok, location: @doctor }
       else

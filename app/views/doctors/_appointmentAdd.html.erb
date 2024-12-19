@@ -1,0 +1,61 @@
+<style>
+  /* Custom CSS for transparent modal background */
+  .modal-content {
+    background: rgba(255, 255, 255, 0.7); /* Semi-transparent white background */
+    backdrop-filter: blur(5px); /* Adds a blur effect */
+    border: none; /* Optional: Remove borders */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Subtle shadow */
+  }
+
+  .modal-backdrop.show {
+    opacity: 0.5; /* Adjust transparency of the backdrop */
+    background-color: rgba(0, 0, 0, 0.5); /* Optional: Semi-transparent black backdrop */
+  }
+
+  /* Optional: Customize header and footer for cleaner design */
+  .modal-header,
+  .modal-footer {
+    border: none; /* Remove borders for cleaner look */
+  }
+
+  .modal-title {
+    font-weight: bold;
+    color: #333; /* Darker text color for emphasis */
+  }
+
+  .btn-close {
+    opacity: 0.7;
+  }
+</style>
+<div class="modal d-block">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Appointment</h5>
+        <button 
+          type="button" 
+          class="btn-close" 
+          aria-label="Close"
+          data-controller="appointment" 
+          data-action="click->appointment#remove">
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= form_for @appointment, url: doctor_api_v1_appointments_path(@doctor), method: :post, html: { class: "form_group" }, data: { controller: "appointment", action: "submit->appointment#submit" } do |f| %>
+          <%= f.hidden_field :status, id: "status" %>
+          <div class="form-group my-1">
+            <%= f.label :appointment, "Appointment", class: "form-label" %>
+            <br/>
+            <%= f.datetime_field :appointment, class: "form-control", data: { action: "change->appointment#statusAppointment" } %>
+          </div>
+          <div class="form-group">
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-action="click->appointment#remove">Close</button>
+              <%= f.submit "Save Appointment", class: "btn btn-primary mt-2"  %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

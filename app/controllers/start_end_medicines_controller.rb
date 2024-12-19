@@ -25,7 +25,6 @@ class StartEndMedicinesController < ApplicationController
   def create
     # medicine_start_end_medicines = StartEndMedicine.new(start_end_medicine_params)
     # medicine_start_end_medicines.medicine_id = @medicine.id
-    p "This is the Start End Date", start_end_medicine_params
     @medicine_start_end_medicines = @medicine.start_end_medicines.build(start_end_medicine_params)
 
     respond_to do |format|
