@@ -21,10 +21,10 @@ export default class extends Controller {
   remove(e) {
     e.preventDefault();
     e.stopImmediatePropagation();
-    this.removeappointment()
+    this.removeAddappointment()
   }
 
-  removeappointment(){
+  removeAddappointment(){
     let appointment = document.getElementById("hidden");
     appointment.classList.remove("d-flex");
     appointment.classList.add("d-none");
@@ -59,8 +59,20 @@ export default class extends Controller {
   }
 
   submit(e) {
-    // e.preventDefault();
-    console.log("This is the appointment")
-    this.removeappointment()
+    this.removeAddappointment()
+  }
+
+  showappointment(e){
+    e.preventDefault();
+    let showappointment = document.getElementById("hidden_appointment");
+    showappointment.classList.remove("d-none")
+    showappointment.classList.add("d-block")
+  }
+  
+  removeAppointment(e){
+    e.preventDefault();
+    let showappointment = document.getElementById("hidden_appointment");
+    showappointment.classList.add("d-none")
+    showappointment.classList.remove("d-block")
   }
 }

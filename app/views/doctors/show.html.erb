@@ -17,9 +17,13 @@
           controller: 'appointment',
           action: 'click->appointment#add'
         } %>
+        <%= button_to "Old Appointment", "/", data: { controller: 'appointment', action: 'click->appointment#showappointment' }, class: "btn btn-primary flex-grow-1 flex-lg-grow-0" %>
         <%= button_to "Destroy this doctor", @doctor, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger flex-grow-1 flex-lg-grow-0" %>
       </div>
     </div>
+  </div>
+  <div id="hidden_appointment" class="position-absolute w-100 min-vh-100 top-0 start-0 d-none">
+    <%= render partial: "showappointment", local: { doctor: @doctor } %>
   </div>
   <div id="hidden" class="position-absolute w-100 min-vh-100 top-0 start-0 d-none">
     <%= render partial: "appointmentAdd", local: { doctor: @doctor, appointment: @appointment } %>

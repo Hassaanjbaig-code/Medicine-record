@@ -34,7 +34,7 @@ class Api::V1::AppointmentsController < ApplicationController
     @appointment.destroy!
 
     respond_to do |format|
-      format.turbo_stream {  render turbo_stream: turbo_stream.remove(@appointment) }
+      format.turbo_stream {  render turbo_stream: turbo_stream.remove(@appointment.id) }
       format.html { redirect_to root_path }
     end
   end

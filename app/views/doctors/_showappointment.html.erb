@@ -1,0 +1,46 @@
+<div class="modal fade show d-block" id="appointmentModal" style="display: block;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="appointmentModalLabel">Appointments</h5>
+        <button 
+          type="button" 
+          class="btn-close" 
+          aria-label="Close"
+          data-controller="appointment" 
+          data-action="click->appointment#removeAppointment">
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-bordered table-hover">
+          <thead class="table-light">
+            <tr>
+              <th scope="col">Appointment Date and Time</th>
+              <th scope="col">Status</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody id="appointmentTableBody overflow-auto">
+            <% @doctor.appointments.each do |appointment| %>
+              <tr id="<%= appointment.id %>">
+                <td><%= appointment.appointment %></td>
+                <td><%= appointment.status %></td>
+                <td>
+                  <%= button_to "Delete", doctor_api_v1_appointment_path(@doctor,appointment), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button 
+        type="button" 
+        class="btn btn-secondary" 
+        data-bs-dismiss="modal"           
+        data-controller="appointment" 
+        data-action="click->appointment#removeAppointment">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
