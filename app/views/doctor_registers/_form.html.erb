@@ -1,0 +1,52 @@
+<style>
+  .modern-form {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    margin: 20px 0;
+  }
+  .error-messages {
+    color: red;
+    margin-bottom: 20px;
+  }
+</style>
+<%= form_with(model: @doctor, id: "#{dom_id(@doctor)_form}", local: true, html: { class: 'modern-form' }) do |form| %>
+  <% if @doctor.errors.any? %>
+    <div class="error-messages">
+      <ul>
+        <% @doctor.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= form.label :first_name, 'First Name', class: 'form-label' %>
+    <%= form.text_field :First_name, class: 'form-control', placeholder: 'Enter First Name' %>
+  </div>
+  <div class="form-group">
+    <%= form.label :last_name, 'Last Name', class: 'form-label' %>
+    <%= form.text_field :Last_name, class: 'form-control', placeholder: 'Enter Last Name' %>
+  </div>
+  <div class="form-group">
+    <%= form.label :date_of_birth, 'Date of Birth', class: 'form-label' %>
+    <%= form.date_field :date_of_birth, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= form.label :gender, 'Gender', class: 'form-label' %>
+    <%= form.select :gender, options_for_select(['Male', 'Female', 'Other']), { prompt: 'Select Gender' }, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= form.label :practicing_from, 'Practicing From', class: 'form-label' %>
+    <%= form.date_field :practicing_from, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= form.label :specialization, 'Specialization', class: 'form-label' %>
+    <%= form.text_field :specialization, class: 'form-control', placeholder: 'Enter Specialization' %>
+  </div>
+  <div class="form-group mt-2">
+    <%= form.submit 'Register', class: 'btn btn-primary' %>
+  </div>
+<% end %>

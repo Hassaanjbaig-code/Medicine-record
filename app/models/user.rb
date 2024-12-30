@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  # after_commit :after_sign_up_path_for
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable, :trackable, :confirmable,  and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -14,6 +15,16 @@ class User < ApplicationRecord
   has_many :time_to_eats, dependent: :destroy
   has_many :doctors, dependent: :destroy
   has_many :appointments, dependent: :destroy
+  has_one :doctorRegister, dependent: :destroy
+  has_many :appointments_registers, dependent: :destroy
+
+  # def after_sign_up_path_for
+  #   if self.doctor
+  #     doctor_registers_path
+  #   else
+  #     root_path
+  #   end
+  # end
 
   def logged_in?
     !!self.session_token

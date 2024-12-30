@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  day_of_week: 1
+  available_from: 2024-12-29 10:41:37
+  available_to: 2024-12-29 10:41:37
+
+two:
+  day_of_week: 1
+  available_from: 2024-12-29 10:41:37
+  available_to: 2024-12-29 10:41:37

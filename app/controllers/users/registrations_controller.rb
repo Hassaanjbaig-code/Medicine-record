@@ -38,12 +38,22 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
+  protected
+  # for checking the user is doctor or not
+
+  def after_sign_up_path_for(resource)
+    if resource.doctor
+      new_doctor_registers_path
+    else
+      root_path
+    end
+  end
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:time_zone, :name])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:time_zone, :name, :doctor])
   end
+
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_account_update_params
