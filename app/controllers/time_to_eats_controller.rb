@@ -9,7 +9,7 @@ class TimeToEatsController < ApplicationController
   def index
     if @medicine.present?
       @time_to_eats = @medicine.time_to_eats
-      else
+    else
       respond_to do |format|
         format.html { redirect_to medicines_path, notice: "No Medicine Found", status: 404 }
       end

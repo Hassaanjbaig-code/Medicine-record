@@ -1,0 +1,62 @@
+<div class="col-md-6 p-4 w-100">
+  <%= form_with(model: [doctor, qualification], method: :post, id: "#{dom_id(qualification)}_form", local: true, url: doctor_register_qualifications_path(doctor)) do |form| %>
+    <% if qualification.errors.any? %>
+      <div style="color: red" class="alert alert-primary" role="alert">
+        <ul>
+          <% qualification.errors.full_messages.each do |message| %>
+            <li style="list-style-type: none;"><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div data-controller="nested-form" id="<%= dom_id(qualification) %>_form" class="mb-3">
+      <template data-nested-form-target="template">
+        <div class="nested-fields mb-3" id="nested-fields">
+          <label>Qualification Name</label>
+          <%= form.text_field :qualification_name,
+            name: "doctor_register[qualifications_attributes][NEW_RECORD][qualification_name]",
+            class: "form-control",
+            placeholder: "Enter Qualification Name" %>
+          <label>Institute Name</label>
+          <%= form.text_field :institute_name,
+            name: "doctor_register[qualifications_attributes][NEW_RECORD][institute_name]",
+            class: "form-control",
+            placeholder: "Enter Institute Name" %>
+          <label>Procurement Year</label>
+          <select 
+          name="doctor_register[qualifications_attributes][NEW_RECORD][procurement_year]"
+          id="qualification_procurement_year"
+          class="form-control">
+            <%= options_for_select((1980..Time.now.year).to_a.reverse) %>
+          </select>
+          <button type="button" data-action="nested-form#removeForm" class="btn btn-danger mt-2">Remove</button>
+        </div>
+      </template>
+      <div data-nested-form-target="container">
+        <div class="nested-fields mb-3" id="<%= dom_id(qualification) %>_form">
+          <label>Qualification Name</label>
+          <%= form.text_field :qualification_name,
+            name: "doctor_register[qualifications_attributes][#{doctor.id || 'NEW_RECORD'}][qualification_name]",
+            class: "form-control",
+            placeholder: "Enter Qualification Name" %>
+          <label>Institute Name</label>
+          <%= form.text_field :institute_name,
+            name: "doctor_register[qualifications_attributes][#{doctor.id || 'NEW_RECORD'}][institute_name]",
+            class: "form-control",
+            placeholder: "Enter Institute Name" %>
+          <label>Procurement Year</label>
+          <select 
+          name="doctor_register[qualifications_attributes][<%= doctor.id || 'NEW_RECORD' %>][procurement_year]"
+          id="qualification_procurement_year"
+          class="form-control">
+            <%= options_for_select((1980..Time.now.year).to_a.reverse) %>
+          </select>
+        </div>
+      </div>
+      <button type="button" data-action="nested-form#addForm" class="btn btn-secondary">Add More Qualifications</button>
+      <div class="mt-3">
+        <%= form.submit "Add Qualification", class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+</div>

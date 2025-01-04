@@ -1,3 +1,3 @@
 class Clinic < ApplicationRecord
-  belongs_to :doctorRegister
+  belongs_to :doctor_register
 end

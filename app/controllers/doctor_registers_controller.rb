@@ -5,13 +5,11 @@ class DoctorRegistersController < ApplicationController
 
   end
   def new
-    # @doctor = current_user.doctorRegister.new
-    # @doctor = current_user.doctors.new
     @doctor = DoctorRegister.new
   end
 
   def create
-    @doctor = current_user.build_doctorRegister(doctor_register_params)
+    @doctor = current_user.create_doctor_register(doctor_register_params)
 
     respond_to do |format|
       if @doctor.save!
@@ -31,12 +29,3 @@ class DoctorRegistersController < ApplicationController
     params.require(:doctor_register).permit(:First_name, :Last_name, :date_of_birth, :gender, :practicing_from, :specialization)
   end
 end
-
-
-# t.string "First_name"
-# t.string "Last_name"
-# t.date "date_of_birth"
-# t.text "gender"
-# t.string "email"
-# t.date "practicing_from"
-# t.string "specialization"

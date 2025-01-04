@@ -15,7 +15,7 @@ class User < ApplicationRecord
   has_many :time_to_eats, dependent: :destroy
   has_many :doctors, dependent: :destroy
   has_many :appointments, dependent: :destroy
-  has_one :doctorRegister, dependent: :destroy
+  has_one :doctor_register, dependent: :destroy
   has_many :appointments_registers, dependent: :destroy
 
   # def after_sign_up_path_for

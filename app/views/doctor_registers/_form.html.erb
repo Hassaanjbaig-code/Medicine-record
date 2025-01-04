@@ -12,11 +12,11 @@
     margin-bottom: 20px;
   }
 </style>
-<%= form_with(model: @doctor, id: "#{dom_id(@doctor)_form}", local: true, html: { class: 'modern-form' }) do |form| %>
-  <% if @doctor.errors.any? %>
+<%= form_with(model: doctor, id: "#{dom_id(doctor)}_form", local: true, html: { class: 'modern-form' }) do |form| %>
+  <% if doctor.errors.any? %>
     <div class="error-messages">
       <ul>
-        <% @doctor.errors.full_messages.each do |message| %>
+        <% doctor.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>

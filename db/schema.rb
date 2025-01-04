@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_12_30_021218) do
+ActiveRecord::Schema[7.1].define(version: 2024_12_30_062129) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -111,10 +111,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_30_021218) do
     t.string "qualification_name", null: false
     t.string "institute_name", null: false
     t.integer "procurement_year"
-    t.bigint "doctor_registers_id", null: false
+    t.bigint "doctor_register_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["doctor_registers_id"], name: "index_qualifications_on_doctor_registers_id"
+    t.index ["doctor_register_id"], name: "index_qualifications_on_doctor_register_id"
   end
 
   create_table "start_end_medicines", force: :cascade do |t|
@@ -168,7 +168,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_30_021218) do
   add_foreign_key "doctors", "users"
   add_foreign_key "medicines", "users"
   add_foreign_key "push_subscribes", "users"
-  add_foreign_key "qualifications", "doctor_registers", column: "doctor_registers_id"
+  add_foreign_key "qualifications", "doctor_registers"
   add_foreign_key "start_end_medicines", "medicines"
   add_foreign_key "time_to_eats", "medicines"
   add_foreign_key "time_to_eats", "users"

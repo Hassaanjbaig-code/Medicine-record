@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  get 'qualifications/new'
-  get 'qualifications/create'
+  get 'clinics/new'
   get 'home/index'
   # post "/push" => "pushnotification#create"
   # get 'pushnotification/create'
@@ -14,7 +13,9 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
-  resources :doctor_registers, only: [:index, :create, :new]
+  resources :doctor_registers, only: [:index, :create, :new] do
+    resources :qualifications, only: [:new, :create]
+  end
 
   # devise_scope :user do
   #   # Defines the root path route ("/")
