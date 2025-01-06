@@ -8,9 +8,9 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     environment:
-      POSTGRES_DB: medicine_record
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     networks:
       - app_network
     healthcheck:
@@ -40,7 +40,8 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: rails_app
-    command: "foreman start -f Procfile.dev"
+    command: >
+       /bin/sh -c "rails db:migrate && foreman start -f Procfile.dev"
     volumes:
       - .:/app:delegated
       - /app/node_modules
@@ -50,7 +51,7 @@ services:
       redis:
         condition: service_healthy
     environment:
-      DATABASE_URL: postgres://postgres:password@db:5432/medicine_record
+      DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
       REDIS_URL: redis://redis:6379/0
       CLOUD_NAME: ${CLOUD_NAME}
       API_KEY: ${API_KEY}

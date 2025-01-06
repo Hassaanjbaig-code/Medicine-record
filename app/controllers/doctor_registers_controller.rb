@@ -13,7 +13,7 @@ class DoctorRegistersController < ApplicationController
 
     respond_to do |format|
       if @doctor.save!
-          format.turbo_stream
+        format.turbo_stream
         format.html { redirect_to doctor_registers_path, notice: "Doctor was successfully register." }
         format.json { render :show, status: :created, location: @doctor }
       else

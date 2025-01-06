@@ -40,7 +40,6 @@ class MedicinesController < ApplicationController
     @medicine = current_user.medicines.new(medicine_params)
     @medicine.public_id = public_id
     @medicine.image = image_url
-    p @medicine
     respond_to do |format|
       if @medicine.save
         format.turbo_stream

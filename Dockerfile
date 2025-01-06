@@ -71,6 +71,8 @@ RUN yarn remove esbuild
 
 RUN ./bin/rails javascript:install:esbuild
 
+# RUN rails db:migrate
+
 # RUN rm ./app/tmp/pids/server.pid
 
 ENTRYPOINT [ "./bin/docker-entrypoint" ]

@@ -91,3 +91,4 @@ gem "dotenv", "~> 3.1"
 gem "cloudinary", "~> 2.2"
 
 gem "simple_calendar"
+gem "geocoder", "~> 1.8"

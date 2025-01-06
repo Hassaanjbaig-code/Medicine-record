@@ -7,8 +7,6 @@ class QualificationsController < ApplicationController
   end
 
   def create
-    Rails.logger.debug "Parameters for qualification: #{params[:doctor_register_id]}"
-
     @doctor_register = DoctorRegister.find_by_id(params[:doctor_register_id])
 
     # Handle case where @doctor_register is nil
@@ -18,10 +16,19 @@ class QualificationsController < ApplicationController
     #   end
     #   return
     # end
+    # respond_to do |format|
+    #   if @doctor_register.update(qualifications_params)
+    #     format.turbo_stream
+    #     format.html { redirect_to medicines_path, notice: "Qualification was added successfully" }
+    #   else
+    #     format.html { render :new, status: :unprocessable_entity }
+    #   end
+    # end
+    # if @doctor_register.update(qualifications_params)
     if @doctor_register.update(qualifications_params)
-      redirect_to medicines_path
-    else
       redirect_to root_path
+    else
+      redirect_to doctor_path
     end
 
     # respond_to do |format|

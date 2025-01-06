@@ -107,6 +107,7 @@ GEM
     crass (1.0.6)
     cssbundling-rails (1.4.1)
       railties (>= 6.0.0)
+    csv (3.3.2)
     date (3.4.1)
     debug (1.10.0)
       irb (~> 1.10)
@@ -140,6 +141,9 @@ GEM
     fugit (1.11.1)
       et-orbi (~> 1, >= 1.2.11)
       raabro (~> 1.4)
+    geocoder (1.8.5)
+      base64 (>= 0.1.0)
+      csv (>= 3.0.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.6)
@@ -353,6 +357,7 @@ DEPENDENCIES
   devise (~> 4.9)
   dotenv (~> 3.1)
   faker (~> 3.3)
+  geocoder (~> 1.8)
   image_processing (~> 1.2)
   jbuilder
   jsbundling-rails
