@@ -23,7 +23,7 @@ default: &default
   # host: <%= ENV['DB_HOST'] || 'db' %>
   # username: postgres
   # password: "0002"
-  password: "password"
+  # password: "password"
   port: 5432
   
 

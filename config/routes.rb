@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  get 'clinics/new'
+  # get 'specializations/new'
+  # get 'clinics/new'
   get 'home/index'
   # post "/push" => "pushnotification#create"
   # get 'pushnotification/create'
@@ -15,6 +16,8 @@ Rails.application.routes.draw do
 
   resources :doctor_registers, only: [:index, :create, :new] do
     resources :qualifications, only: [:new, :create]
+    resources :specializations, only: [:new, :create]
+    resources :clinics, only: [:new, :create]
   end
 
   # devise_scope :user do
