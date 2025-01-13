@@ -1,1 +1,11 @@
-<h2>Doctor Register</h2>
+<section class="grid min-vh-100" data-controller="push" data-application-server-key="<%= Rails.application.credentials.dig(:Webpush, :public_key) %>">
+  <div id="doctor_register" class="row row-cols-lg-4 row-cols-md-2 ml-5 mx-auto">
+    <% @doctor_register.each do |doctor_register| %>
+      <div class="col order-first">
+        <div class="card mb-3 d-md-block" style="width: 18rem; background-color: transparent !important;">
+          <%= render "doctors", doctor: doctor_register %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

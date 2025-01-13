@@ -14,10 +14,11 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
-  resources :doctor_registers, only: [:index, :create, :new] do
+  resources :doctor_registers, only: [:index, :show, :create, :new] do
     resources :qualifications, only: [:new, :create]
     resources :specializations, only: [:new, :create]
     resources :clinics, only: [:new, :create]
+    resources :availabilities, only: [:new, :create]
   end
 
   # devise_scope :user do

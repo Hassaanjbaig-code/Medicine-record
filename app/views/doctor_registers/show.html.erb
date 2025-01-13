@@ -1,0 +1,53 @@
+<section class="container min-vh-100">
+  <div class="mt-5 show-page-container">
+    <div class="row mb-4">
+      <% if @doctor_register.nil? == false %>
+        <%= render "doctor", doctor: @doctor_register  %>
+      <% end %>
+    </div>
+  </div>
+</section>
+<style>
+  /* Glassmorphism effect */
+  .show-page-container {
+    background: rgba(255, 255, 255, 0.2); /* transparent white */
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  h3 {
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: #333;
+  }
+
+  h4 {
+    font-size: 1.25rem;
+    color: #888;
+  }
+
+  /* Glass effect for individual time entries */
+  .time-pill {
+    background: rgba(255, 255, 255, 0.25); /* transparent white */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 30px;
+    width: 8rem;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .time-pill p {
+    margin-bottom: 0;
+    color: #333;
+    font-weight: bold;
+  }
+</style>

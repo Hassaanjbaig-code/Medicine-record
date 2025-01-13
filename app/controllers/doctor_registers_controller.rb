@@ -2,7 +2,12 @@ class DoctorRegistersController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    @doctor_register = DoctorRegister.all
+  end
 
+  def show
+    @doctor_register = DoctorRegister.find_by_id(8)
+    puts @doctor_register
   end
   def new
     @doctor = DoctorRegister.new

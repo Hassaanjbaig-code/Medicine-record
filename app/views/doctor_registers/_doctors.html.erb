@@ -1,0 +1,49 @@
+<div id="<%= dom_id doctor %>" class="mb-1 d-md-block rounded glass-card">
+  <img 
+  src="/assets/Doctor_for_form.jpg"
+  alt="<%= doctor.First_name %>" 
+  class="card-img-top object-fit-scale"
+   style="height:13rem"/>
+  <div class="card-body">
+    <h2 class="card-title h3" style="color: #14104073;">
+      <%= doctor.First_name %> <%= doctor.Last_name %>
+    </h2>
+    <h4 class="h6 text-secondary">
+      <strong>Specialization: </strong>
+      <% if doctor.specializations.any? %>
+        <%= doctor.specializations.last.name %>
+      <% else %>
+        No specializations available
+      <% end %>
+    </h4>
+    <span class="row d-flex justify-content-center align-content-center ">
+    </span>
+  </div>
+</div>
+<style>
+  .glass-card {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    drop-shadow(0 0 0.75rem)
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-body {
+    color: #fff;
+  }
+
+  .card-title {
+    font-family: 'Arial', sans-serif;
+  }
+
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+  }
+</style>
