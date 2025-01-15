@@ -1,53 +1,38 @@
-<section class="container min-vh-100">
-  <div class="mt-5 show-page-container">
+<section class="container min-vh-100 position-relative" data-controller="appointment-register">
+  <div class="mt-5 show-page-container p-4 rounded-3 shadow-sm">
     <div class="row mb-4">
       <% if @doctor_register.nil? == false %>
         <%= render "doctor", doctor: @doctor_register  %>
       <% end %>
     </div>
-  </div>
-</section>
-<style>
-  /* Glassmorphism effect */
-  .show-page-container {
-    background: rgba(255, 255, 255, 0.2); /* transparent white */
-    backdrop-filter: blur(15px) saturate(180%);
-    -webkit-backdrop-filter: blur(15px) saturate(180%);
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    padding: 2rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-
-  h3 {
-    font-size: 1.75rem;
-    font-weight: bold;
-    color: #333;
-  }
-
-  h4 {
-    font-size: 1.25rem;
-    color: #888;
-  }
-
-  /* Glass effect for individual time entries */
-  .time-pill {
-    background: rgba(255, 255, 255, 0.25); /* transparent white */
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 30px;
-    width: 8rem;
-    height: 3rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-
-  .time-pill p {
-    margin-bottom: 0;
-    color: #333;
-    font-weight: bold;
-  }
-</style>
+    <div id="Appointment">
+      <div class="appointment-card bg-white border rounded-4 p-4 mb-4 shadow-lg">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h5 class="mb-0 text-primary"><strong>Appointment:</strong></h5>
+          <p class="mb-0 text-dark fw-bolder"><%= @appointments.last.appointment.strftime("%a, %d %b %Y %H:%M:%S %Z") %></p>
+        </div>
+        <div class="appointment-details mt-2 text-muted">
+          <p class="mb-1">Scheduled consultation with the doctor.</p>
+        </div>
+      </div>
+    </div>
+    <div 
+    class="position-absolute top-50 start-50 translate-middle z-3 rounded-3 time-pill"
+    id="appointment_register" style="display: none" >
+      <%= render partial: "appointment_registers/form", locals: { appointment_register: AppointmentRegister.new, doctor: @doctor_register } %>
+    </div>
+    <div 
+    class="position-absolute top-50 start-50 translate-middle z-3 rounded-3 bg-white p-4 shadow-lg time-pill"
+    id="appointment_register_1" style="display: none" >
+      <%= render partial: "appointment_register", locals: { appointment: @appointments } %>
+    </div>
+  </section>
+  <style>
+    /* Glassmorphism effect */
+    .show-page-container {
+      background: rgba(255, 255, 255, 0.2); /* transparent white */
+      backdrop-filter: blur(15px) saturate(180%);
+      -webkit-backdrop-filter: blur(15px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+  </style>

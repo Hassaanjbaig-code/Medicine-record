@@ -6,8 +6,8 @@ class DoctorRegistersController < ApplicationController
   end
 
   def show
-    @doctor_register = DoctorRegister.find_by_id(8)
-    puts @doctor_register
+    @doctor_register = DoctorRegister.find_by_id(params[:id])
+    @appointments = current_user.doctor_register.appointment_registers
   end
   def new
     @doctor = DoctorRegister.new

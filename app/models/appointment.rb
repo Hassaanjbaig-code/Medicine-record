@@ -4,4 +4,5 @@ class Appointment < ApplicationRecord
 
   validates :appointment, presence: true
   validates :status, inclusion: { in: [true, false] }
+
 end

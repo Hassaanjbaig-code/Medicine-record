@@ -1,0 +1,53 @@
+<%= form_with(model: [appointment_register, doctor], 
+              id: "#{dom_id(appointment_register)}_form", 
+              local: true, 
+              url: doctor_register_appointment_registers_path(doctor), 
+              method: :post, 
+              class: "p-4 bg-light border rounded shadow-sm") do |form| %>
+  <% if appointment_register.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h4 class="alert-heading">
+        <%= pluralize(appointment_register.errors.count, "error") %> prevented this appointment from being saved:
+      </h4>
+      <ul>
+        <% appointment_register.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="mb-3">
+    <span class="d-flex w-100 justify-content-between">
+      <%= form.label :Appointment, class: "form-label fw-bold background" %>
+      <button 
+      type="button" 
+      class="btn-close" 
+      aria-label="Close"
+      data-controller="appointment-register"
+      data-action="click->appointment-register#removeAppointment"></button>
+    </span>
+    <%= form.datetime_select :appointment, 
+          start: doctor.availabilities.last.available_from,
+          end: doctor.availabilities.last.available_to,
+          class: "form-select appointment-select",
+          style: "width: 100%;" %>
+  </div>
+  <div class="d-flex justify-content-end">
+    <%= form.submit "Save Appointment", class: "btn btn-primary", data: { controller: "appointment-register", action: "submit->appointment-register#submit" } %>
+  </div>
+<% end %>
+<!-- Additional CSS -->
+<style>
+  #new_appointment_register_form {
+    background-color: #e8e4da;
+  }
+
+  .btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+  }
+  .appointment-select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+</style>

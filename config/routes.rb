@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     resources :specializations, only: [:new, :create]
     resources :clinics, only: [:new, :create]
     resources :availabilities, only: [:new, :create]
+    resources :appointment_registers, only: [:create]
   end
 
   # devise_scope :user do

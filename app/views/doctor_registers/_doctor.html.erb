@@ -1,4 +1,4 @@
-<div class="mb-4">
+<div class="mb-4" data-controller="appointment-register">
   <div class="card mb-3 border-0 shadow-lg" style="background-color: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);">
     <div class="row g-0">
       <div class="col-lg-5 col-md-5 col-sm-6">
@@ -8,12 +8,25 @@
         <div class="card-body">
           <h2 class="card-title font-weight-bold">Dr. <%= doctor.First_name %> <%= doctor.Last_name %></h2>
           <p class="card-text"><strong>Specialization:</strong> <%= doctor.specializations.last.name %></p>
-          <p class="card-text"><strong>Available Time:</strong> 9:00 AM - 5:00 PM</p>
+          <p class="card-text"><strong>Available Time:</strong>
+            <%= doctor.availabilities.last.available_from.strftime("%I:%M %p") %>
+            - 
+            <%= doctor.availabilities.last.available_to.strftime("%I:%M %p") %>
+          </p>
           <p class="card-text"><strong>Clinic Address:</strong> <%= doctor.clinics.last.address %></p>
           <p class="card-text"><strong>Qualification:</strong> <%= doctor.qualifications.last.qualification_name %></p>
           <div class="d-flex flex-wrap mt-3">
-            <%# <%= link_to "Edit", edit_doctor_path(doctor), class: "btn btn-outline-primary me-2 mb-2" %> %>
             <%= link_to "Back to Doctors", doctors_path, class: "btn btn-outline-secondary me-2 mb-2" %>
+            <%= link_to "Add Appointment", 
+            doctor_register_path(doctor), 
+            method: :post, 
+            data: { controller: "appointment-register", action: "click->appointment-register#show" }, 
+            class: "btn btn-outline-primary me-2 mb-2" %>
+            <%= link_to "Old Appointment", 
+            doctor_register_path(doctor), 
+            method: :post, 
+            data: { controller: "appointment-register", action: "click->appointment-register#old_show" }, 
+            class: "btn btn-outline-primary me-2 mb-2" %>
           </div>
         </div>
       </div>

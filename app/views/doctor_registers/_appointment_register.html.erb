@@ -1,0 +1,30 @@
+<!-- Popup Modal for Old Appointment Table -->
+<div class="d-flex justify-content-between mb-3">
+  <h5 class="mb-0 text-primary">Old Appointment Details</h5>
+  <button 
+      type="button" 
+      class="btn-close" 
+      aria-label="Close"
+      data-controller="appointment-register"
+      data-action="click->appointment-register#old_remove">
+  </button>
+</div>
+<!-- Table to display appointment date and time -->
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th scope="col">index</th>
+      <th scope="col">Date</th>
+      <th scope="col">Time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% appointment.each_with_index do |appointment, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= appointment.appointment.strftime("%a, %d %b %Y") %></td>
+        <td><%= appointment.appointment.strftime("%H:%M:%S %Z") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
