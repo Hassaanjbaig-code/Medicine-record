@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_01_11_145519) do
+ActiveRecord::Schema[7.1].define(version: 2025_01_21_121921) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -96,6 +96,27 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_11_145519) do
     t.index ["user_id"], name: "index_medicines_on_user_id"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.string "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "room_id"
+    t.index ["room_id"], name: "index_messages_on_room_id"
+  end
+
+  create_table "patients", force: :cascade do |t|
+    t.string "full_name"
+    t.string "email"
+    t.string "phone_number"
+    t.date "date_of_birth"
+    t.string "gender"
+    t.text "medicinal_history"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_patients_on_user_id"
+  end
+
   create_table "push_subscribes", force: :cascade do |t|
     t.string "endpoint"
     t.string "string"
@@ -116,6 +137,15 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_11_145519) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["doctor_register_id"], name: "index_qualifications_on_doctor_register_id"
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.bigint "doctor_register_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "patient_id", null: false
+    t.index ["doctor_register_id"], name: "index_rooms_on_doctor_register_id"
+    t.index ["patient_id"], name: "index_rooms_on_patient_id"
   end
 
   create_table "specializations", force: :cascade do |t|
@@ -180,8 +210,12 @@ ActiveRecord::Schema[7.1].define(version: 2025_01_11_145519) do
   add_foreign_key "doctor_registers", "users"
   add_foreign_key "doctors", "users"
   add_foreign_key "medicines", "users"
+  add_foreign_key "messages", "rooms"
+  add_foreign_key "patients", "users"
   add_foreign_key "push_subscribes", "users"
   add_foreign_key "qualifications", "doctor_registers"
+  add_foreign_key "rooms", "doctor_registers"
+  add_foreign_key "rooms", "patients"
   add_foreign_key "specializations", "doctor_registers"
   add_foreign_key "start_end_medicines", "medicines"
   add_foreign_key "time_to_eats", "medicines"

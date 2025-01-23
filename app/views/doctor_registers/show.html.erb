@@ -5,17 +5,19 @@
         <%= render "doctor", doctor: @doctor_register  %>
       <% end %>
     </div>
-    <div id="Appointment">
-      <div class="appointment-card bg-white border rounded-4 p-4 mb-4 shadow-lg">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-          <h5 class="mb-0 text-primary"><strong>Appointment:</strong></h5>
-          <p class="mb-0 text-dark fw-bolder"><%= @appointments.last.appointment.strftime("%a, %d %b %Y %H:%M:%S %Z") %></p>
-        </div>
-        <div class="appointment-details mt-2 text-muted">
-          <p class="mb-1">Scheduled consultation with the doctor.</p>
+    <% if @appointment.nil? && @appointments.present? %>
+      <div id="Appointment">
+        <div class="appointment-card bg-white border rounded-4 p-4 mb-4 shadow-lg">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="mb-0 text-primary"><strong>Appointment:</strong></h5>
+            <p class="mb-0 text-dark fw-bolder"><%= @appointments.last.appointment.strftime("%a, %d %b %Y %H:%M:%S %Z") %></p>
+          </div>
+          <div class="appointment-details mt-2 text-muted">
+            <p class="mb-1">Scheduled consultation with the doctor.</p>
+          </div>
         </div>
       </div>
-    </div>
+    <% end %>
     <div 
     class="position-absolute top-50 start-50 translate-middle z-3 rounded-3 time-pill"
     id="appointment_register" style="display: none" >
@@ -25,6 +27,11 @@
     class="position-absolute top-50 start-50 translate-middle z-3 rounded-3 bg-white p-4 shadow-lg time-pill"
     id="appointment_register_1" style="display: none" >
       <%= render partial: "appointment_register", locals: { appointment: @appointments } %>
+    </div>
+    <div 
+    class="position-absolute top-50 start-50 translate-middle z-3 rounded-3 bg-white p-4 shadow-lg time-pill w-100 h-100"
+    id="chat_app" style="display: none" >
+      <%= render partial: "messages/messages", locals: { doctor_register: @doctor_register, message: @message, patient: current_user.patient, room: @room } %>
     </div>
   </section>
   <style>

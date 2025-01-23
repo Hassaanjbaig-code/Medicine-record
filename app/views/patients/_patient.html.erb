@@ -1,0 +1,49 @@
+<div class="mb-4" data-controller="appointment-register">
+  <div class="card mb-3 border-0 shadow-lg" style="background-color: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);">
+    <div class="row g-0">
+      <div class="col-lg-5 col-md-5 col-sm-6">
+        <img src="/assets/Doctor_for_form.jpg" alt="<%= patient.full_name %>" class="card-img-top rounded-start"/>
+      </div>
+      <div class="col-lg-7 col-md-7 col-sm-6">
+        <div class="card-body">
+          <h2 class="card-title font-weight-bold"><%= patient.full_name %></h2>
+          <p class="card-text"><strong>Medical History:</strong> <%= patient.medicinal_history %></p>
+          <p class="card-text"><strong>Date of Birth:</strong>
+            <%= patient.date_of_birth.strftime("%I:%M %p") %>
+          </p>
+          <div class="d-flex flex-wrap mt-3">
+            <%= link_to "Back to Doctors", doctor_appointment_index_path, class: "btn btn-outline-secondary me-2 mb-2" %>
+            <%= link_to "Edit Appointment", 
+            "#",
+            method: :post, 
+            data: { controller: "patient-open", action: "click->patient-open#show" }, 
+            class: "btn btn-outline-primary me-2 mb-2" %>
+            <%= link_to "Old Appointment", 
+            "#",
+            method: :post, 
+            data: { controller: "patient-open", action: "click->patient-open#old_show" }, 
+            class: "btn btn-outline-primary me-2 mb-2" %>
+            <%= link_to "Open Message", 
+            "#",
+            method: :post, 
+            data: { controller: "patient-open", action: "click->patient-open#message" }, 
+            class: "btn btn-outline-primary me-2 mb-2" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<style>
+  .card-body {
+    color: #000;
+  }
+  .card {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+  }
+  .card:hover {
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease-in-out;
+  }
+</style>

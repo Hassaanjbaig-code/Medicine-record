@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   around_action :set_time_zone, if: :current_user
+  # before_action :check_doctor, if: :current_user
 
   private
   def set_time_zone

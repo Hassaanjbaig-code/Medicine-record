@@ -17,6 +17,7 @@ class User < ApplicationRecord
   has_many :appointments, dependent: :destroy
   has_one :doctor_register, dependent: :destroy
   has_many :appointment_registers, dependent: :destroy
+  has_one :patient, dependent: :destroy
 
   # def after_sign_up_path_for
   #   if self.doctor

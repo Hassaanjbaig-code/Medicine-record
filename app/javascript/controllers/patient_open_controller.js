@@ -1,37 +1,34 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="appointment-register"
+// Connects to data-controller="patient-open"
 export default class extends Controller {
-  static targets = ["content", "appointment"]
   connect() {
-    console.log("Appointment is working")
   }
 
   show(e) {
     e.preventDefault();
-    let appointment = document.getElementById("appointment_register");
+    let appointment = document.getElementById("appointment_register_add_doctor");
     appointment.style.display = "flex"
   }
 
   old_show(e) {
     e.preventDefault();
-    let appointment = document.getElementById("appointment_register_1");
+    let appointment = document.getElementById("appointment_register_doctor");
     appointment.style.display = "block"
   }
 
   old_remove(e) {
     e.preventDefault();
-    let appointment = document.getElementById("appointment_register_1");
+    let appointment = document.getElementById("appointment_register_doctor");
     appointment.style.display = "none"
   }
 
-  messageApp(e) {
+  message(e) {
     e.preventDefault();
     console.log("Message is app")
-    let message_app = document.getElementById("chat_app")
+    let message_app = document.getElementById("chat_app_doctor")
     message_app.style.display = "block"
   }
-
   submit() {
     this.remove()
   }
@@ -40,9 +37,9 @@ export default class extends Controller {
     e.preventDefault();
     this.remove()
   }
-
+  
   remove() {
-    let showappointment = document.getElementById("appointment_register");
+    let showappointment = document.getElementById("appointment_register_add_doctor");
     showappointment.style.display = "none"
   }
 }

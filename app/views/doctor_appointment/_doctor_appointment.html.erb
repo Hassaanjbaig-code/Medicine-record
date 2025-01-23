@@ -1,0 +1,41 @@
+<div class="mb-1 d-md-block rounded glass-card" data-controller="message-push">
+  <div class="card-body">
+    <h5 class="card-title"><%= appoint.user.name %></h5>
+    <p class="card-text">
+      Appointment Date: <%= appoint.appointment.strftime("%d %B %Y, %I:%M %p") %><br>
+      Status: <%= appoint.status %>
+    </p>
+  </div>
+  <span class="row d-flex justify-content-center align-content-center ">
+    <%= link_to patient_path(appoint.user.patient.id), class: "btn btn-primary mx-auto mt-2 w-auto" do %>
+      Show Patient
+    <% end %>
+  </span>
+</div>
+<style>
+  .glass-card {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    drop-shadow(0 0 0.75rem)
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-body {
+    color: #141040c4;
+  }
+
+  .card-title {
+    font-family: 'Arial', sans-serif;
+  }
+
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+  }
+</style>

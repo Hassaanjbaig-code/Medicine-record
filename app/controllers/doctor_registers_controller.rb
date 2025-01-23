@@ -1,5 +1,6 @@
 class DoctorRegistersController < ApplicationController
   before_action :authenticate_user!
+  # before_action :check_doctor
 
   def index
     @doctor_register = DoctorRegister.all
@@ -7,7 +8,20 @@ class DoctorRegistersController < ApplicationController
 
   def show
     @doctor_register = DoctorRegister.find_by_id(params[:id])
-    @appointments = current_user.doctor_register.appointment_registers
+    @appointments = current_user.appointment_registers
+
+    @room = Room.find_by(doctor_register_id: params[:id], patient_id: current_user.patient.id)
+    @message = @room.messages.order(:created_at)
+    # if current_user.id == @doctor_register.user_id
+    #   print @room
+    #   if @room.present?
+    #   else
+    #     @message = []
+    #   end
+    # else
+    #   @message = current_user.patient.rooms&.first&.messages
+    # end
+    print "This is the message in the @message", @message
   end
   def new
     @doctor = DoctorRegister.new

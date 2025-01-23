@@ -1,0 +1,41 @@
+<section class="min-vh-100">
+  <div class="container">
+    <div class="row my-2">
+      <div class="col">
+        <%= month_calendar(events: @appointments) do |date, appointments| %>
+          <div class="position-relative">
+            <div class="day">
+              <%= date.day %>
+            </div>
+            <ul class="list-group">
+              <% appointments.each do |appoint| %>
+                <li class="position-absolute list-group-item top-0 start-50 badge badge-success badge-pill rounded-circle p-1 d-flex justify-content-center align-items-center"
+          data-bs-toggle="tooltip" 
+          data-bs-placement="top"
+          title="<%= appoint.user.name %>" style="font-size: 0.5rem; background-color: #28a745; width: 1rem; height: 1rem;">
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="grid" data-controller="push" data-application-server-key="<%= Rails.application.credentials.dig(:Webpush, :public_key) %>">
+    <h1 class="fw-bold display-2">
+      Appointment
+    </h1>
+    <div id="appointment" class="row row-cols-lg-4 row-cols-md-2 ml-5 mx-auto">
+      <% @appointment.each do |appoint| %>
+        <div class="col order-first">
+          <div class="card mb-3 d-md-block" style="width: 18rem; background-color: transparent !important;">
+            <%= render partial: "doctor_appointment", locals: { appoint: appoint } %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <%# <button data-action="push#PushNotification">
+      Send a Message
+    </button> %>
+  </div>
+</section>

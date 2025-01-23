@@ -27,6 +27,11 @@
             method: :post, 
             data: { controller: "appointment-register", action: "click->appointment-register#old_show" }, 
             class: "btn btn-outline-primary me-2 mb-2" %>
+            <%= link_to "Open Message", 
+            "#", 
+            method: :post, 
+            data: { controller: "appointment-register", action: "click->appointment-register#messageApp" }, 
+            class: "btn btn-outline-primary me-2 mb-2" %>
           </div>
         </div>
       </div>

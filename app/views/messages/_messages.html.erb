@@ -1,0 +1,27 @@
+<div id="chat-box" class="bg-white shadow w-100 h-100 d-flex flex-column justify-content-between">
+  <div id="chat-header" class="bg-primary text-white p-2">
+    <span class="d-flex w-100 justify-content-between">
+      <h5 class="">Chat with us</h5>
+      <button 
+        type="button" 
+        class="btn-close" 
+        aria-label="Close"
+        data-controller="appointment-register"
+        data-action="click->appointment-register#old_remove">
+      </button>
+    </span>
+  </div>
+  <%= turbo_stream_from :message_list %>
+  <div id="<%= room.id %>_message" class="p-2 h-100 w-100" style="overflow-y: auto;">
+    <%# <div class="messages"> %>
+    <% message.each do | messages | %>
+      <p><%= render partial: message, local: { message: messages } %></p>
+    <% end %>
+    <%# </div> %>
+  </div>
+  <div id="chat-footer" class="p-2">
+    <%= render partial: "messages/form",
+    locals: { doctor_register: doctor_register, patient: patient, current_user: current_user }
+      %>
+  </div>
+</div>

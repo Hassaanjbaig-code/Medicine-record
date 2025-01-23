@@ -29,6 +29,7 @@ class AppointmentRegistersController < ApplicationController
     @appointment_registers.doctor_register_id = @doctor.id
 
     if @appointment_registers.save
+      @room = current_user.patient.rooms.create(doctor_register: @doctor)
       redirect_to doctor_register_path(@doctor), notice: "Appointment is added."
     else
       render :new, status: :unprocessable_entity, alert: "Appointment not created."

@@ -13,11 +13,17 @@ application.register("appointment-register", AppointmentRegisterController)
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
+import MessagePushController from "./message_push_controller"
+application.register("message-push", MessagePushController)
+
 import NavbarTrackerController from "./navbar_tracker_controller"
 application.register("navbar-tracker", NavbarTrackerController)
 
 import NestedFormController from "./nested_form_controller"
 application.register("nested-form", NestedFormController)
+
+import PatientOpenController from "./patient_open_controller"
+application.register("patient-open", PatientOpenController)
 
 import PushController from "./push_controller"
 application.register("push", PushController)

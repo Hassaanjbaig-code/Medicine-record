@@ -2,6 +2,7 @@ require 'cloudinary'
 class MedicinesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_medicine, only: %i[ show edit update destroy ]
+  before_action :check_in, only: %i[ index complete ]
   before_action :check_cloudinary, only: [:edit, :new]
   include ImageUploadDeleteHelper
 
@@ -81,6 +82,24 @@ class MedicinesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_medicine
       @medicine = Medicine.find(params[:id])
+    end
+
+    def check_in
+      puts "This function check doctor", current_user.doctor
+      # If the current user is not a doctor
+      if current_user.doctor.nil? || current_user.doctor == false
+        puts "This will check if the current user's patient is nil", current_user.patient.nil?
+        if current_user.patient.nil?
+          redirect_to new_patient_path and return
+        end
+      # If the current user is a doctor
+      elsif current_user.doctor == true
+        if current_user.doctor_register.nil?
+          redirect_to new_doctor_register_path and return
+        else
+          redirect_to doctor_appointment_index_path and return
+        end
+      end
     end
 
     def cloudinary_delete id

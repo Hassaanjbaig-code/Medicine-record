@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  # get 'patients/new'
   # get 'specializations/new'
   # get 'clinics/new'
   get 'home/index'
@@ -9,10 +10,20 @@ Rails.application.routes.draw do
   get "/push", to: "push_subscribes#subscribe"
 
   # resources :push_subscribes
-
+  #
+  resources :patients, only: [:show, :new, :create] do
+    resources :messages, only: [:create]
+  end
   devise_for :users, controllers: {
-    registrations: 'users/registrations'
+    registrations: 'users/registrations',
+    sessions: 'users/sessions'
   }
+
+  resources :doctor_appointment, only: [:index] do
+    member do
+      get :show_message
+    end
+  end
 
   resources :doctor_registers, only: [:index, :show, :create, :new] do
     resources :qualifications, only: [:new, :create]
@@ -20,6 +31,7 @@ Rails.application.routes.draw do
     resources :clinics, only: [:new, :create]
     resources :availabilities, only: [:new, :create]
     resources :appointment_registers, only: [:create]
+    resources :messages, only: [:create]
   end
 
   # devise_scope :user do
