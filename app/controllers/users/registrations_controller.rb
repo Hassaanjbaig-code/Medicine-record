@@ -43,7 +43,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def after_sign_up_path_for(resource)
     if resource.doctor_register.nil?
-      new_doctor_registers_path
+      new_doctor_register_path
     elsif resource.patient.nil?
       new_patient_path
     else

@@ -37,20 +37,29 @@
   </div>
   <div class="form-group">
     <%= form.label :issue_date, "Issue Date", class: "form-label" %>
-    <div class="row">
-      <div class="d-flex">
-        <%= form.date_select :issue_date, start_year: 2000, end_year: Date.current.year, 
-          order: [:day, :month, :year], 
-          prompt: { day: 'Select Day', month: 'Select Month', year: 'Select Year' },
-          class: "form-control" %>
+    <div class="row d-flex">
+      <div class="col-md-4 pr-0">
+        <%= form.select :issue_date_day, options_for_select((1..31).map { |d| [d, d] }), { prompt: 'Select Day' }, class: "form-control", id: "issue_date_day" %>
+      </div>
+      <div class="col-md-4 pr-0">
+        <%= form.select :issue_date_month, options_for_select(Date::MONTHNAMES.compact.each_with_index.map { |m, i| [m, i + 1] }), { prompt: 'Select Month' }, class: "form-control", id: "issue_date_month" %>
+      </div>
+      <div class="col-md-4 pr-0">
+        <%= form.select :issue_date_year, options_for_select((2000..Date.current.year).to_a.reverse), { prompt: 'Select Year' }, class: "form-control", id: "issue_date_year" %>
       </div>
     </div>
   </div>
   <div class="form-group">
     <%= form.label :expire_date, "Expire Date", class: "form-label" %>
     <div class="row">
-      <div class="col-md-4 d-flex w-100">
-        <%= form.date_select :expire_date, { class: "form-control" }, { class: "form-control" } %>
+      <div class="col-md-4 pr-0">
+        <%= form.select :expire_date_day, options_for_select((1..31).map { |d| [d, d] }), { prompt: 'Select Day' }, class: "form-control", id: "expire_date_day" %>
+      </div>
+      <div class="col-md-4 pr-0">
+        <%= form.select :expire_date_month, options_for_select(Date::MONTHNAMES.compact.each_with_index.map { |m, i| [m, i + 1] }), { prompt: 'Select Month' }, class: "form-control", id: "expire_date_month" %>
+      </div>
+      <div class="col-md-4 pr-0">
+        <%= form.select :expire_date_year, options_for_select((Date.current.year..Date.current.year + 10).to_a), { prompt: 'Select Year' }, class: "form-control", id: "expire_date_year" %>
       </div>
     </div>
   </div>

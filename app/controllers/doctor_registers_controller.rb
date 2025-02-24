@@ -45,6 +45,6 @@ class DoctorRegistersController < ApplicationController
   private
 
   def doctor_register_params
-    params.require(:doctor_register).permit(:First_name, :Last_name, :date_of_birth, :gender, :practicing_from, :specialization)
+    params.require(:doctor_register).permit(:First_name, :Last_name, :date_of_birth, :gender, :practicing_from )
   end
 end
