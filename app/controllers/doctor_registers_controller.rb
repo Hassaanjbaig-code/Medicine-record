@@ -11,7 +11,11 @@ class DoctorRegistersController < ApplicationController
     @appointments = current_user.appointment_registers
 
     @room = Room.find_by(doctor_register_id: params[:id], patient_id: current_user.patient.id)
-    @message = @room.messages.order(:created_at)
+    if @room.present?
+      @message = @room.messages.order(:created_at)
+    else
+      @message = []
+    end
     # if current_user.id == @doctor_register.user_id
     #   print @room
     #   if @room.present?

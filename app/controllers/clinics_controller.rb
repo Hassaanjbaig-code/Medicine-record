@@ -9,6 +9,7 @@ class ClinicsController < ApplicationController
     @doctor_register = DoctorRegister.find_by_id(params[:doctor_register_id])
     respond_to do |format|
       if @doctor_register.update(clinics_params)
+        format.turbo_stream
         format.html { redirect_to root_path, notice: "Clinic is Created" }
         format.json { render :new, status: :created, location: @doctor }
       else

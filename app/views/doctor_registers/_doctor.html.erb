@@ -9,9 +9,13 @@
           <h2 class="card-title font-weight-bold">Dr. <%= doctor.First_name %> <%= doctor.Last_name %></h2>
           <p class="card-text"><strong>Specialization:</strong> <%= doctor.specializations.last.name %></p>
           <p class="card-text"><strong>Available Time:</strong>
-            <%= doctor.availabilities.last.available_from.strftime("%I:%M %p") %>
-            - 
-            <%= doctor.availabilities.last.available_to.strftime("%I:%M %p") %>
+            <% if doctor.availabilities.count != 0 %>
+              <%= doctor.availabilities.last.available_from.strftime("%I:%M %p") %>
+              - 
+              <%= doctor.availabilities.last.available_to.strftime("%I:%M %p") %>
+            <% else %>
+              Not Available
+            <% end %>
           </p>
           <p class="card-text"><strong>Clinic Address:</strong> <%= doctor.clinics.last.address %></p>
           <p class="card-text"><strong>Qualification:</strong> <%= doctor.qualifications.last.qualification_name %></p>
