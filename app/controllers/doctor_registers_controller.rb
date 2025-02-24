@@ -1,5 +1,6 @@
 class DoctorRegistersController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_time_zone, if: :current_user
   # before_action :check_doctor
 
   def index

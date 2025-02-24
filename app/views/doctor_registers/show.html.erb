@@ -2,7 +2,7 @@
   <div class="mt-5 show-page-container p-4 rounded-3 shadow-sm">
     <div class="row mb-4">
       <% if @doctor_register.nil? == false %>
-        <%= render "doctor", doctor: @doctor_register  %>
+        <%= render partial: "doctor", locals: { doctor: @doctor_register, room: @room }  %>
       <% end %>
     </div>
     <% if @appointment.nil? && @appointments.present? %>
@@ -23,16 +23,19 @@
     id="appointment_register" style="display: none" >
       <%= render partial: "appointment_registers/form", locals: { appointment_register: AppointmentRegister.new, doctor: @doctor_register } %>
     </div>
-    <div 
-    class="position-absolute top-50 start-50 translate-middle z-3 rounded-3 bg-white p-4 shadow-lg time-pill"
-    id="appointment_register_1" style="display: none" >
-      <%= render partial: "appointment_register", locals: { appointment: @appointments } %>
-    </div>
-    <div 
-    class="position-absolute top-50 start-50 translate-middle z-3 rounded-3 bg-white p-4 shadow-lg time-pill w-100 h-100"
-    id="chat_app" style="display: none" >
-      <%= render partial: "messages/messages", locals: { doctor_register: @doctor_register, message: @message, patient: current_user.patient, room: @room } %>
-    </div>
+
+    <% if @room.present? %>
+      <div 
+      class="position-absolute top-50 start-50 translate-middle z-3 rounded-3 bg-white p-4 shadow-lg time-pill"
+      id="appointment_register_1" style="display: none" >
+        <%= render partial: "appointment_register", locals: { appointment: @appointments } %>
+      </div>
+      <div 
+      class="position-absolute top-50 start-50 translate-middle z-3 rounded-3 bg-white p-4 shadow-lg time-pill w-100 h-100"
+      id="chat_app" style="display: none" >
+        <%= render partial: "messages/messages", locals: { doctor_register: @doctor_register, message: @message, patient: current_user.patient, room: @room } %>
+      </div>
+    <% end %>
   </section>
   <style>
     /* Glassmorphism effect */
