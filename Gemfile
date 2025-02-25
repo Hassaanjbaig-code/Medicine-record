@@ -92,3 +92,7 @@ gem "cloudinary", "~> 2.2"
 
 gem "simple_calendar"
 gem "geocoder", "~> 1.8"
+
+gem "searchkick", "~> 5.1"
+
+gem "elasticsearch", "~> 7.17.7"

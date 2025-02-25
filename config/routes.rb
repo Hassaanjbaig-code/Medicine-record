@@ -2,9 +2,10 @@ Rails.application.routes.draw do
   # get 'patients/new'
   # get 'specializations/new'
   # get 'clinics/new'
-  get 'home/index'
+  get 'home', to: 'home#index'
   # post "/push" => "pushnotification#create"
   # get 'pushnotification/create'
+  post 'search' => "search#index"
   post "/subscribe" => "push_subscribes#create"
   get "/subscribe" => "push_subscribes#index"
   get "/push", to: "push_subscribes#subscribe"

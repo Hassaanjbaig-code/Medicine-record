@@ -61,6 +61,16 @@ services:
       - "3000:3000"
     networks:
       - app_network
+  
+  elastic_search: 
+    image: elasticsearch:7.17.27
+    ports:
+      - 9200:9200
+      - 9300:9300
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+
 
 volumes:
   postgres_data:

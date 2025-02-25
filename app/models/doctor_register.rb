@@ -8,4 +8,6 @@ class DoctorRegister < ApplicationRecord
   has_many :rooms, dependent: :destroy
   accepts_nested_attributes_for :qualifications, allow_destroy: true
   accepts_nested_attributes_for :clinics, allow_destroy: true
+
+  # searchkick
 end

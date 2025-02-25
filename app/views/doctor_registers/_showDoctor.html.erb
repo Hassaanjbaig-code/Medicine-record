@@ -1,0 +1,7 @@
+<% doctor_register.each do |doctor_register| %>
+  <div class="col order-first">
+    <div class="card mb-3 d-md-block" style="width: 18rem; background-color: transparent !important;">
+      <%= render "doctors", doctor: doctor_register %>
+    </div>
+  </div>
+<% end %>

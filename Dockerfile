@@ -42,7 +42,7 @@ RUN bundle install
 COPY . .
 
 # Install Node.js modules
-RUN yarn install --frozen-lockfile
+# RUN yarn install --frozen-lockfile
 
 # Precompile bootsnap to improve startup performance
 RUN bundle exec bootsnap precompile app/ lib/
