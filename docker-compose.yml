@@ -40,8 +40,7 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: rails_app
-    command: >
-       /bin/sh -c "rails db:migrate && foreman start -f Procfile.dev"
+    command: ["/bin/sh", "-c", "rails db:migrate && foreman start -f Procfile.dev"]
     volumes:
       - .:/app:delegated
       - /app/node_modules
@@ -51,7 +50,7 @@ services:
       redis:
         condition: service_healthy
     environment:
-      DATABASE_URL: postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+      DATABASE_URL: "postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}"
       REDIS_URL: redis://redis:6379/0
       CLOUD_NAME: ${CLOUD_NAME}
       API_KEY: ${API_KEY}
@@ -61,6 +60,8 @@ services:
       - "3000:3000"
     networks:
       - app_network
+    env_file:
+      - .env
   
   elastic_search: 
     image: elasticsearch:7.17.27

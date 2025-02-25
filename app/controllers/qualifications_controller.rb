@@ -25,12 +25,21 @@ class QualificationsController < ApplicationController
     #   end
     # end
     # if @doctor_register.update(qualifications_params)
-    if @doctor_register.update(qualifications_params)
-      redirect_to root_path
-    else
-      redirect_to doctor_path
-    end
+    # if @doctor_register.update(qualifications_params)
+    #   redirect_to root_path
+    # else
+    #   redirect_to doctor_path
+    # end
 
+    respond_to do |format|
+      if @doctor_register.update(qualifications_params)
+        format.turbo_stream
+        format.html { redirect_to root_path, notice: "Qualification was added successfully" }
+      else
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("form_errors", partial: "shared/errors", locals: { errors: @doctor_register.errors }) }
+        format.html { render :new, status: :unprocessable_entity }
+      end
+    end
     # respond_to do |format|
     #     puts "Pass"
     #     format.turbo_stream

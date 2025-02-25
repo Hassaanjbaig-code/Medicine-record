@@ -28,13 +28,11 @@
     id="appointment_register_1" style="display: none" >
       <%= render partial: "appointment_register", locals: { appointment: @appointments } %>
     </div>
-    <% if @room.present? %>
-      <div 
-      class="position-absolute top-50 start-50 translate-middle z-3 rounded-3 bg-white p-4 shadow-lg time-pill w-100 h-100"
-      id="chat_app" style="display: none" >
-        <%= render partial: "messages/messages", locals: { doctor_register: @doctor_register, message: @message, patient: current_user.patient, room: @room } %>
-      </div>
-    <% end %>
+    <div 
+    class="position-absolute top-50 start-50 translate-middle z-3 rounded-3 bg-white p-4 shadow-lg time-pill w-100 h-100"
+    id="chat_app" style="display: none" >
+      <%= render partial: "messages/messages", locals: { doctor_register: @doctor_register, message: @message, patient: current_user.patient, room: @room } %>
+    </div>
   </section>
   <style>
     /* Glassmorphism effect */
