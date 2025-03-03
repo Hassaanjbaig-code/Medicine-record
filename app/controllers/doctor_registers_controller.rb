@@ -2,8 +2,20 @@ class DoctorRegistersController < ApplicationController
   before_action :authenticate_user!
   # before_action :check_doctor
 
+  include DoctorRegistersHelper
   def index
-    @doctor_register = DoctorRegister.all
+    if params[:search].present?
+      begin
+        @doctor_register = DoctorRegister.search(params[:search])
+      rescue URI::InvalidURIError => e
+        Rails.logger.error("Search error: #{e.message}")
+        @doctor_register = DoctorRegister.none
+      end
+    else
+      @doctor_register = DoctorRegister.all
+    end
+
+    p "This is the result of the search", @doctor_register
   end
 
   def show

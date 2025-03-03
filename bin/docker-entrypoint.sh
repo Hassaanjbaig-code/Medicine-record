@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 # Check if the Rails server is being started, and run database setup if needed
-if [[ "${1}" == "./bin/rails" && "${2}" == "server" ]]; then
+if [ "${1}" = "./bin/rails" ] && [ "${2}" = "server" ]; then
   echo "Running database setup (db:prepare)..."
   ./bin/rails db:prepare
 fi  # Close the first 'if' block

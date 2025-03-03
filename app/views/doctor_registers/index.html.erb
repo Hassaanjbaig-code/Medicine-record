@@ -1,27 +1,26 @@
-<section class="grid min-vh-100 p-5" data-controller="push" data-application-server-key="<%= Rails.application.credentials.dig(:Webpush, :public_key) %>">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-6 col-md-8 col-sm-10">
+<section class="grid min-vh-100" data-controller="push" data-application-server-key="<%= Rails.application.credentials.dig(:Webpush, :public_key) %>">
+  <div>
+    <header class="row justify-content-center">
+      <header class="col-lg-6 col-md-8 col-sm-10 my-5">
         <div class="card shadow-sm">
           <div class="card-header bg-primary text-white">
             <h4 class="mb-0 text-center">Search for Doctors</h4>
           </div>
           <div class="card-body">
-            <%= form_with url: search_path, method: :post, local: true do |form| %>
+            <%= form_tag doctor_registers_path, method: :get, role: 'search' do %>
               <div class="form-group mb-3">
-                <%= form.label :search, 'Search Term', class: 'form-label' %>
-                <%= form.text_field :search, class: 'form-control', placeholder: 'Enter doctor name or specialty' %>
+                <%= text_field_tag :search, params[:search], placeholder: 'Search Article ...', class: "form-control" %>
               </div>
               <div class="d-grid gap-2">
-                <%= form.submit 'Search', class: 'btn btn-primary' %>
+                <%= submit_tag 'Search', class: 'btn btn-primary' %>
               </div>
             <% end %>
           </div>
         </div>
       </div>
-    </div>
-    <div id="doctor_register" class="row row-cols-lg-4 row-cols-md-2 g-4 mt-4">
+    </header>
+    <ul id="doctor_register" class="row mt-3">
       <%= render partial: 'showDoctor', locals: { doctor_register: @doctor_register } %>
-    </div>
+    </ul>
   </div>
 </section>

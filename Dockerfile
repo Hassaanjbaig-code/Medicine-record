@@ -77,6 +77,7 @@ RUN ./bin/rails javascript:install:esbuild
 # RUN rails db:migrate
 
 RUN chmod +x ./bin/docker-entrypoint.sh
+RUN sed -i 's/\r$//' ./bin/docker-entrypoint.sh
 
 # ENTRYPOINT ["/bin/bash", "./bin/docker-entrypoint"]
 ENTRYPOINT ["sh", "./bin/docker-entrypoint.sh"]

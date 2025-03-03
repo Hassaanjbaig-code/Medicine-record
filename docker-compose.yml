@@ -35,12 +35,36 @@ services:
     networks:
       - app_network
 
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.11
+    container_name: elasticsearch
+    ports:
+      - 9200:9200
+    healthcheck:
+      # test: ["CMD-SHELL", "curl -s http://localhost:9200/_cluster/health | grep -q '\"status\":\"green\"'"]
+      # test: curl -s http://localhost:9200/_cluster/health > /dev/null | exit 1
+      test:
+        [
+          "CMD-SHELL",
+          "curl -s http://localhost:9200/_cluster/health?pretty | grep status | grep -q '\\(green\\|yellow\\)'"
+        ]
+      interval: 1m
+      timeout: 30s
+      retries: 5
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+
   web:
     build:
       context: .
       dockerfile: Dockerfile
     container_name: rails_app
     command: ["/bin/sh", "-c", "rails db:migrate && foreman start -f Procfile.dev"]
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    external_links:
+      - "http://localhost:9200/"
     volumes:
       - .:/app:delegated
       - /app/node_modules
@@ -49,6 +73,8 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
+      elasticsearch:
+        condition: service_healthy
     environment:
       DATABASE_URL: "postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}"
       REDIS_URL: redis://redis:6379/0
@@ -56,22 +82,13 @@ services:
       API_KEY: ${API_KEY}
       API_SECRET: ${API_SECRET}
       URL: ${URL}
+      ELASTICSEARCH_URL: ${ELASTICSEARCH_URL}
     ports:
       - "3000:3000"
     networks:
       - app_network
     env_file:
       - .env
-  
-  elastic_search: 
-    image: elasticsearch:7.17.27
-    ports:
-      - 9200:9200
-      - 9300:9300
-    environment:
-      - discovery.type=single-node
-      - xpack.security.enabled=false
-
 
 volumes:
   postgres_data:

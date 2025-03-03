@@ -19,29 +19,7 @@
             <%# <a class=" active" aria-current="page" href="/"></a> %>
             <%= link_to "Home", root_path, class: "nav-link" %>
           </li>
-        <% if !user.doctor %>
-          <li class="nav-item">
-            <%# <a class="nav-link" href="#">End</a> %>
-            <%= link_to "Complete", complete_medicines_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%# <a class="nav-link" href="#">End</a> %>
-            <%= link_to "Doctor", doctors_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%# <a class="nav-link" href="#">End</a> %>
-            <%= link_to "Doctor Register", doctor_registers_path, class: "nav-link" %>
-          </li>
-          <% if user.doctor_register %>
-            <li class="nav-item">
-              <%# <a class=" active" aria-current="page" href="/"></a> %>
-              <%= link_to "Home", root_path, class: "nav-link" %>
-            </li>
-          <% else %>
-            <li class="nav-item">
-              <%# <a class=" active" aria-current="page" href="/"></a> %>
-              <%= link_to "Home", root_path, class: "nav-link" %>
-            </li>
+          <% if !user.doctor %>
             <li class="nav-item">
               <%# <a class="nav-link" href="#">End</a> %>
               <%= link_to "Complete", complete_medicines_path, class: "nav-link" %>
@@ -55,7 +33,6 @@
               <%= link_to "Doctor Register", doctor_registers_path, class: "nav-link" %>
             </li>
           <% end %>
-        <% end %>
         <% end %>
       </ul>
       <div class="d-flex justify-content-end">
