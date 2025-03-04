@@ -7,7 +7,7 @@
       class: "HelloWorldSchedular"
       queue: "default"
     expire_date:
-      cron: "0 0 * * *"
+      cron: "* * * * *"
       class: "ExpireDateSchedular"
       queue: "default"
     appointment:

@@ -41,8 +41,6 @@ services:
     ports:
       - 9200:9200
     healthcheck:
-      # test: ["CMD-SHELL", "curl -s http://localhost:9200/_cluster/health | grep -q '\"status\":\"green\"'"]
-      # test: curl -s http://localhost:9200/_cluster/health > /dev/null | exit 1
       test:
         [
           "CMD-SHELL",
@@ -54,6 +52,8 @@ services:
     environment:
       - discovery.type=single-node
       - xpack.security.enabled=false
+    networks:
+      - app_network
 
   web:
     build:
@@ -63,8 +63,6 @@ services:
     command: ["/bin/sh", "-c", "rails db:migrate && foreman start -f Procfile.dev"]
     extra_hosts:
       - "host.docker.internal:host-gateway"
-    external_links:
-      - "http://localhost:9200/"
     volumes:
       - .:/app:delegated
       - /app/node_modules
@@ -82,7 +80,7 @@ services:
       API_KEY: ${API_KEY}
       API_SECRET: ${API_SECRET}
       URL: ${URL}
-      ELASTICSEARCH_URL: ${ELASTICSEARCH_URL}
+      ELASTICSEARCH_URL: http://elasticsearch:9200
     ports:
       - "3000:3000"
     networks:
