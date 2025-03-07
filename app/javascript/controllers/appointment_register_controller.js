@@ -21,7 +21,7 @@ export default class extends Controller {
 
   old_remove(e) {
     e.preventDefault();
-    let appointment = document.getElementById("appointment_register_1");
+    let appointment = document.getElementById("chat_app");
     appointment.style.display = "none"
   }
 

@@ -8,7 +8,7 @@ class MedicinesController < ApplicationController
 
   # GET /medicines or /medicines.json
   def index
-    @medicines = current_user.medicines.left_joins(:start_end_medicines).select('medicines.*, start_end_medicines.start_time, start_end_medicines.end_time').where(start_end_medicines: { everyday: nil })
+    @medicines = current_user.medicines.left_joins(:start_end_medicines).select('medicines.*, start_end_medicines.start_time, start_end_medicines.end_time').where(start_end_medicines: { everyday: nil }).where(completed: false)
     # @medicines = Medicine.joins(:start_end_medicines)
   end
 
@@ -27,7 +27,7 @@ class MedicinesController < ApplicationController
   end
 
   def complete
-    @medicines = current_user.medicines.where(completed: true)
+    @medicines = current_user.medicines.left_joins(:start_end_medicines).select('medicines.*, start_end_medicines.start_time, start_end_medicines.end_time').where(start_end_medicines: { everyday: nil }).where(completed: true)
     render :index
   end
 

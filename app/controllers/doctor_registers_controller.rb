@@ -15,7 +15,7 @@ class DoctorRegistersController < ApplicationController
       @doctor_register = DoctorRegister.all
     end
 
-    p "This is the result of the search", @doctor_register
+    # p "This is the result of the search", @doctor_register
   end
 
   def show
