@@ -29,6 +29,11 @@ export default class extends Controller {
     let message_app = document.getElementById("chat_app_doctor")
     message_app.style.display = "block"
   }
+  messageRemove(e) {
+    e.preventDefault();
+    let message_app = document.getElementById("chat_app_doctor")
+    message_app.style.display = "none"
+  }
   submit() {
     this.remove()
   }
