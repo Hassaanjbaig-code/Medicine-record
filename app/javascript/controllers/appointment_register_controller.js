@@ -25,6 +25,13 @@ export default class extends Controller {
     appointment.style.display = "none"
   }
 
+  old_appointmentClose(e) {
+    e.preventDefault();
+    // conosle.log("This is the close of the appointment register")
+    let appointment = document.getElementById("appointment_register_1");
+    appointment.style.display = "none"
+  }
+
   messageApp(e) {
     e.preventDefault();
     console.log("Message is app")
