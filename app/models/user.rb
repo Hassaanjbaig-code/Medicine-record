@@ -21,9 +21,11 @@ class User < ApplicationRecord
 
   # def after_sign_up_path_for
   #   if self.doctor
-  #     doctor_registers_path
+  #     # redirect_to new_doctor_register_path
+  #     redirect_to "/doctor_registers/new"
   #   else
-  #     root_path
+  #     # redirect_to new_patient_path
+  #     redirect_to "/patients/new"
   #   end
   # end
 
