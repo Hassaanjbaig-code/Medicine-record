@@ -22,15 +22,13 @@ default: &default
   password: <%= ENV['POSTGRES_PASSWORD'] %>
   # host: <%= ENV['DB_HOST'] || 'db' %>
   # username: postgres
-  # password: "0002"
-  # password: "password"
+  # password: "postgres"
   port: 5432
   
 
 development:
   <<: *default
-  # database: medicine_record_dev
-  database: <%= ENV['POSTGRES_DB'] %>
+  database: medicine_record_dev
 
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.

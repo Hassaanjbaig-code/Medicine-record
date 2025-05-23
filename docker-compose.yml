@@ -74,7 +74,7 @@ services:
       elasticsearch:
         condition: service_healthy
     environment:
-      DATABASE_URL: "postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}"
+      DATABASE_URL: ${POSTGRES_URL}
       REDIS_URL: redis://redis:6379/0
       CLOUD_NAME: ${CLOUD_NAME}
       API_KEY: ${API_KEY}

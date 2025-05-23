@@ -41,11 +41,9 @@ RUN bundle install
 # Copy the application code into the container
 COPY . .
 
-# Ensure docker-entrypoint is executable
-# RUN chmod +x ./bin/docker-entrypoint
 
 # Install Node.js modules
-# RUN yarn install --frozen-lockfile
+RUN yarn install --frozen-lockfile
 
 # Precompile bootsnap to improve startup performance
 RUN bundle exec bootsnap precompile app/ lib/
