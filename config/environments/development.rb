@@ -12,6 +12,7 @@ Rails.application.configure do
   # Do not eager load code on boot.
   config.eager_load = true
 
+  # config.hosts << "dm44qm8p-3000.inc1.devtunnels.ms"
   # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
   # config.action_mailer.delivery_method = :letter_opener

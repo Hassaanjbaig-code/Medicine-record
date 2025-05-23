@@ -1,0 +1,69 @@
+<style>
+  .modern-form {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    margin: 20px 0;
+  }
+
+  .error-messages {
+    color: red;
+    margin-bottom: 20px;
+  }
+</style>
+<%= form_with(model: [doctor, specialization], method: :post, id: "#{dom_id(specialization)}_form", local: true, url: doctor_register_specializations_path(doctor) ) do |form| %>
+  <% if doctor.errors.any? %>
+    <div class="error-messages">
+      <ul class="list-style">
+        <% specialization.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= form.label :name, "Specialization Name", class: "form-label" %>
+    <%= form.text_field :name, class: "form-control", placeholder: "Add a Specialization Name" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :License, "Lincese", class: "form-label" %>
+    <%= form.text_field :license, class: "form-control", placeholder: "Add License" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :issuing_authority, "Issuing Authority", class: "form-label" %>
+    <%= form.text_field :issuing_authority, class: "form-control", placeholder: "Add License" %>
+  </div>
+  <div class="form-group">
+    <%= form.label :issue_date, "Issue Date", class: "form-label" %>
+    <div class="row d-flex">
+      <div class="col-md-4 pr-0">
+        <%= form.select :issue_date_day, options_for_select((1..31).map { |d| [d, d] }), { prompt: 'Select Day' }, class: "form-control", id: "issue_date_day" %>
+      </div>
+      <div class="col-md-4 pr-0">
+        <%= form.select :issue_date_month, options_for_select(Date::MONTHNAMES.compact.each_with_index.map { |m, i| [m, i + 1] }), { prompt: 'Select Month' }, class: "form-control", id: "issue_date_month" %>
+      </div>
+      <div class="col-md-4 pr-0">
+        <%= form.select :issue_date_year, options_for_select((2000..Date.current.year).to_a.reverse), { prompt: 'Select Year' }, class: "form-control", id: "issue_date_year" %>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= form.label :expire_date, "Expire Date", class: "form-label" %>
+    <div class="row">
+      <div class="col-md-4 pr-0">
+        <%= form.select :expire_date_day, options_for_select((1..31).map { |d| [d, d] }), { prompt: 'Select Day' }, class: "form-control", id: "expire_date_day" %>
+      </div>
+      <div class="col-md-4 pr-0">
+        <%= form.select :expire_date_month, options_for_select(Date::MONTHNAMES.compact.each_with_index.map { |m, i| [m, i + 1] }), { prompt: 'Select Month' }, class: "form-control", id: "expire_date_month" %>
+      </div>
+      <div class="col-md-4 pr-0">
+        <%= form.select :expire_date_year, options_for_select((Date.current.year..Date.current.year + 10).to_a), { prompt: 'Select Year' }, class: "form-control", id: "expire_date_year" %>
+      </div>
+    </div>
+  </div>
+  <div class="form-group mt-2">
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+<% end %>

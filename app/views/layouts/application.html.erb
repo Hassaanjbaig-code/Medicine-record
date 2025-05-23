@@ -1,40 +1,39 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>MedicineRecord</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <%# <link rel="manifest" href="/manifest.json"> %>
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
-    <%# <%= stylesheet_link_tag "customCss", media: 'all', data: { turbolinks: false } %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
-    <style>
-      .glass-effect {
-        background: rgba(255, 255, 255, 0.5);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-      }
-      .font_itim {
-        font-family: "Itim", cursive;
-        font-weight: 400;
-        font-style: normal;
-      }
-    </style>
-  </head>
-  <body style="background: url('/assets/medicine_image.jpg') no-repeat center center fixed; background-size: cover;">
-    <div class="glass-effect">
-      <%= render partial: "navbar/index", locals: { user: current_user } %>
-      <% if notice %>
-        <p class="alert alert-success"><%= notice %></p>
-      <% end %>
-      <% if alert %>
-        <p class="alert alert-danger"><%= alert %></p>
-      <% end %>
-      <%= yield %>
-    </div>
-  </body>
+  <title>MedicineRecord</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag "customCss", "data-turbo-track": "reload" %>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+  <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+  <style>
+    .font_itim {
+      font-family: "Itim", cursive;
+      font-weight: 400;
+      font-style: normal;
+    }
+    .font_Oswald {
+      font-family: "Oswald", serif;
+      font-optical-sizing: auto;
+      font-style: normal;
+    }
+  </style>
+</head>
+<body style="background: url('/assets/medicine_image.jpg') no-repeat center center fixed; background-size: cover;">
+  <div class="glass-effect">
+    <%= render partial: "navbar/index", locals: { user: current_user } %>
+    <% if notice %>
+      <p class="alert alert-success"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert alert-danger"><%= alert %></p>
+    <% end %>
+    <%= yield %>
+  </div>
+</body>
 </html>

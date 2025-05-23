@@ -1,0 +1,26 @@
+<section class="grid min-vh-100 overflow-x-hidden" data-controller="push" data-application-server-key="<%= Rails.application.credentials.dig(:Webpush, :public_key) %>">
+  <div>
+    <header class="row justify-content-center">
+      <header class="col-lg-6 col-md-8 col-sm-10 my-5">
+        <div class="card shadow-sm">
+          <div class="card-header bg-primary text-white">
+            <h4 class="mb-0 text-center">Search for Doctors</h4>
+          </div>
+          <div class="card-body">
+            <%= form_tag doctor_registers_path, method: :get, role: 'search' do %>
+              <div class="form-group mb-3">
+                <%= text_field_tag :search, params[:search], placeholder: 'Search Doctor ...', class: "form-control" %>
+              </div>
+              <div class="d-grid gap-2">
+                <%= submit_tag 'Search', class: 'btn btn-primary' %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </header>
+    <ul id="doctor_register" class="row mt-3">
+      <%= render partial: 'showDoctor', locals: { doctor_register: @doctor_register } %>
+    </ul>
+  </div>
+</section>

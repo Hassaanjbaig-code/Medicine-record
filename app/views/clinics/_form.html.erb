@@ -1,0 +1,64 @@
+<div class="col-md-6 p-4 w-100">
+  <%= form_with(model: [doctor, clinic], method: :post, id: "#{dom_id(clinic)}_form", local: true, url: doctor_register_clinics_path(doctor), class: "overflow-auto w-100 custom-height") do |form| %>
+    <% if doctor.errors.any? %>
+      <div style="color: red" class="alert alert-primary" role="alert">
+        <ul>
+          <% doctor.errors.full_messages.each do |message| %>
+            <li style="list-style-type: none;"><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div data-controller="nested-form" id="<%= dom_id(clinic) %>_form" class="mb-3">
+      <template data-nested-form-target="template">
+        <div class="nested-fields mb-3" id="nested-fields">
+          <label>Clinic Name</label>
+          <%= form.text_field :clinic_name,
+            name: "doctor_register[clinics_attributes][NEW_RECORD][clinic_name]",
+            class: "form-control",
+            placeholder: "Enter Clinic Name" %>
+          <label>Clinic Address</label>
+          <%= form.text_field :address,
+            name: "doctor_register[clinics_attributes][NEW_RECORD][address]",
+            class: "form-control",
+            placeholder: "Enter Clinic Address" %>
+          <label>Contact Number</label>
+          <%= form.text_field :contact_number,
+            name: "doctor_register[clinics_attributes][NEW_RECORD][contact_number]",
+            class: "form-control",
+            placeholder: "Enter Contact Number" %>
+          <button type="button" data-action="nested-form#removeForm" class="btn btn-danger mt-2">Remove</button>
+        </div>
+      </template>
+      <div data-nested-form-target="container">
+        <div class="nested-fields mb-3" id="<%= dom_id(clinic) %>_form">
+          <label>Clinic Name</label>
+          <%= form.text_field :clinic_name,
+            name: "doctor_register[clinics_attributes][#{doctor.id || 'NEW_RECORD'}][clinic_name]",
+            class: "form-control",
+            placeholder: "Enter Clinic Name" %>
+          <label>Clinic Address</label>
+          <%= form.text_field :address,
+            name: "doctor_register[clinics_attributes][#{doctor.id || 'NEW_RECORD'}][address]",
+            class: "form-control",
+            placeholder: "Enter Clinic Address" %>
+          <label>Clinic Contact Number</label>
+          <%= form.text_field :contact_number,
+            name: "doctor_register[clinics_attributes][#{doctor.id || 'NEW_RECORD'}][contact_number]",
+            class: "form-control",
+            placeholder: "Enter Contact Number" %>
+        </div>
+      </div>
+      <button type="button" data-action="nested-form#addForm" class="btn btn-secondary">Add More Clinic</button>
+      <div class="mt-3">
+        <%= form.submit "Add Clinic", class: "btn btn-primary" %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<style>
+  .custom-height {
+      height: 21rem !important;
+      padding: 0 10px 0 0 !important
+  }
+</style>

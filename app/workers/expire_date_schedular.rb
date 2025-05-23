@@ -5,7 +5,6 @@ class ExpireDateSchedular
   include Sidekiq::Worker
 
   def perform
-    p "ExpireDate is Working"
 
     date = StartEndMedicine.where("end_time < ?", Date.today)
     if date.empty?

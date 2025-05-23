@@ -1,0 +1,104 @@
+<div class="container-fluid p-0">
+  <!-- Hero Section -->
+  <section class="position-relative text-center text-white" style="background-image: url('<%= asset_path('hero-image.png') %>'); background-size: cover; background-position: right top; height: 100vh; background-attachment: fixed; background-repeat: nno-repeat; ">
+    <div class="d-flex flex-column justify-content-center align-items-center" style="width: 45%; height: 100%; translate: 20% 0;">
+      <h1 class="display-4 fw-bold font_itim" style="color: #020b0bb8;">Welcome to Virtual Doctor Service</h1>
+      <p class="lead fw-normal font_itim" style="color: #020b0bb8;">Your health is just a click away.</p>
+      <a href="#services" class="btn btn-primary btn-lg" style="width: 13rem;">Explore Services</a>
+    </div>
+  </section>
+</div>
+<!-- About Section -->
+<section class="container py-5">
+  <div class="row align-items-center">
+    <div class="col-md-6">
+      <%= image_tag("about-image.png", class: "img-fluid rounded", alt: "About Us"  ) %>
+    </div>
+    <div class="col-md-6">
+      <h2 class="font_Oswald fw-bold">About Us</h2>
+      <p class="font_Oswald">We connect you with experienced doctors for consultations, second opinions, and advice—all from the comfort of your home. Also, A professional cartoon-style illustration of a friendly doctor standing with a phone in one hand and a clipboard in the other, wearing a white coat and a stethoscope around their neck. The doctor is smiling warmly, exuding approachability and trust. The design is minimal yet vibrant, with soft colors matching the modern and clean style. The background features a subtle gradient or abstract pattern that complements the doctor as the focal point, ensuring the illustration conveys professionalism and accessibility for a virtual consultation app.</p>
+    </div>
+  </div>
+</section>
+<!-- Services Section -->
+<section class="container py-5" id="services">
+  <div class="text-center mb-5">
+    <h2 class="font_Oswald fw-bold">Our Services</h2>
+    <p class="text-muted font_Oswald">Comprehensive healthcare solutions at your fingertips.</p>
+  </div>
+  <div class="row gy-4">
+    <div class="col-md-4">
+      <div class="card h-100">
+        <%= image_tag("virtual_doctor.png", class: "card-img-top", alt: "Virtual Consultation"  ) %>
+        <div class="card-body">
+          <h5 class="card-title">Virtual Consultations</h5>
+          <p class="card-text font_Oswald">Speak with doctors online via chat or video calls, anytime and anywhere.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card h-100">
+        <%= image_tag("doctor_image.png", class: "card-img-top", alt: "Specialist Consultation"  ) %>
+        <div class="card-body">
+          <h5 class="card-title">Specialist Consultation</h5>
+          <p class="card-text font_Oswald">Get expert opinions from specialists across multiple fields.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card h-100">
+        <%= image_tag("medicine record.png", class: "card-img-top", alt: "Health Tracking"  ) %>
+        <div class="card-body">
+          <h5 class="card-title">Medicine Tracking</h5>
+          <p class="card-text font_Oswald">Monitor your medicine record and keep you reminder.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Contact Section -->
+<section class="position-relative text-white py-5" style="background-image: url('contact-background.jpg'); background-size: cover; background-position: center;">
+  <div class="container" style="color: #020b0bb8;">
+    <div class="text-center mb-5">
+      <h2 class="font_Oswald fw-bold">Contact Us</h2>
+      <p class="font_Oswald">Have questions? Reach out to us anytime.</p>
+    </div>
+    <div class="row g-5">
+      <div class="col-md-6 d-flex justify-content-center align-items-center">
+        <%= image_tag "for_contact_main.png", alt: "Doctor", class: "img-fluid w-100 rounded h-100 object-fit-cover" %>
+      </div>
+      <div class="col-md-6">
+        <form>
+          <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Your Name">
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="Your Email">
+          </div>
+          <div class="mb-3">
+            <label for="message" class="form-label">Message</label>
+            <textarea class="form-control" id="message" rows="3" placeholder="Your Message"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+<style>
+  .hero-section {
+    background: url('doctor-banner.jpg') no-repeat center center/cover;
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+  }
+  .service-card {
+    transition: transform 0.3s ease;
+  }
+  .service-card:hover {
+    transform: scale(1.05);
+  }
+</style>

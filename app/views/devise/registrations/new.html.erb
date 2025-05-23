@@ -32,6 +32,11 @@
               <%= f.label :password_confirmation, class: "form-label", for: "form1Example4" %>
               <%= f.password_field :password_confirmation, id: "form1Example4", class: "form-control", autocomplete: "new-password", required: true %>
             </div>
+            <!-- doctor confirmation input -->
+            <div data-mdb-input-init class="form-outline mb-4 w-100 d-flex justify-content-between align-items-center">
+              <%= f.label :"Are you a doctor?", class: "form-label", for: "form1Example4" %>
+              <%= f.check_box :doctor, id: "form1Example4", style: "margin-right: 12px" %>
+            </div>
             <!-- Custom partial rendering -->
             <%= render partial: "timezone", locals: { f: f, class_name: "d-none" } %>
             <!-- Submit button -->

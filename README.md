@@ -87,6 +87,7 @@ This project is a medicine management database system designed to organize user 
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
+- Live is Not ready  
 
 - [No Ready]()
 
@@ -129,8 +130,24 @@ Install this project with:
   cd medicine_record
   bundle install
   npm install
-  Add cloudinary in .env
+  Use the .example.env 
+  To Add cloudinary and Other thing in .env
 ```
+
+```sh
+    CLOUD_NAME= ''
+    API_KEY= ''
+    API_SECRET= ''
+    URL= "cloudinary://***"
+    POSTGRES_USER=""
+    POSTGRES_PASSWORD=""
+    POSTGRES_DB=""
+    ELASTICSEARCH_URL= ""
+    POSTGRES_URL= "postgres://{POSTGRES_USER}:{POSTGRES_PASSWORD}@db:5432/{POSTGRES_DB}"
+```
+
+
+
 --->
 
 ### Usage

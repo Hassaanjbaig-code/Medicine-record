@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  appointment: 2024-12-29 10:43:43
+  status: MyString
+
+two:
+  appointment: 2024-12-29 10:43:43
+  status: MyString

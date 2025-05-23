@@ -19,14 +19,20 @@
             <%# <a class=" active" aria-current="page" href="/"></a> %>
             <%= link_to "Home", root_path, class: "nav-link" %>
           </li>
-          <li class="nav-item">
-            <%# <a class="nav-link" href="#">End</a> %>
-            <%= link_to "Complete", complete_medicines_path, class: "nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%# <a class="nav-link" href="#">End</a> %>
-            <%= link_to "Doctor", doctors_path, class: "nav-link" %>
-          </li>
+          <% if !user.doctor %>
+            <li class="nav-item">
+              <%# <a class="nav-link" href="#">End</a> %>
+              <%= link_to "Complete", complete_medicines_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%# <a class="nav-link" href="#">End</a> %>
+              <%= link_to "Doctor", doctors_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%# <a class="nav-link" href="#">End</a> %>
+              <%= link_to "Doctor Register", doctor_registers_path, class: "nav-link" %>
+            </li>
+          <% end %>
         <% end %>
       </ul>
       <div class="d-flex justify-content-end">
@@ -38,20 +44,15 @@
             class: "btn btn-outline-danger"
           ) %>
         <% else %>
-          <%# <button class= type="button">Sign Up</button> %>
-          <%= button_to(
-            "Sign Up",
-             new_user_registration_path,
-             class: "btn btn-outline-success mx-2",
-             type: "button"
-          ) %>
+          <button type="button" class="bg-transparent border-0">
+            <a href="/users/sign_up" class="btn btn-outline-success" >Sign Up</a>
+          </button>
           <%# <button class= type="button">Sign In</button> %>
-          <%= button_to(
-            "Sign In",
-             new_user_session_path,
-             class: "btn btn-outline-success",
-             type: "button"
-          ) %>
+          <button type="button" class="bg-transparent border-0">
+            <a href="/users/sign_in" class="btn btn-outline-success mx-2">
+              Sign In
+            </a>
+          </button>
         <% end %>
       </div>
     </div>

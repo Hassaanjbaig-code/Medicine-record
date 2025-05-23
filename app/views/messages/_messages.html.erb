@@ -1,0 +1,21 @@
+<div data-controller="appointment-register" id="chat-box" class="bg-white shadow w-100 h-100 d-flex flex-column justify-content-between">
+  <div id="chat-header" class="bg-primary text-white p-2">
+    <span class="d-flex w-100 justify-content-between">
+      <h5 class="">Chat with us</h5>
+      <button 
+        type="button" 
+        class="btn-close" 
+        aria-label="Close"
+        data-controller="appointment-register"
+        data-action="click->appointment-register#old_remove">
+      </button>
+    </span>
+  </div>
+  <%= render partial: "messages/showMessage", locals: { room: room, message: message } %>
+</div>
+<div id="chat-footer" class="p-2">
+  <%= render partial: "messages/form",
+    locals: { doctor_register: doctor_register, patient: patient, current_user: current_user }
+      %>
+</div>
+</div>

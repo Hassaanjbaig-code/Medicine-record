@@ -9,11 +9,18 @@
           <h2 class="card-title font-weight-bold"><%= medicine.medicine_name %></h2>
           <p class="card-text"><%= medicine.use_for %></p>
           <p class="card-text"><small class="text-muted">MG: <%= medicine.medicine_mg %></small></p>
+          <p class="card-text"><small class="text-muted">Start Date: 
+              <% if medicine.start_end_medicines.empty? %>
+                Not Found
+              <% else %>
+                <%= medicine.start_end_medicines.first.start_time %>
+              <% end %>
+            </small></p>
           <p class="card-text"><small class="text-muted">End Date: 
               <% if medicine.start_end_medicines.empty? %>
                 Not Found
               <% else %>
-                <%= medicine.start_end_medicines[0].end_time %>
+                <%= medicine.start_end_medicines.first.end_time %>
               <% end %>
             </small></p>
           <div class="d-flex flex-wrap mt-3">

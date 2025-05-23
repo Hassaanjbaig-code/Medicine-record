@@ -1,0 +1,74 @@
+<style>
+  .modern-form {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    margin: 20px 0;
+  }
+
+  .error-messages {
+    color: red;
+    margin-bottom: 20px;
+  }
+</style>
+<%= form_with(model: [doctor, availabilities], method: :post, id: "#{dom_id(availabilities)}_form", local: true, url: doctor_register_availabilities_path(doctor) ) do |form| %>
+  <% if availabilities.errors.any? %>
+    <div class="error-messages">
+      <ul class="list-style">
+        <% availabilities.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= form.label :day_of_week, "Day Of Week", class: "form-label" %>
+    <div class="form-check">
+      <% Availability.day_of_weeks.keys.each do |day| %>
+        <div>
+          <%= check_box_tag "availability[day_of_weeks][]", Availability.day_of_weeks[day], false, class: "form-check-input", id: "day_of_weeks_#{day}" %>
+          <%= label_tag "day_of_weeks_#{day}", day.capitalize, class: "form-check-label" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= form.label :available_from, "Available From", class: "form-label" %>
+    <div class="d-flex gap-2">
+      <!-- Hour Select -->
+      <%= form.select :available_from_hour, (1..12).to_a.map { |h| [h.to_s.rjust(2, '0'), h] },
+                    { prompt: "Hour" },
+                    class: "form-control" %>
+      <!-- Minute Select -->
+      <%= form.select :available_from_minute, (0..59).to_a.map { |m| [m.to_s.rjust(2, '0'), m] },
+                    { prompt: "Minute" },
+                    class: "form-control" %>
+      <!-- AM/PM Select -->
+      <%= form.select :available_from_ampm, [["AM", "AM"], ["PM", "PM"]],
+                    { prompt: "AM/PM" },
+                    class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <%= form.label :available_to, "Available To", class: "form-label" %>
+    <div class="d-flex gap-2">
+      <!-- Hour Select -->
+      <%= form.select :available_to_hour, (1..12).to_a.map { |h| [h.to_s.rjust(2, '0'), h] },
+                    { prompt: "Hour" },
+                    class: "form-control" %>
+      <!-- Minute Select -->
+      <%= form.select :available_to_minute, (0..59).to_a.map { |m| [m.to_s.rjust(2, '0'), m] },
+                    { prompt: "Minute" },
+                    class: "form-control" %>
+      <!-- AM/PM Select -->
+      <%= form.select :available_to_ampm, [["AM", "AM"], ["PM", "PM"]],
+                    { prompt: "AM/PM" },
+                    class: "form-control" %>
+    </div>
+  </div>
+  <div class="form-group mt-2">
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+<% end %>

@@ -1,0 +1,48 @@
+<style>
+  .modern-form {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    margin: 20px 0;
+  }
+  .error-messages {
+    color: red;
+    margin-bottom: 20px;
+  }
+</style>
+<%= form_with(model: patient, id: "#{dom_id(patient)}_form", local: true, html: { class: 'modern-form' }) do |form| %>
+  <% if patient.errors.any? %>
+    <div class="error-messages">
+      <ul>
+        <% patient.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= form.label :full_name, 'Full Name', class: 'form-label' %>
+    <%= form.text_field :full_name, class: 'form-control', placeholder: 'Enter Full Name' %>
+  </div>
+  <div class="form-group">
+    <%= form.label :phone_number, 'Phone Number', class: 'form-label' %>
+    <%= form.number_field :phone_number, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= form.label :date_of_birth, 'Date of Birth', class: 'form-label' %>
+    <%= form.date_field :date_of_birth, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= form.label :gender, 'Gender', class: 'form-label' %>
+    <%= form.select :gender, options_for_select(['Male', 'Female', 'Other']), { prompt: 'Select Gender' }, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= form.label :medical_history, 'medical history', class: 'form-label' %>
+    <%= form.text_field :medicinal_history, class: 'form-control', placeholder: 'Enter Medicinal History' %>
+  </div>
+  <div class="form-group mt-2">
+    <%= form.submit 'Register', class: 'btn btn-primary' %>
+  </div>
+<% end %>

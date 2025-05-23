@@ -1,3 +1,98 @@
-html {
-    background-color: black;
+.glass-effect {
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    -moz-backdrop-filter: blur(10px);
+    -o-backdrop-filter: blur(10px);
+    -ms-backdrop-filter: blur(10px);
+}
+
+.time-pill {
+    background: rgba(255, 255, 255, 0.25);
+    /* transparent white */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.time-pill p {
+    margin-bottom: 0;
+    color: #333;
+    font-weight: bold;
+}
+
+
+.simple-calendar {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 1px solid #ccc;
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+    color: #333;
+    background-color: #fff;
+}
+.day {
+    padding: 5px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.wday-0 {
+    color: #f00;
+}
+.wday-1 {
+    color: #000;
+}
+.wday-2 {
+    color: #000;
+}
+.wday-3 {
+    color: #000;
+}
+.wday-4 {
+    color: #000;
+}
+.wday-5 {
+    color: #000;
+}
+.wday-6 {
+    color: #f00;
+}
+
+.today {
+    background-color: #f0f0f0;
+}
+.past {
+    color: #ccc;
+}
+.future {
+    color: #000;
+}
+
+.start-date {
+    background-color: #f0f0f0;
+}
+
+.prev-month {
+    color: #ccc;
+}
+.next-month { 
+    color: #ccc;
+}
+.current-month {
+    color: #000;
+}
+
+.has-events {
+    background-color: #f0f0f0;
+}
+
+.overflow-x-hidden {
+    overflow-x: hidden;
 }

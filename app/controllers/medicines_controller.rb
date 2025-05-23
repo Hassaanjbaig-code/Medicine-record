@@ -2,14 +2,14 @@ require 'cloudinary'
 class MedicinesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_medicine, only: %i[ show edit update destroy ]
+  before_action :check_in, only: %i[ index complete ]
   before_action :check_cloudinary, only: [:edit, :new]
   include ImageUploadDeleteHelper
 
   # GET /medicines or /medicines.json
   def index
-    @medicines = Medicine.left_joins(:start_end_medicines).select('medicines.*, start_end_medicines.start_time, start_end_medicines.end_time').where(start_end_medicines: { everyday: nil })
+    @medicines = current_user.medicines.left_joins(:start_end_medicines).select('medicines.*, start_end_medicines.start_time, start_end_medicines.end_time').where(start_end_medicines: { everyday: nil }).where(completed: false)
     # @medicines = Medicine.joins(:start_end_medicines)
-    p "This is the medicine", @medicines
   end
 
   # GET /medicines/1 or /medicines/1.json
@@ -27,7 +27,7 @@ class MedicinesController < ApplicationController
   end
 
   def complete
-    @medicines = current_user.medicines.where(completed: true)
+    @medicines = current_user.medicines.left_joins(:start_end_medicines).select('medicines.*, start_end_medicines.start_time, start_end_medicines.end_time').where(start_end_medicines: { everyday: nil }).where(completed: true)
     render :index
   end
 
@@ -41,7 +41,6 @@ class MedicinesController < ApplicationController
     @medicine = current_user.medicines.new(medicine_params)
     @medicine.public_id = public_id
     @medicine.image = image_url
-    p @medicine
     respond_to do |format|
       if @medicine.save
         format.turbo_stream
@@ -83,6 +82,24 @@ class MedicinesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_medicine
       @medicine = Medicine.find(params[:id])
+    end
+
+    def check_in
+      puts "This function check doctor", current_user.doctor
+      # If the current user is not a doctor
+      if current_user.doctor.nil? || current_user.doctor == false
+        puts "This will check if the current user's patient is nil", current_user.patient.nil?
+        if current_user.patient.nil?
+          redirect_to new_patient_path and return
+        end
+      # If the current user is a doctor
+      elsif current_user.doctor == true
+        if current_user.doctor_register.nil?
+          redirect_to new_doctor_register_path and return
+        else
+          redirect_to doctor_appointment_index_path and return
+        end
+      end
     end
 
     def cloudinary_delete id

@@ -1,0 +1,22 @@
+<section class="container min-vh-100">
+  <h1 class="text-center py-3" style="color:#4a4a4a; font-weight:bold;">Clinic</h1>
+  <div class="d-flex justify-content-between my-2">
+    <div class="card" style="background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border-radius: 15px;">
+      <div class="row g-0">
+        <!-- Image Section -->
+        <div class="col-md-6 d-flex justify-content-center align-items-center">
+          <%= image_tag "Doctor_for_form.jpg", alt: "Doctor", class: "img-fluid w-100 rounded h-100 object-fit-cover" %>
+        </div>
+        <!-- Form Section -->
+        <div class="col-md-6">
+          <div class="card-body">
+            <%= render "form", doctor: @doctor, clinic: @clinic %>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -35,11 +35,12 @@ RUN curl -sL https://github.com/nodenv/node-build/archive/master.tar.gz | tar xz
     npm install -g yarn@$YARN_VERSION
 
 # Install gems required by the application
-COPY Gemfile Gemfile.lock ./
+COPY Gemfile Gemfile.lock ./ 
 RUN bundle install
 
 # Copy the application code into the container
 COPY . .
+
 
 # Install Node.js modules
 RUN yarn install --frozen-lockfile
@@ -71,12 +72,16 @@ RUN yarn remove esbuild
 
 RUN ./bin/rails javascript:install:esbuild
 
-# RUN rm ./app/tmp/pids/server.pid
+# RUN rails db:migrate
 
-ENTRYPOINT [ "./bin/docker-entrypoint" ]
+RUN chmod +x ./bin/docker-entrypoint.sh
+RUN sed -i 's/\r$//' ./bin/docker-entrypoint.sh
+
+# ENTRYPOINT ["/bin/bash", "./bin/docker-entrypoint"]
+ENTRYPOINT ["sh", "./bin/docker-entrypoint.sh"]
 
 # Expose port 3000 for the Rails server
 EXPOSE 3000
 
 # Set the default command to run the Rails development server
-CMD ["foreman start -f Procfile.dev"]
+CMD ["foreman", "start", "-f", "Procfile.dev"]
